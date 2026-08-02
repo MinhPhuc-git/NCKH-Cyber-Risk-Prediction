@@ -1,0 +1,195 @@
+﻿Folder PATH listing
+Volume serial number is 00000211 F29E:9DDD
+D:\LUANVAN\TEST\CYRP-PLATFORM-PHASE2\APPS\USER-WEB\SRC\APP
+|   favicon.ico
+|   globals.css
+|   layout.tsx
+|   page.tsx
+|   
++---ai-predictions
+|   |   ai-predictions-client.tsx
+|   |   ai-predictions-client.tsx.bak-add-ai-debug-safe-20260729-041202
+|   |   ai-predictions-client.tsx.bak-ai-detail-20260729-161134
+|   |   ai-predictions-client.tsx.bak-ai-detail-from-vuln-20260729-172759
+|   |   ai-predictions-client.tsx.bak-ai-header-layout-20260729-001002
+|   |   ai-predictions-client.tsx.bak-clean-ai-detail-20260729-162354
+|   |   ai-predictions-client.tsx.bak-clean-ai-detail-ui-20260729164607
+|   |   ai-predictions-client.tsx.bak-cyrp-fix-20260730-042310
+|   |   ai-predictions-client.tsx.bak-final-ai-header-inline-20260729-002742
+|   |   ai-predictions-client.tsx.bak-fix-ai-detail-syntax-20260729-173210
+|   |   ai-predictions-client.tsx.bak-fix-duplicate-percentile-functions-20260730-002614
+|   |   ai-predictions-client.tsx.bak-fix-header-syntax-20260729-000339
+|   |   ai-predictions-client.tsx.bak-fix-rowPercentile-scope-20260730-002805
+|   |   ai-predictions-client.tsx.bak-force-ai-header-right-20260728-235743
+|   |   ai-predictions-client.tsx.bak-force-percentile-color-20260730-002225
+|   |   ai-predictions-client.tsx.bak-force-percentile-color-20260730-002319
+|   |   ai-predictions-client.tsx.bak-full-rewrite-ai-predictions-20260729-035643
+|   |   ai-predictions-client.tsx.bak-global-ai-sort-20260729-035248
+|   |   ai-predictions-client.tsx.bak-global-ai-sort-manual-20260729-040556
+|   |   ai-predictions-client.tsx.bak-header-refresh-20260728-231447
+|   |   ai-predictions-client.tsx.bak-move-refresh-20260728-230634
+|   |   ai-predictions-client.tsx.bak-percentile-color-band-20260730-001605
+|   |   ai-predictions-client.tsx.bak-refresh-20260728-225637
+|   |   ai-predictions-client.tsx.bak-remove-debug-leftover-20260729-165535
+|   |   ai-predictions-client.tsx.bak-restore-ai-header-20260728-234343
+|   |   ai-predictions-client.tsx.bak-rollback-ai-detail-20260729-170345
+|   |   ai-predictions-client.tsx.bak-stable-ai-header-right-20260729-001841
+|   |   page.tsx
+|   |   
+|   \---[id]
+|           ai-prediction-detail-client.tsx
+|           ai-prediction-detail-client.tsx.bak-ai-cvss-modeldetails-reasons-20260729-223503
+|           ai-prediction-detail-client.tsx.bak-cvss-clean-block-20260729-190751
+|           ai-prediction-detail-client.tsx.bak-cvss-clean-block-20260729-221748
+|           ai-prediction-detail-client.tsx.bak-cvss-na-vector-paths-20260729-184635
+|           ai-prediction-detail-client.tsx.bak-cvss-vector-paths-20260729-184822
+|           ai-prediction-detail-client.tsx.bak-cyrp-fix-20260730-042310
+|           ai-prediction-detail-client.tsx.bak-display-cvss-from-raw-reasons-20260729-190237
+|           ai-prediction-detail-client.tsx.bak-fix-ai-detail-syntax-20260729-173210
+|           ai-prediction-detail-client.tsx.bak-fix-ai-detail-visual-20260729-180729
+|           ai-prediction-detail-client.tsx.bak-fix-duplicated-cvss-vars-20260729-190523
+|           ai-prediction-detail-client.tsx.bak-fix-remediation-link-layout-20260729-183018
+|           ai-prediction-detail-client.tsx.bak-force-cvss-vector-render-20260729-222716
+|           ai-prediction-detail-client.tsx.bak-read-real-explanation-reasons-20260729-231153
+|           ai-prediction-detail-client.tsx.bak-remove-cvss-vector-row-20260729-224035
+|           ai-prediction-detail-client.tsx.bak-wazuh-links-layout-20260729-182637
+|           page.tsx
+|           page.tsx.bak-fix-ai-detail-syntax-20260729-173210
+|           
++---api
+|   +---auth
+|   |   +---login
+|   |   |       route.ts
+|   |   |       
+|   |   +---logout
+|   |   |       route.ts
+|   |   |       
+|   |   +---me
+|   |   |       route.ts
+|   |   |       
+|   |   \---register
+|   |           route.ts
+|   |           
+|   +---cti-ai-summary
+|   |   \---latest
+|   |           route.ts
+|   |           
+|   +---dashboard
+|   |   +---data-overview
+|   |   |       route.ts
+|   |   |       
+|   |   \---security-overview
+|   |           route.ts
+|   |           
+|   +---devices
+|   |   |   route.ts
+|   |   |   
+|   |   \---[deviceId]
+|   |       +---ai-pipeline-check
+|   |       |   |   route.ts
+|   |       |   |   route.ts.bak-ai-pipeline-proxy-20260728-161359
+|   |       |   |   route.ts.bak-clean-ai-pipeline-route-20260728-161758
+|   |       |   |   route.ts.bak-forward-cookie-auth-20260728-162808
+|   |       |   |   route.ts.bak-long-running-ai-proxy-20260728-163030
+|   |       |   |   
+|   |       |   \---[runId]
+|   |       |           route.ts
+|   |       |           
+|   |       +---analysis-runs
+|   |       |       route.ts
+|   |       |       
+|   |       +---context
+|   |       |       route.ts
+|   |       |       
+|   |       +---data-sync
+|   |       |       route.ts
+|   |       |       
+|   |       +---overview
+|   |       |       route.ts
+|   |       |       
+|   |       \---security-snapshot
+|   |               route.ts
+|   |               
+|   +---sync-runs
+|   |       route.ts
+|   |       
+|   \---vulnerabilities
+|       |   route.ts
+|       |   
+|       +---ai-risk-summary
+|       |       route.ts
+|       |       route.ts.bak-limit100-20260728-231432
+|       |       route.ts.bak-read-predictions-20260728-232124
+|       |       route.ts.bak-summary-20260728-230627
+|       |       
+|       \---[id]
+|               route.ts
+|               route.ts.bak-ai-detail-20260729-161134
+|               route.ts.bak-ai-detail-from-vuln-20260729-172759
+|               route.ts.bak-clean-ai-detail-20260729-162354
+|               route.ts.bak-clean-ai-detail-ui-20260729164607
+|               route.ts.bak-fix-ai-detail-syntax-20260729-173210
+|               
++---cti-ai-summary
+|       page.tsx
+|       summary-client.tsx
+|       summary.module.css
+|       
++---dashboard
+|       dashboard-overview-client.tsx
+|       dashboard.module.css
+|       page.tsx
+|       
++---devices
+|   |   devices-page-client.tsx
+|   |   devices-page-client.tsx.bak-percentile-agent-20260729-134406
+|   |   devices.module.css
+|   |   page.tsx
+|   |   
+|   \---[deviceId]
+|           device-detail-client.tsx
+|           page.tsx
+|           
++---login
+|       page.tsx
+|       
++---register
+|       page.tsx
+|       
++---reports
+|       page.tsx
+|       reports-client.tsx
+|       
++---settings
+|       page.tsx
+|       settings-client.tsx
+|       
++---sync-history
+|       page.tsx
+|       sync-history-client.tsx
+|       
+\---vulnerabilities
+    |   page.tsx
+    |   vulnerabilities-client.tsx
+    |   vulnerabilities-client.tsx.bak-after-restore-before-safe-spacing-20260729-001627
+    |   vulnerabilities-client.tsx.bak-final-pagination-replace-20260729-001007
+    |   vulnerabilities-client.tsx.bak-final-reset-vulnerabilities-20260728-155856
+    |   vulnerabilities-client.tsx.bak-final-vuln-pagination-grid-20260728-235752
+    |   vulnerabilities-client.tsx.bak-fix-totalPages-20260728-234645
+    |   vulnerabilities-client.tsx.bak-force-vuln-filter-20260728-155144
+    |   vulnerabilities-client.tsx.bak-full-wazuh-reset-20260728-160151
+    |   vulnerabilities-client.tsx.bak-header-refresh-20260728-231447
+    |   vulnerabilities-client.tsx.bak-inline-pagination-spacing-20260728-233027
+    |   vulnerabilities-client.tsx.bak-move-refresh-20260728-230640
+    |   vulnerabilities-client.tsx.bak-pagination-20260728-231453
+    |   vulnerabilities-client.tsx.bak-pagination-class-20260728-230649
+    |   vulnerabilities-client.tsx.bak-refresh-20260728-225645
+    |   vulnerabilities-client.tsx.bak-replace-pagination-20260728-234352
+    |   vulnerabilities-client.tsx.bak-vuln-filter-fix-20260728-154356
+    |   vulnerabilities-client.tsx.bak-vuln-layout-20260728-232236
+    |   vulnerabilities-client.tsx.bak-vuln-select-final-20260728-154923
+    |   
+    \---[id]
+            page.tsx
+            vulnerability-detail-client.tsx
+            

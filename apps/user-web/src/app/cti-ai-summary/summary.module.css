@@ -1,0 +1,46 @@
+.page{max-width:1180px;margin:0 auto;padding:32px 24px 56px}.header{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:24px}.kicker{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#64748b}.header h1{margin:0;font-size:30px;line-height:1.2}.description{max-width:760px;margin:10px 0 0;color:#475569}.refreshButton{border:0;border-radius:10px;padding:10px 16px;font-weight:700;background:#0f172a;color:white;cursor:pointer}.refreshButton:disabled{cursor:not-allowed;opacity:.65}.filterBar{margin-bottom:20px;padding:16px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc}.filterBar label{display:grid;gap:8px;font-weight:700}.filterBar input{max-width:360px;border:1px solid #cbd5e1;border-radius:10px;padding:10px 12px;font:inherit}.errorBox{margin-bottom:20px;padding:14px 16px;border-radius:12px;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:18px}.card{border:1px solid #e2e8f0;border-radius:14px;padding:16px;background:white}.card span{display:block;color:#64748b;font-size:13px}.card strong{display:block;margin-top:8px;font-size:26px}.distributions{display:grid;gap:8px;margin-bottom:24px;padding:16px;border-radius:14px;background:#f8fafc;color:#334155}.distributions p{margin:0}.tableSection h2{margin:0 0 14px}.tableWrap{overflow-x:auto;border:1px solid #e2e8f0;border-radius:14px}.table{width:100%;min-width:1040px;border-collapse:collapse;background:white}.table th,.table td{padding:12px 14px;border-bottom:1px solid #e2e8f0;text-align:left;vertical-align:top}.table th{font-size:12px;text-transform:uppercase;color:#475569;background:#f8fafc}.table td span{display:block;margin-top:4px;color:#64748b;font-size:12px}.table td p{margin:0 0 6px;max-width:420px}.table a{font-weight:700}@media(max-width:820px){.header{flex-direction:column}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.cards{grid-template-columns:1fr}}
+
+
+/* CYRP UI patch: center metric/stat blocks */
+.statCard,
+.metricCard,
+.summaryCard,
+.deviceStatCard,
+.analysisStatCard,
+.riskCard,
+.scoreCard {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.statCard span,
+.statCard strong,
+.statCard small,
+.metricCard span,
+.metricCard strong,
+.metricCard small,
+.summaryCard span,
+.summaryCard strong,
+.summaryCard small,
+.deviceStatCard span,
+.deviceStatCard strong,
+.deviceStatCard small,
+.analysisStatCard span,
+.analysisStatCard strong,
+.analysisStatCard small,
+.riskCard span,
+.riskCard strong,
+.riskCard small,
+.scoreCard span,
+.scoreCard strong,
+.scoreCard small {
+  text-align: center;
+}
+
+.statsGrid,
+.metricGrid,
+.analysisStatsGrid {
+  align-items: stretch;
+}
+

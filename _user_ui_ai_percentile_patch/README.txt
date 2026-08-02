@@ -1,0 +1,1 @@
+Patch user DeviceAnalysisButton to display model predictedPercentile as exploit risk, keep ACTIVE vulnerabilities as Chua khac phuc, and remove the Wazuh tracking explanatory line from the result panel.

@@ -1,0 +1,19 @@
+{
+  "agent": {
+    "version": "0.1.0",
+    "schemaVersion": "1.0",
+    "dataDirectory": "data",
+    "logDirectory": "logs",
+    "system32FileLimit": 200,
+    "system32Recursive": false,
+    "powershellTimeoutSeconds": 15,
+    "maxNetworkConnections": 500,
+    "monitoredPorts": [21, 23, 135, 139, 445, 1433, 1521, 3306, 3389, 5432, 5985, 5986]
+  },
+  "server": {
+    "baseUrl": "http://127.0.0.1:3001/api/v1",
+    "requestTimeoutSeconds": 20,
+    "pollIntervalSeconds": 3,
+    "longPollSeconds": 20
+  }
+}

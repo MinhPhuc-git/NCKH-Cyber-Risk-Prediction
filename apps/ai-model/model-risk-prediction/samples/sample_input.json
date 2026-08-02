@@ -1,0 +1,17 @@
+{
+  "CVE_ID": "CVE-2025-55315",
+  "cwe_id": "CWE-444",
+  "cvss_version": "3.1",
+  "base_score": 9.9,
+  "av_label": "NETWORK",
+  "ac_label": "LOW",
+  "pr_label": "LOW",
+  "ui_label": "NONE",
+  "scope_label": "CHANGED",
+  "c_label": "HIGH",
+  "i_label": "HIGH",
+  "a_label": "LOW",
+  "exploitability_score": 3.1,
+  "impact_score": 6.0,
+  "severity_label": "CRITICAL"
+}

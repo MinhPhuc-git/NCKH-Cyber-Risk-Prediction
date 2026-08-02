@@ -1,0 +1,9 @@
+﻿{
+    "status":  "RESTORED_IN_PLACE",
+    "restoredAt":  "2026-07-30T22:10:12.7875805+07:00",
+    "backupRoot":  "D:\\LuanVan\\backup\\CYRP\\CYRP-STABLE-20260730-172910",
+    "projectRoot":  "D:\\LuanVan\\test\\cyrp-platform-phase2",
+    "safetyCopy":  "D:\\LuanVan\\test\\cyrp-platform-phase2-pre-inplace-rollback-20260730-220836",
+    "databaseRestored":  false,
+    "buildSkipped":  false
+}

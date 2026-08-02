@@ -1,0 +1,57 @@
+{
+  "name": "cyrp-platform",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": "^22.11.0 || ^24.0.0",
+    "pnpm": "11.9.0"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "corepack pnpm --dir apps/api exec ts-node-dev --respawn --transpile-only src/main.ts",
+    "dev:admin": "corepack pnpm --filter ./apps/portal-web run dev",
+    "dev:user": "corepack pnpm --filter ./apps/user-web run dev",
+    "build:api": "corepack pnpm --dir apps/api exec nest build",
+    "build:admin": "corepack pnpm --filter ./apps/portal-web run build",
+    "build:user": "corepack pnpm --filter ./apps/user-web run build",
+    "build": "corepack pnpm run build:api && corepack pnpm run build:admin && corepack pnpm run build:user",
+    "lint:api": "eslint \"apps/api/**/*.ts\"",
+    "lint:admin": "corepack pnpm --filter ./apps/portal-web run lint",
+    "lint:user": "corepack pnpm --filter ./apps/user-web run lint",
+    "lint": "corepack pnpm run lint:api && corepack pnpm run lint:admin && corepack pnpm run lint:user",
+    "typecheck:api": "corepack pnpm --dir apps/api exec tsc -p tsconfig.json --noEmit",
+    "typecheck:admin": "corepack pnpm --filter ./apps/portal-web exec tsc -p tsconfig.json --noEmit",
+    "typecheck:user": "corepack pnpm --filter ./apps/user-web exec tsc -p tsconfig.json --noEmit",
+    "typecheck": "corepack pnpm run typecheck:api && corepack pnpm run typecheck:admin && corepack pnpm run typecheck:user",
+    "test:api": "corepack pnpm --dir apps/api exec jest --runInBand",
+    "test:e2e:api": "corepack pnpm --dir apps/api exec jest --config jest-e2e.json --runInBand",
+    "docker:db:up": "docker compose up -d db",
+    "docker:db:down": "docker compose down",
+    "docker:db:logs": "docker compose logs -f db",
+    "db:generate": "corepack pnpm exec prisma generate --schema=database/prisma/schema.prisma",
+    "db:validate": "corepack pnpm exec prisma validate --schema=database/prisma/schema.prisma",
+    "db:migrate": "corepack pnpm exec prisma migrate dev --schema=database/prisma/schema.prisma",
+    "db:deploy": "corepack pnpm exec prisma migrate deploy --schema=database/prisma/schema.prisma",
+    "db:status": "corepack pnpm exec prisma migrate status --schema=database/prisma/schema.prisma",
+    "db:seed": "corepack pnpm --filter ./apps/api exec tsx scripts/seed.ts",
+    "db:seed:phase2": "corepack pnpm --filter ./apps/api exec tsx scripts/seed-phase2-data-sources.ts",
+    "verify:phase1": "corepack pnpm run db:validate && corepack pnpm run lint:api && corepack pnpm run typecheck:api && corepack pnpm run test:api && corepack pnpm run test:e2e:api && corepack pnpm run build:api",
+    "verify": "corepack pnpm run db:validate && corepack pnpm run lint && corepack pnpm run typecheck && corepack pnpm run test:api && corepack pnpm run test:e2e:api && corepack pnpm run build",
+    "cti:import:csv": "corepack pnpm --filter ./apps/api exec tsx scripts/import-cti-csv.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.4",
+    "eslint": "9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.7.0",
+    "prisma": "5.22.0",
+    "typescript-eslint": "8.62.0"
+  },
+  "dependencies": {
+    "@prisma/client": "5.22.0"
+  }
+}

@@ -1,0 +1,383 @@
+.pageHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.pageHeader p,
+.listPanel header span {
+  margin: 0 0 8px;
+  color: #a78bfa;
+  font-size: 0.66rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pageHeader h1 {
+  margin: 0;
+  color: #fafafa;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  letter-spacing: -0.04em;
+}
+
+.pageHeader > div > span {
+  display: block;
+  margin-top: 9px;
+  color: #747988;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.nodeStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  color: #9ca3af;
+  font-size: 0.68rem;
+  border: 1px solid rgba(148, 163, 184, 0.11);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.nodeStatus span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6b7280;
+}
+
+.nodeOnline span {
+  background: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+}
+
+.loadingPanel,
+.errorPanel {
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(18, 18, 22, 0.92);
+}
+
+.errorPanel {
+  margin-bottom: 16px;
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+.heroPanel {
+  padding: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.11);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(139, 92, 246, 0.1), transparent 27%),
+    rgba(18, 18, 22, 0.92);
+}
+
+.riskArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.riskCircle {
+  display: grid;
+  width: 220px;
+  height: 220px;
+  place-items: center;
+  border: 16px solid rgba(139, 92, 246, 0.14);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 20px rgba(148, 163, 184, 0.025),
+    inset 0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+.riskCircle small,
+.riskCircle strong,
+.riskCircle span {
+  display: block;
+}
+
+.riskCircle small {
+  color: #8b8f9c;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.riskCircle strong {
+  margin-top: 5px;
+  color: #d8b4fe;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.riskCircle span {
+  margin-top: 10px;
+  color: #a78bfa;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.riskArea p {
+  max-width: 620px;
+  margin: 22px 0 0;
+  color: #747988;
+  font-size: 0.74rem;
+  line-height: 1.65;
+}
+
+.metricGrid,
+.inventoryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.inventoryGrid {
+  margin-top: 14px;
+}
+
+.metricCard,
+.inventoryGrid article {
+  min-height: 106px;
+  padding: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.metricCard span,
+.metricCard strong,
+.metricCard small,
+.inventoryGrid span,
+.inventoryGrid strong,
+.inventoryGrid small {
+  display: block;
+}
+
+.metricCard span,
+.inventoryGrid span {
+  color: #808491;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.metricCard strong,
+.inventoryGrid strong {
+  margin-top: 12px;
+  color: #f4f4f5;
+  font-size: 1.2rem;
+}
+
+.inventoryGrid strong {
+  overflow: hidden;
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metricCard small,
+.inventoryGrid small {
+  margin-top: 8px;
+  color: #747988;
+  font-size: 0.68rem;
+}
+
+.primaryAction {
+  display: block;
+  width: min(100%, 380px);
+  height: 52px;
+  margin: 26px auto 0;
+  color: #21162d;
+  font-weight: 750;
+  border: 0;
+  border-radius: 12px;
+  background: #c4b5fd;
+  cursor: pointer;
+}
+
+.primaryAction:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.helperText {
+  display: block;
+  margin-top: 12px;
+  color: #666a76;
+  text-align: center;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.listPanel {
+  min-height: 280px;
+  padding: 20px;
+  border: 1px solid rgba(148, 163, 184, 0.09);
+  border-radius: 14px;
+  background: rgba(18, 18, 22, 0.88);
+}
+
+.listPanel header h2 {
+  margin: 0;
+  color: #f4f4f5;
+  font-size: 1rem;
+}
+
+.deviceList,
+.alertList {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.deviceRow,
+.alertRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.deviceRow strong,
+.deviceRow span,
+.alertRow strong,
+.alertRow span {
+  display: block;
+}
+
+.deviceRow strong,
+.alertRow strong {
+  color: #e5e7eb;
+  font-size: 0.78rem;
+}
+
+.deviceRow span,
+.alertRow span {
+  margin-top: 5px;
+  color: #747988;
+  font-size: 0.66rem;
+}
+
+.deviceStats {
+  text-align: right;
+}
+
+.deviceStats strong {
+  color: #d8b4fe;
+  font-size: 1.15rem;
+}
+
+.alertRow {
+  justify-content: flex-start;
+}
+
+.levelBadge {
+  flex: 0 0 auto;
+  min-width: 34px;
+  padding: 7px 8px;
+  color: #d8b4fe !important;
+  text-align: center;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 8px;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.emptyText {
+  color: #747988;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 1100px) {
+  .metricGrid,
+  .inventoryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .pageHeader {
+    display: block;
+  }
+
+  .nodeStatus {
+    width: fit-content;
+    margin-top: 16px;
+  }
+
+  .contentGrid,
+  .metricGrid,
+  .inventoryGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroPanel {
+    padding: 22px 16px;
+  }
+
+  .riskCircle {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+
+/* CYRP UI patch: center metric/stat blocks */
+.statCard,
+.metricCard,
+.summaryCard,
+.deviceStatCard,
+.analysisStatCard,
+.riskCard,
+.scoreCard {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.statCard span,
+.statCard strong,
+.statCard small,
+.metricCard span,
+.metricCard strong,
+.metricCard small,
+.summaryCard span,
+.summaryCard strong,
+.summaryCard small,
+.deviceStatCard span,
+.deviceStatCard strong,
+.deviceStatCard small,
+.analysisStatCard span,
+.analysisStatCard strong,
+.analysisStatCard small,
+.riskCard span,
+.riskCard strong,
+.riskCard small,
+.scoreCard span,
+.scoreCard strong,
+.scoreCard small {
+  text-align: center;
+}
+
+.statsGrid,
+.metricGrid,
+.analysisStatsGrid {
+  align-items: stretch;
+}
+

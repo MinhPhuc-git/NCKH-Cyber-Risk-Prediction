@@ -1,0 +1,633 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoleCode {
+  ADMIN
+  USER
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum DeviceStatus {
+  OFFLINE
+  IDLE
+  SCANNING
+  ERROR
+}
+
+enum AnalysisRunStatus {
+  QUEUED
+  COLLECTING_EVENTS
+  ANALYZING
+  COMPLETED
+  FAILED
+}
+
+enum SyncSourceType {
+  CTI_CSV
+  CTI_NVD
+  CTI_EPSS
+  CTI_CISA_KEV
+  WAZUH_VULNERABILITIES
+  WAZUH_ENDPOINT_CONTEXT
+  MANUAL
+}
+
+enum SyncRunStatus {
+  RUNNING
+  COMPLETED
+  PARTIAL
+  FAILED
+}
+
+enum CtiSourceStatus {
+  DISABLED
+  READY
+  ACTIVE
+  ERROR
+}
+
+enum VulnerabilityLifecycleStatus {
+  ACTIVE
+  RESOLVED
+  UNDER_EVALUATION
+  UNKNOWN
+}
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        RoleCode @unique
+  name        String
+  description String?
+  users       User[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("roles")
+}
+
+model User {
+  id           String     @id @default(uuid()) @db.Uuid
+  email        String     @unique
+  passwordHash String     @map("password_hash")
+  fullName     String     @map("full_name")
+  status       UserStatus @default(ACTIVE)
+
+  roleId String @db.Uuid @map("role_id")
+  role   Role   @relation(fields: [roleId], references: [id], onDelete: Restrict)
+
+  devices         Device[]
+  enrollmentCodes DeviceEnrollmentCode[]
+
+  lastLoginAt DateTime? @map("last_login_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@index([roleId])
+  @@index([status])
+  @@map("users")
+}
+
+model Device {
+  id              String       @id @default(uuid()) @db.Uuid
+  userId          String       @map("user_id") @db.Uuid
+  installationId  String       @unique @map("installation_id") @db.VarChar(64)
+  hostname        String       @db.VarChar(255)
+  operatingSystem String       @map("operating_system") @db.VarChar(255)
+  architecture    String?      @db.VarChar(80)
+  agentVersion    String       @map("agent_version") @db.VarChar(30)
+  status          DeviceStatus @default(OFFLINE)
+  lastSeenAt      DateTime?    @map("last_seen_at") @db.Timestamptz(3)
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user                     User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  credential               AgentCredential?
+  wazuhBinding             WazuhAgentBinding?
+  analysisRuns             AnalysisRun[]
+  securitySnapshot         DeviceSecuritySnapshot?
+  syncRuns                 SyncRun[]
+  detectedVulnerabilities  DetectedVulnerability[]
+  endpointContextSnapshots EndpointContextSnapshot[]
+  devicePackages           DevicePackage[]
+  syncLease                DeviceSyncLease?
+
+  @@index([userId])
+  @@index([status, lastSeenAt])
+  @@map("devices")
+}
+
+model AgentCredential {
+  id        String    @id @default(uuid()) @db.Uuid
+  deviceId  String    @unique @map("device_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash") @db.Char(64)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  revokedAt DateTime? @map("revoked_at") @db.Timestamptz(3)
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@map("agent_credentials")
+}
+
+model DeviceEnrollmentCode {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  codeHash  String    @unique @map("code_hash") @db.Char(64)
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz(3)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+  @@map("device_enrollment_codes")
+}
+
+model WazuhAgentBinding {
+  id                 String    @id @default(uuid()) @db.Uuid
+  deviceId           String    @unique @map("device_id") @db.Uuid
+  wazuhAgentId       String    @unique @map("wazuh_agent_id") @db.VarChar(16)
+  wazuhAgentName     String    @map("wazuh_agent_name") @db.VarChar(255)
+  lastKnownStatus    String?   @map("last_known_status") @db.VarChar(40)
+  lastKeepAliveAt    DateTime? @map("last_keep_alive_at") @db.Timestamptz(3)
+  lastSynchronizedAt       DateTime  @default(now()) @map("last_synchronized_at") @db.Timestamptz(3)
+  lastStatusCheckedAt       DateTime? @map("last_status_checked_at") @db.Timestamptz(3)
+  lastStatusError           String?   @map("last_status_error") @db.Text
+  consecutiveStatusFailures Int       @default(0) @map("consecutive_status_failures")
+  createdAt          DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt          DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([lastKnownStatus, lastSynchronizedAt])
+  @@map("wazuh_agent_bindings")
+}
+
+
+model DeviceSyncLease {
+  deviceId   String   @id @map("device_id") @db.Uuid
+  ownerId    String   @map("owner_id") @db.VarChar(128)
+  acquiredAt DateTime @default(now()) @map("acquired_at") @db.Timestamptz(3)
+  expiresAt  DateTime @map("expires_at") @db.Timestamptz(3)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+  @@map("device_sync_leases")
+}
+
+model AnalysisRun {
+  id           String            @id @default(uuid()) @db.Uuid
+  deviceId     String            @map("device_id") @db.Uuid
+  status       AnalysisRunStatus @default(QUEUED)
+  windowStart  DateTime          @map("window_start") @db.Timestamptz(3)
+  windowEnd    DateTime          @map("window_end") @db.Timestamptz(3)
+  requestedAt  DateTime          @default(now()) @map("requested_at") @db.Timestamptz(3)
+  completedAt  DateTime?         @map("completed_at") @db.Timestamptz(3)
+  eventCount   Int               @default(0) @map("event_count")
+  maxRuleLevel Int?              @map("max_rule_level")
+  summary      Json?             @db.JsonB
+  errorMessage String?           @map("error_message") @db.Text
+  createdAt    DateTime          @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime          @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([deviceId, requestedAt])
+  @@index([deviceId, status])
+  @@map("analysis_runs")
+}
+
+model DeviceSecuritySnapshot {
+  id               String    @id @default(uuid()) @db.Uuid
+  deviceId         String    @unique @map("device_id") @db.Uuid
+  wazuhAgentId     String    @map("wazuh_agent_id") @db.VarChar(16)
+  agentName        String?   @map("agent_name") @db.VarChar(255)
+  agentStatus      String?   @map("agent_status") @db.VarChar(40)
+  agentIp          String?   @map("agent_ip") @db.VarChar(255)
+  lastKeepAliveAt  DateTime? @map("last_keep_alive_at") @db.Timestamptz(3)
+  windowMinutes    Int       @default(1440) @map("window_minutes")
+  alertCount       Int       @default(0) @map("alert_count")
+  maxRuleLevel     Int?      @map("max_rule_level")
+  lowCount         Int       @default(0) @map("low_count")
+  mediumCount      Int       @default(0) @map("medium_count")
+  highCount        Int       @default(0) @map("high_count")
+  criticalCount    Int       @default(0) @map("critical_count")
+  riskScore        Int       @default(0) @map("risk_score")
+  riskLabel        String    @default("Không xác định") @map("risk_label") @db.VarChar(40)
+  topRules         Json      @map("top_rules") @db.JsonB
+  latestAlerts     Json      @map("latest_alerts") @db.JsonB
+  hardware         Json?     @db.JsonB
+  inventory        Json?     @db.JsonB
+  calculatedAt     DateTime  @default(now()) @map("calculated_at") @db.Timestamptz(3)
+  lastSuccessfulAt DateTime? @map("last_successful_at") @db.Timestamptz(3)
+  syncError        String?   @map("sync_error") @db.Text
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([wazuhAgentId])
+  @@index([agentStatus, calculatedAt])
+  @@index([riskScore, calculatedAt])
+  @@map("device_security_snapshots")
+}
+
+model CtiSource {
+  id            String          @id @default(uuid()) @db.Uuid
+  code          String          @unique @db.VarChar(80)
+  name          String          @db.VarChar(160)
+  sourceType    SyncSourceType  @map("source_type")
+  description   String?         @db.Text
+  status        CtiSourceStatus @default(READY)
+  enabled       Boolean         @default(true)
+  lastAttemptAt DateTime?       @map("last_attempt_at") @db.Timestamptz(3)
+  lastSuccessAt DateTime?       @map("last_success_at") @db.Timestamptz(3)
+  lastError     String?         @map("last_error") @db.Text
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  syncRuns SyncRun[]
+
+  @@index([sourceType, status])
+  @@map("cti_sources")
+}
+
+model Cve {
+  cveId              String    @id @map("cve_id") @db.VarChar(32)
+  description        String?   @map("cve_description") @db.Text
+  publishedAt        DateTime? @map("published_at") @db.Timestamptz(3)
+  modifiedAt         DateTime? @map("modified_at") @db.Timestamptz(3)
+  source             String    @default("UNKNOWN") @db.VarChar(40)
+  sourceVersion      String?   @map("source_version") @db.VarChar(80)
+  sourceDocumentHash String?   @map("source_document_hash") @db.Char(64)
+  ingestedAt         DateTime  @default(now()) @map("ingested_at") @db.Timestamptz(3)
+  createdAt          DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt          DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  cvssMetrics             CveCvssMetric[]
+  cveCwes                 CveCwe[]
+  references              CveReference[]
+  affectedProducts        CveAffectedProduct[]
+  threatSignals           CveThreatSignal[]
+  detectedVulnerabilities DetectedVulnerability[]
+
+  @@index([publishedAt])
+  @@index([modifiedAt])
+  @@index([source, ingestedAt])
+  @@map("cves")
+}
+
+model CveCvssMetric {
+  id                    String    @id @default(uuid()) @db.Uuid
+  cveId                 String    @map("cve_id") @db.VarChar(32)
+  source                String    @db.VarChar(40)
+  metricType            String    @map("metric_type") @db.VarChar(80)
+  cvssVersion           String    @default("UNKNOWN") @map("cvss_version") @db.VarChar(16)
+  vectorString          String?   @map("vector_string") @db.VarChar(255)
+  baseScore             Float?    @map("base_score")
+  baseSeverity          String?   @map("base_severity") @db.VarChar(32)
+  attackVector          String?   @map("attack_vector") @db.VarChar(40)
+  attackComplexity      String?   @map("attack_complexity") @db.VarChar(40)
+  privilegesRequired    String?   @map("privileges_required") @db.VarChar(40)
+  userInteraction       String?   @map("user_interaction") @db.VarChar(40)
+  scope                 String?   @db.VarChar(40)
+  confidentialityImpact String?   @map("confidentiality_impact") @db.VarChar(40)
+  integrityImpact       String?   @map("integrity_impact") @db.VarChar(40)
+  availabilityImpact    String?   @map("availability_impact") @db.VarChar(40)
+  publishedAt           DateTime? @map("published_at") @db.Timestamptz(3)
+  ingestedAt            DateTime  @default(now()) @map("ingested_at") @db.Timestamptz(3)
+  createdAt             DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt             DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  cve Cve @relation(fields: [cveId], references: [cveId], onDelete: Cascade)
+
+  @@unique([cveId, source, metricType, cvssVersion])
+  @@index([baseSeverity, baseScore])
+  @@map("cve_cvss_metrics")
+}
+
+model Cwe {
+  cweId       String    @id @map("cwe_id") @db.VarChar(32)
+  name        String?   @db.VarChar(255)
+  description String?   @db.Text
+  source      String    @default("UNKNOWN") @db.VarChar(40)
+  modifiedAt  DateTime? @map("modified_at") @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  cveCwes CveCwe[]
+
+  @@map("cwes")
+}
+
+model CveCwe {
+  cveId     String   @map("cve_id") @db.VarChar(32)
+  cweId     String   @map("cwe_id") @db.VarChar(32)
+  source    String   @db.VarChar(40)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  cve Cve @relation(fields: [cveId], references: [cveId], onDelete: Cascade)
+  cwe Cwe @relation(fields: [cweId], references: [cweId], onDelete: Cascade)
+
+  @@id([cveId, cweId, source])
+  @@index([cweId])
+  @@map("cve_cwes")
+}
+
+model CveReference {
+  id        String   @id @default(uuid()) @db.Uuid
+  cveId     String   @map("cve_id") @db.VarChar(32)
+  url       String   @db.Text
+  urlHash   String   @map("url_hash") @db.Char(64)
+  source    String   @db.VarChar(40)
+  tags      Json?    @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  cve Cve @relation(fields: [cveId], references: [cveId], onDelete: Cascade)
+
+  @@unique([cveId, urlHash])
+  @@index([source])
+  @@map("cve_references")
+}
+
+model CveAffectedProduct {
+  id                    String   @id @default(uuid()) @db.Uuid
+  cveId                 String   @map("cve_id") @db.VarChar(32)
+  fingerprint           String   @unique @db.Char(64)
+  vendor                String?  @db.VarChar(255)
+  product               String?  @db.VarChar(255)
+  cpeUri                String?  @map("cpe_uri") @db.Text
+  versionStartIncluding String?  @map("version_start_including") @db.VarChar(255)
+  versionStartExcluding String?  @map("version_start_excluding") @db.VarChar(255)
+  versionEndIncluding   String?  @map("version_end_including") @db.VarChar(255)
+  versionEndExcluding   String?  @map("version_end_excluding") @db.VarChar(255)
+  versionCriteria       Json?    @map("version_criteria") @db.JsonB
+  source                String   @db.VarChar(40)
+  createdAt             DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt             DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  cve Cve @relation(fields: [cveId], references: [cveId], onDelete: Cascade)
+
+  @@index([cveId, vendor, product])
+  @@map("cve_affected_products")
+}
+
+model CveThreatSignal {
+  id               String    @id @default(uuid()) @db.Uuid
+  cveId            String    @map("cve_id") @db.VarChar(32)
+  signalDate       DateTime  @map("signal_date") @db.Date
+  epssScore        Float?    @map("epss_score")
+  epssPercentile   Float?    @map("epss_percentile")
+  isKnownExploited Boolean   @default(false) @map("is_known_exploited")
+  kevDateAdded     DateTime? @map("kev_date_added") @db.Date
+  exploitEvidence  Json?     @map("exploit_evidence") @db.JsonB
+  sourceVersions   Json?     @map("source_versions") @db.JsonB
+  ingestedAt       DateTime  @default(now()) @map("ingested_at") @db.Timestamptz(3)
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  cve Cve @relation(fields: [cveId], references: [cveId], onDelete: Cascade)
+
+  @@unique([cveId, signalDate])
+  @@index([signalDate, isKnownExploited])
+  @@map("cve_threat_signals")
+}
+
+model SyncRun {
+  id               String         @id @default(uuid()) @db.Uuid
+  sourceId         String?        @map("source_id") @db.Uuid
+  deviceId         String?        @map("device_id") @db.Uuid
+  sourceType       SyncSourceType @map("source_type")
+  status           SyncRunStatus  @default(RUNNING)
+  trigger          String         @default("MANUAL") @db.VarChar(40)
+  sourceVersion    String?        @map("source_version") @db.VarChar(120)
+  checkpointBefore Json?          @map("checkpoint_before") @db.JsonB
+  checkpointAfter  Json?          @map("checkpoint_after") @db.JsonB
+  metadata         Json?          @db.JsonB
+  startedAt        DateTime       @default(now()) @map("started_at") @db.Timestamptz(3)
+  completedAt      DateTime?      @map("completed_at") @db.Timestamptz(3)
+  recordsRead      Int            @default(0) @map("records_read")
+  recordsWritten   Int            @default(0) @map("records_written")
+  recordsUpdated   Int            @default(0) @map("records_updated")
+  recordsResolved  Int            @default(0) @map("records_resolved")
+  recordsRejected  Int            @default(0) @map("records_rejected")
+  errorSummary     String?        @map("error_summary") @db.Text
+  sourceManifest   Json?          @map("source_manifest") @db.JsonB
+  createdAt        DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  source                    CtiSource?                  @relation(fields: [sourceId], references: [id], onDelete: SetNull)
+  device                    Device?                     @relation(fields: [deviceId], references: [id], onDelete: SetNull)
+  detectedVulnerabilities   DetectedVulnerability[]
+  endpointContextSnapshots  EndpointContextSnapshot[]
+  devicePackages            DevicePackage[]
+
+  @@index([sourceType, startedAt])
+  @@index([status, startedAt])
+  @@index([deviceId, startedAt])
+  @@index([sourceId, startedAt])
+  @@map("sync_runs")
+}
+
+model DetectedVulnerability {
+  id                  String                       @id @default(uuid()) @db.Uuid
+  deviceId            String                       @map("device_id") @db.Uuid
+  cveId               String                       @map("cve_id") @db.VarChar(32)
+  syncRunId           String?                      @map("sync_run_id") @db.Uuid
+  wazuhAgentId        String                       @map("wazuh_agent_id") @db.VarChar(16)
+  packageName         String?                      @map("package_name") @db.VarChar(255)
+  packageVersion      String?                      @map("package_version") @db.VarChar(255)
+  packageArchitecture String?                      @map("package_architecture") @db.VarChar(80)
+  packageVendor       String?                      @map("package_vendor") @db.VarChar(255)
+  packageType         String?                      @map("package_type") @db.VarChar(80)
+  status              VulnerabilityLifecycleStatus @default(ACTIVE)
+  sourceStatus        String?                      @map("source_status") @db.VarChar(80)
+  severity            String?                      @db.VarChar(32)
+  cvssBaseScore       Float?                       @map("cvss_base_score")
+  detectedAt          DateTime?                    @map("detected_at") @db.Timestamptz(3)
+  publishedAt         DateTime?                    @map("published_at") @db.Timestamptz(3)
+  firstSeenAt         DateTime                     @default(now()) @map("first_seen_at") @db.Timestamptz(3)
+  lastSeenAt          DateTime                     @default(now()) @map("last_seen_at") @db.Timestamptz(3)
+  resolvedAt          DateTime?                    @map("resolved_at") @db.Timestamptz(3)
+  sourceIndex         String                       @map("source_index") @db.VarChar(255)
+  sourceDocumentId    String                       @map("source_document_id") @db.VarChar(512)
+  sourceUpdatedAt     DateTime?                    @map("source_updated_at") @db.Timestamptz(3)
+  rawPayload          Json?                        @map("raw_payload") @db.JsonB
+  createdAt           DateTime                     @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt           DateTime                     @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  device            Device                      @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  cve               Cve                         @relation(fields: [cveId], references: [cveId], onDelete: Restrict)
+  syncRun           SyncRun?                    @relation(fields: [syncRunId], references: [id], onDelete: SetNull)
+  featureVector     VulnerabilityFeatureVector?
+  aiPrediction      AiPrediction?
+  predictionHistory PredictionHistory[]
+
+  @@unique([sourceIndex, sourceDocumentId])
+  @@index([deviceId, status, severity])
+  @@index([deviceId, cveId, status])
+  @@index([cveId, lastSeenAt])
+  @@index([syncRunId])
+  @@map("detected_vulnerabilities")
+}
+
+model EndpointContextSnapshot {
+  id                 String    @id @default(uuid()) @db.Uuid
+  deviceId           String    @map("device_id") @db.Uuid
+  syncRunId          String?   @map("sync_run_id") @db.Uuid
+  wazuhAgentId       String    @map("wazuh_agent_id") @db.VarChar(16)
+  observedAt         DateTime  @default(now()) @map("observed_at") @db.Timestamptz(3)
+  asOfTime           DateTime  @map("as_of_time") @db.Timestamptz(3)
+  agentStatus        String?   @map("agent_status") @db.VarChar(40)
+  agentIp            String?   @map("agent_ip") @db.VarChar(255)
+  hostname           String?   @db.VarChar(255)
+  osName             String?   @map("os_name") @db.VarChar(255)
+  osVersion          String?   @map("os_version") @db.VarChar(255)
+  osFull             String?   @map("os_full") @db.VarChar(512)
+  architecture       String?   @db.VarChar(80)
+  packages           Json?     @db.JsonB
+  hotfixes           Json?     @db.JsonB
+  ports              Json?     @db.JsonB
+  processes          Json?     @db.JsonB
+  services           Json?     @db.JsonB
+  systemInventory    Json?     @map("system_inventory") @db.JsonB
+  hardware           Json?     @db.JsonB
+  packageCount       Int       @default(0) @map("package_count")
+  hotfixCount        Int       @default(0) @map("hotfix_count")
+  portCount          Int       @default(0) @map("port_count")
+  listeningPortCount Int       @default(0) @map("listening_port_count")
+  processCount       Int       @default(0) @map("process_count")
+  serviceCount       Int       @default(0) @map("service_count")
+  completeness       Json?     @db.JsonB
+  sourceVersions     Json?     @map("source_versions") @db.JsonB
+  createdAt          DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  device  Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  syncRun SyncRun? @relation(fields: [syncRunId], references: [id], onDelete: SetNull)
+
+  @@index([deviceId, asOfTime])
+  @@index([syncRunId])
+  @@index([wazuhAgentId, asOfTime])
+  @@map("endpoint_context_snapshots")
+}
+
+model DevicePackage {
+  id               String    @id @default(uuid()) @db.Uuid
+  deviceId         String    @map("device_id") @db.Uuid
+  syncRunId        String?   @map("sync_run_id") @db.Uuid
+  wazuhAgentId     String    @map("wazuh_agent_id") @db.VarChar(16)
+  packageKey       String    @map("package_key") @db.Char(64)
+  name             String    @db.VarChar(255)
+  version          String?   @db.VarChar(255)
+  vendor           String?   @db.VarChar(255)
+  architecture     String?   @db.VarChar(80)
+  packageType      String?   @map("package_type") @db.VarChar(80)
+  description      String?   @db.Text
+  sizeBytes        BigInt?   @map("size_bytes")
+  sourceIndex      String?   @map("source_index") @db.VarChar(255)
+  sourceDocumentId String?   @map("source_document_id") @db.VarChar(512)
+  firstSeenAt      DateTime  @default(now()) @map("first_seen_at") @db.Timestamptz(3)
+  lastSeenAt       DateTime  @default(now()) @map("last_seen_at") @db.Timestamptz(3)
+  lastScannedAt    DateTime  @default(now()) @map("last_scanned_at") @db.Timestamptz(3)
+  rawPayload       Json?     @map("raw_payload") @db.JsonB
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  device  Device   @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+  syncRun SyncRun? @relation(fields: [syncRunId], references: [id], onDelete: SetNull)
+
+  @@unique([deviceId, packageKey])
+  @@index([deviceId, name, version])
+  @@index([wazuhAgentId, lastSeenAt])
+  @@map("device_packages")
+}
+
+model VulnerabilityFeatureVector {
+  id                       String   @id @default(uuid()) @db.Uuid
+  detectedVulnerabilityId  String   @unique @map("detected_vulnerability_id") @db.Uuid
+  deviceId                 String   @map("device_id") @db.Uuid
+  cveId                    String   @map("cve_id") @db.VarChar(32)
+  modelInputVersion        String   @default("CYRP_FEATURES_V1") @map("model_input_version") @db.VarChar(80)
+  attackVector             String?  @map("attack_vector") @db.VarChar(40)
+  attackComplexity         String?  @map("attack_complexity") @db.VarChar(40)
+  privilegesRequired       String?  @map("privileges_required") @db.VarChar(40)
+  userInteraction          String?  @map("user_interaction") @db.VarChar(40)
+  scope                    String?  @db.VarChar(40)
+  confidentialityImpact    String?  @map("confidentiality_impact") @db.VarChar(40)
+  integrityImpact          String?  @map("integrity_impact") @db.VarChar(40)
+  availabilityImpact       String?  @map("availability_impact") @db.VarChar(40)
+  baseScore                Float?   @map("base_score")
+  severity                 String?  @db.VarChar(32)
+  epssScore                Float?   @map("epss_score")
+  epssPercentile           Float?   @map("epss_percentile")
+  isKnownExploited         Boolean  @default(false) @map("is_known_exploited")
+  cweIdGrouped             String?  @map("cwe_id_grouped") @db.VarChar(50)
+  cweIsGeneric             Boolean  @default(false) @map("cwe_is_generic")
+  isCvss3OrHigher          Boolean  @default(false) @map("is_cvss3_or_higher")
+  alertCount24h            Int      @default(0) @map("alert_count_24h")
+  maxRuleLevel24h          Int?     @map("max_rule_level_24h")
+  devicePackageCount       Int      @default(0) @map("device_package_count")
+  featureHash              String   @map("feature_hash") @db.Char(64)
+  rawFeatures              Json     @map("raw_features") @db.JsonB
+  createdAt                DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt                DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  detectedVulnerability DetectedVulnerability @relation(fields: [detectedVulnerabilityId], references: [id], onDelete: Cascade)
+
+  @@index([deviceId, cveId])
+  @@index([featureHash])
+  @@map("vulnerability_feature_vectors")
+}
+
+model AiPrediction {
+  id                      String   @id @default(uuid()) @db.Uuid
+  detectedVulnerabilityId String   @unique @map("detected_vulnerability_id") @db.Uuid
+  modelVersion            String   @default("CYRP_BASELINE_V1") @map("model_version") @db.VarChar(80)
+  attackProbability       Float    @map("attack_probability")
+  predictedPercentile     Float?   @map("predicted_percentile")
+  riskLevel               String   @map("risk_level") @db.VarChar(20)
+  explanation             Json?    @db.JsonB
+  predictedAt             DateTime @default(now()) @map("predicted_at") @db.Timestamptz(3)
+  createdAt               DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt               DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  detectedVulnerability DetectedVulnerability @relation(fields: [detectedVulnerabilityId], references: [id], onDelete: Cascade)
+
+  @@index([riskLevel, predictedAt])
+  @@map("ai_predictions")
+}
+
+model PredictionHistory {
+  id                      String   @id @default(uuid()) @db.Uuid
+  detectedVulnerabilityId String   @map("detected_vulnerability_id") @db.Uuid
+  deviceId                String   @map("device_id") @db.Uuid
+  cveId                   String   @map("cve_id") @db.VarChar(32)
+  wazuhAgentId            String   @map("wazuh_agent_id") @db.VarChar(16)
+  modelVersion            String   @map("model_version") @db.VarChar(80)
+  attackProbability       Float    @map("attack_probability")
+  predictedPercentile     Float?   @map("predicted_percentile")
+  riskLevel               String   @map("risk_level") @db.VarChar(20)
+  featureHash             String?  @map("feature_hash") @db.Char(64)
+  predictedAt             DateTime @default(now()) @map("predicted_at") @db.Timestamptz(3)
+  createdAt               DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  detectedVulnerability DetectedVulnerability @relation(fields: [detectedVulnerabilityId], references: [id], onDelete: Cascade)
+
+  @@index([detectedVulnerabilityId, predictedAt])
+  @@index([deviceId, predictedAt])
+  @@index([cveId, predictedAt])
+  @@map("prediction_history")
+}
+

@@ -1,0 +1,3 @@
+id,user_id,installation_id,hostname,operating_system,architecture,agent_version,status,last_seen_at,created_at,updated_at
+f29a017a-7e3b-49a9-bea5-5d1301e8d83a,19ccec3e-b4d9-4552-8990-4a9ea48b7e26,acc664d3-c935-44ad-a415-32919542591b,DESKTOP-RCSLUG6,Microsoft Windows 11 Home Single Language,x86_64,phase-2b2,IDLE,2026-07-26 19:03:31+00,2026-07-15 06:21:31.102+00,2026-07-26 19:03:43.995+00
+62217b8d-45ff-4ba3-8879-456d0c938a65,b2ae9491-8efd-4853-91d3-45edfee52b92,42e292d1-6661-4540-924a-577471692f5d,CRYSTAL,Microsoft Windows 11 Home Single Language,x86_64,phase-2b2,IDLE,2026-07-26 19:05:02+00,2026-07-26 06:57:51.55+00,2026-07-26 19:05:21.654+00

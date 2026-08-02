@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #08090d;
+  --foreground: #f5f3ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 70% 0%, rgba(147, 51, 234, 0.12), transparent 32%),
+    #08090d;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* CYRP TABLE MAIN ONLY V1 */
+
+.cyrp-table-main-only table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.cyrp-table-main-only th {
+  white-space: normal;
+  vertical-align: middle;
+}
+
+.cyrp-table-main-only td {
+  vertical-align: middle;
+}
+
+.cyrp-table-main-only td strong,
+.cyrp-table-main-only td a {
+  display: inline;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.cyrp-table-main-only td small {
+  display: none !important;
+}
+
+.cyrp-table-main-only td span {
+  white-space: nowrap;
+}
+
+.cyrp-table-main-only td:nth-child(1) {
+  min-width: 120px;
+}
+
+.cyrp-table-main-only td:nth-child(2) {
+  min-width: 170px;
+}
+
+.cyrp-table-main-only td:nth-child(3) {
+  min-width: 260px;
+}
+
+.cyrp-table-main-only td:last-child {
+  min-width: 150px;
+  text-align: center;
+}
+
+/* END CYRP TABLE MAIN ONLY V1 */

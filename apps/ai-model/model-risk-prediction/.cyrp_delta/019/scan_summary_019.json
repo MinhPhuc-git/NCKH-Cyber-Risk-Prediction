@@ -1,0 +1,49 @@
+{
+  "scan_timestamp": "2026-07-28T20:40:48.686008+00:00",
+  "categories": {
+    "new_cves_processed": {
+      "count": 0,
+      "action": "process_full_pipeline"
+    },
+    "known_fresh_skipped": {
+      "count": 0,
+      "action": "skip_prediction_timestamp_only"
+    },
+    "known_stale_rescanned": {
+      "count": 0,
+      "action": "re_predict"
+    },
+    "force_rescanned": {
+      "count": 0,
+      "action": "force_re_predict"
+    },
+    "missing_from_wazuh": {
+      "count": 0,
+      "action": "write_resolved_or_missing_pairs_for_backend"
+    }
+  },
+  "performance": {
+    "actually_processed": 0,
+    "skipped": 0,
+    "skip_ratio": "0.0%"
+  },
+  "raw_counts": {
+    "total_from_wazuh": 0,
+    "total_existing_in_system": 0,
+    "new_cves": 0,
+    "known_fresh_skipped": 0,
+    "known_stale_rescanned": 0,
+    "force_rescanned": 0,
+    "missing_from_wazuh": 0,
+    "actually_processed": 0,
+    "skipped": 0,
+    "skip_ratio": "0.0%"
+  },
+  "extra": {
+    "mode": "delta",
+    "existing_pairs": "D:\\LuanVan\\test\\cyrp-platform-phase2\\apps\\ai-model\\model-risk-prediction\\.cyrp_delta\\019\\existing_pairs_019.csv",
+    "resolved_out": "D:\\LuanVan\\test\\cyrp-platform-phase2\\apps\\ai-model\\model-risk-prediction\\.cyrp_delta\\019\\resolved_pairs_019.csv",
+    "fresh_out": "D:\\LuanVan\\test\\cyrp-platform-phase2\\apps\\ai-model\\model-risk-prediction\\.cyrp_delta\\019\\fresh_pairs_019.csv",
+    "stale_out": "D:\\LuanVan\\test\\cyrp-platform-phase2\\apps\\ai-model\\model-risk-prediction\\.cyrp_delta\\019\\stale_pairs_019.csv"
+  }
+}

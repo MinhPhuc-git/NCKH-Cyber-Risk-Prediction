@@ -1,0 +1,117 @@
+﻿Folder PATH listing
+Volume serial number is 000001B5 F29E:9DDD
+D:\LUANVAN\TEST\CYRP-PLATFORM-PHASE2\APPS\PORTAL-WEB\SRC\APP
+|   favicon.ico
+|   globals.css
+|   layout.tsx
+|   page.tsx
+|   
++---agents
+|       agents-client.tsx
+|       page.tsx
+|       
++---api
+|   +---admin
+|   |   +---cti-sources
+|   |   |       route.ts
+|   |   |       
+|   |   +---dashboard
+|   |   |       route.ts
+|   |   |       
+|   |   +---data-sync
+|   |   |   \---all
+|   |   |           route.ts
+|   |   |           
+|   |   +---devices
+|   |   |   |   route.ts
+|   |   |   |   
+|   |   |   \---[deviceId]
+|   |   |       |   route.ts
+|   |   |       |   
+|   |   |       \---data-sync
+|   |   |               route.ts
+|   |   |               
+|   |   +---sync-runs
+|   |   |       route.ts
+|   |   |       
+|   |   +---system-health
+|   |   |       route.ts
+|   |   |       
+|   |   +---vulnerabilities
+|   |   |   |   route.ts
+|   |   |   |   
+|   |   |   \---[id]
+|   |   |           route.ts
+|   |   |           
+|   |   +---wazuh-agents
+|   |   |       route.ts
+|   |   |       
+|   |   +---wazuh-bindings
+|   |   |   |   route.ts
+|   |   |   |   
+|   |   |   +---status-refresh
+|   |   |   |       route.ts
+|   |   |   |       
+|   |   |   \---[deviceId]
+|   |   |       |   route.ts
+|   |   |       |   
+|   |   |       \---status-refresh
+|   |   |               route.ts
+|   |   |               
+|   |   \---wazuh-status
+|   |           route.ts
+|   |           
+|   +---auth
+|   |   +---login
+|   |   |       route.ts
+|   |   |       
+|   |   +---logout
+|   |   |       route.ts
+|   |   |       
+|   |   \---me
+|   |           route.ts
+|   |           
+|   \---users
+|           route.ts
+|           
++---cti
+|       cti-client.tsx
+|       page.tsx
+|       
++---dashboard
+|       admin-dashboard-client.tsx
+|       dashboard.module.css
+|       page.tsx
+|       
++---endpoints
+|   |   endpoints-client.tsx
+|   |   page.tsx
+|   |   
+|   \---[deviceId]
+|           endpoint-detail-client.tsx
+|           page.tsx
+|           
++---login
+|       page.tsx
+|       
++---sync
+|       page.tsx
+|       sync-client.tsx
+|       
++---system
+|       page.tsx
+|       system-health-client.tsx
+|       
++---users
+|       page.tsx
+|       users-page-client.tsx
+|       users.module.css
+|       
+\---vulnerabilities
+    |   page.tsx
+    |   vulnerabilities-client.tsx
+    |   
+    \---[id]
+            page.tsx
+            vulnerability-detail-client.tsx
+            

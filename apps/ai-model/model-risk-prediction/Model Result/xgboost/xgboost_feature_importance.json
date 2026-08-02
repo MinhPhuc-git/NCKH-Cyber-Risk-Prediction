@@ -1,0 +1,50 @@
+[
+  {
+    "feature": "CVSS_user_interaction",
+    "importance_weight": 0.662672
+  },
+  {
+    "feature": "CVSS_cvss_version",
+    "importance_weight": 0.271528
+  },
+  {
+    "feature": "CVSS_impact_score",
+    "importance_weight": 0.021578
+  },
+  {
+    "feature": "CVSS_integrity",
+    "importance_weight": 0.012845
+  },
+  {
+    "feature": "CVSS_attack_vector",
+    "importance_weight": 0.007272
+  },
+  {
+    "feature": "CVSS_confidentiality",
+    "importance_weight": 0.005146
+  },
+  {
+    "feature": "CVSS_availability",
+    "importance_weight": 0.004791
+  },
+  {
+    "feature": "CVSS_exploitability_score",
+    "importance_weight": 0.004376
+  },
+  {
+    "feature": "CVSS_base_score",
+    "importance_weight": 0.003642
+  },
+  {
+    "feature": "CVSS_attack_complexity",
+    "importance_weight": 0.002584
+  },
+  {
+    "feature": "CVSS_privileges_required",
+    "importance_weight": 0.002538
+  },
+  {
+    "feature": "CVSS_scope",
+    "importance_weight": 0.001029
+  }
+]

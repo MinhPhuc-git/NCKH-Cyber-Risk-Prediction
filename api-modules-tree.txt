@@ -1,0 +1,158 @@
+﻿Folder PATH listing
+Volume serial number is 000001FA F29E:9DDD
+D:\LUANVAN\TEST\CYRP-PLATFORM-PHASE2\APPS\API\SRC\MODULES
++---agents
+|   |   agents.controller.ts
+|   |   agents.module.ts
+|   |   agents.service.spec.ts
+|   |   agents.service.ts
+|   |   
+|   \---dto
+|           enroll-agent-response.dto.ts
+|           enroll-agent.dto.ts
+|           
++---analysis-runs
+|   |   analysis-runs.controller.ts
+|   |   analysis-runs.module.ts
+|   |   analysis-runs.service.ts
+|   |   
+|   \---dto
+|           create-analysis-run.dto.ts
+|           
++---auth
+|   |   auth.controller.ts
+|   |   auth.module.ts
+|   |   auth.service.spec.ts
+|   |   auth.service.ts
+|   |   auth.types.ts
+|   |   
+|   +---decorators
+|   |       current-user.decorator.ts
+|   |       public.decorator.ts
+|   |       roles.decorator.ts
+|   |       
+|   +---dto
+|   |       login-response.dto.ts
+|   |       login.dto.ts
+|   |       
+|   \---guards
+|           jwt-auth.guard.ts
+|           roles.guard.spec.ts
+|           roles.guard.ts
+|           
++---cti-ai-summary
+|       cti-ai-summary.controller.ts
+|       cti-ai-summary.module.ts
+|       cti-ai-summary.service.ts
+|       
++---devices
+|   |   devices.controller.ts
+|   |   devices.module.ts
+|   |   devices.repository.ts
+|   |   devices.service.spec.ts
+|   |   devices.service.ts
+|   |   devices.types.ts
+|   |   
+|   \---dto
+|           create-enrollment-code-response.dto.ts
+|           device-response.dto.ts
+|           
++---health
+|       health.controller.ts
+|       health.module.ts
+|       health.service.spec.ts
+|       health.service.ts
+|       
++---registration
+|   |   registration.controller.ts
+|   |   registration.module.ts
+|   |   registration.service.ts
+|   |   
+|   \---dto
+|           register-user-response.dto.ts
+|           register-user.dto.ts
+|           
++---security-data
+|   |   admin-security-data.controller.ts
+|   |   ai-model-runtime.service.ts
+|   |   ai-model-runtime.service.ts.bak-runtime-20260730-061806
+|   |   ai-model-runtime.service.ts.bak-runtime-20260730-061812
+|   |   ai-pipeline-check.controller.ts
+|   |   ai-pipeline-check.service.ts
+|   |   ai-pipeline-check.service.ts.bak-add-sync-run-for-ai-check-20260730-005919
+|   |   ai-pipeline-check.service.ts.bak-fix-delta-placement-20260728-183726
+|   |   ai-pipeline-check.service.ts.bak-fix-syncrun-order-json-20260730-010600
+|   |   ai-pipeline-check.service.ts.bak-remove-heavy-presync-20260730-034238
+|   |   ai-pipeline-check.service.ts.bak-sync-wazuh-before-ai-20260730-025159
+|   |   ai-pipeline-check.service.ts.bak-sync-wazuh-before-ai-robust-20260730-025341
+|   |   ai-pipeline-data-user-import.service.ts
+|   |   ai-pipeline-data-user-import.service.ts.bak-ai-after-reset-v2-20260730-044249
+|   |   ai-pipeline-data-user-import.service.ts.bak-ai-after-reset-v2-20260730-044329
+|   |   ai-pipeline-data-user-import.service.ts.bak-cyrp-fix-20260730-042310
+|   |   ai-pipeline-data-user-import.service.ts.bak-merge-ai-explanation-20260729-234249
+|   |   cti-cvss-enrichment.service.ts
+|   |   cve-lifecycle-delta.service.ts
+|   |   cve-lifecycle-delta.service.ts.bak-ai-after-reset-v2-20260730-044249
+|   |   cve-lifecycle-delta.service.ts.bak-ai-after-reset-v2-20260730-044329
+|   |   cve-lifecycle-delta.service.ts.bak-cyrp-fix-20260730-042310
+|   |   device-sync-lock.service.spec.ts
+|   |   device-sync-lock.service.ts
+|   |   security-data-sync.service.ts
+|   |   security-data-sync.service.ts.bak-cyrp-fix-20260730-042310
+|   |   security-data-sync.service.ts.bak-merge-ai-explanation-20260729-234249
+|   |   security-data.controller.ts
+|   |   security-data.module.ts
+|   |   security-data.service.ts
+|   |   security-data.service.ts.bak-cyrp-fix-20260730-042310
+|   |   wazuh-state-normalizer.spec.ts
+|   |   wazuh-state-normalizer.ts
+|   |   wazuh-state-normalizer.ts.bak-package-normalizer-20260729-131228
+|   |   
+|   \---dto
+|           list-admin-devices-query.dto.ts
+|           list-device-packages-query.dto.ts
+|           list-sync-runs-query.dto.ts
+|           list-vulnerabilities-query.dto.ts
+|           
++---security-snapshots
+|       security-snapshots.controller.ts
+|       security-snapshots.module.ts
+|       security-snapshots.service.ts
+|       
++---users
+|   |   users.controller.ts
+|   |   users.module.ts
+|   |   users.repository.ts
+|   |   users.service.spec.ts
+|   |   users.service.ts
+|   |   users.types.ts
+|   |   
+|   \---dto
+|           create-user-response.dto.ts
+|           create-user.dto.ts
+|           list-users-query.dto.ts
+|           list-users-response.dto.ts
+|           
++---wazuh
+|   |   wazuh.controller.ts
+|   |   wazuh.module.ts
+|   |   wazuh.service.spec.ts
+|   |   wazuh.service.ts
+|   |   wazuh.service.ts.bak-runtime-20260730-061806
+|   |   wazuh.service.ts.bak-runtime-20260730-061812
+|   |   wazuh.types.ts
+|   |   
+|   \---dto
+|           list-wazuh-agents-query.dto.ts
+|           
+\---wazuh-bindings
+    |   agent-runtime.service.spec.ts
+    |   agent-runtime.service.ts
+    |   wazuh-bindings.controller.ts
+    |   wazuh-bindings.module.ts
+    |   wazuh-bindings.service.spec.ts
+    |   wazuh-bindings.service.ts
+    |   
+    \---dto
+            create-wazuh-binding.dto.ts
+            

@@ -1,0 +1,1899 @@
+﻿=== UI REMAINING CONTEXT REPORT ===
+
+=== Agent/header/device fields ===
+
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:128:        <div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:129:          <p className={styles.eyebrow}>Endpoint security context</p>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:130:          <h1>{device.hostname}</h1>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:131:          <p className={styles.subtitle}>{device.operatingSystem} · {device.architecture ?? 'Kiến trúc chưa xác định'}</p>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:132:        </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:133:        <div className={styles.headerActions}>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:134:          <span className={`${styles.statusPill} ${statusTone(device.wazuhBinding?.lastKnownStatus ?? device.status)}`}>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:135:            {device.wazuhBinding?.lastKnownStatus ?? device.status}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:136:          </span>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:137:          <button className={styles.secondaryButton} type="button" onClick={() => void load()} disabled={loading || syncing}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:138:            Làm mới
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:139:          </button>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:140:          <button className={styles.primaryButton} type="button" onClick={() => void synchronize()} disabled={syncing || !device.wazuhBinding}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:141:            {syncing ? 'Đang đồng bộ...' : 'Đồng bộ Wazuh'}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:142:          </button>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:143:        </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:144:      </header>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:145:
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:146:      {error ? <div className={styles.errorPanel}>{error}</div> : null}
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:147:      {!device.wazuhBinding ? (
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:148:        <div className={styles.notice}>Thiết bị chưa có Wazuh Agent binding nên chưa thể đồng bộ vulnerability và endpoint context.</div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:149:      ) : null}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:150:      {syncResult ? (
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:151:        <div className={styles.notice}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:152:          Lần đồng bộ vừa hoàn tất với trạng thái <strong>{statusLabel(syncResult.status)}</strong>. Mỗi thành phần được ghi riêng trong lịch sử sync để truy vết.
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:153:        </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:154:      ) : null}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:155:
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:156:      <section className={styles.metricGrid}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:157:        <article className={styles.metricCard}><span className={styles.metricLabel}>Active CVE</span><strong 
+className={styles.metricValue}>{device.vulnerabilitySummary.active}</strong><span className={styles.metricHint}>{device.vulnerabilitySummary.resolved} bản ghi đã resolved</span></article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:158:        <article className={styles.metricCard}><span className={styles.metricLabel}>Listening ports</span><strong className={styles.metricValue}>{context?.listeningPortCount ?? 
+'—'}</strong><span className={styles.metricHint}>Tổng port inventory: {context?.portCount ?? '—'}</span></article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:159:        <article className={styles.metricCard}><span className={styles.metricLabel}>Packages</span><strong className={styles.metricValue}>{context?.packageCount ?? '—'}</strong><span 
+className={styles.metricHint}>Hotfixes: {context?.hotfixCount ?? '—'}</span></article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:160:        <article className={styles.metricCard}><span className={styles.metricLabel}>Processes</span><strong className={styles.metricValue}>{context?.processCount ?? '—'}</strong><span 
+className={styles.metricHint}>Services: {context?.serviceCount ?? '—'}</span></article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:178:              );
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:179:            })}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:180:          </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:181:        </article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:182:
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:183:        <article className={styles.panel}>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:184:          <div className={styles.panelHeader}><div><h2>Wazuh Agent</h2><p>Binding giữa Device của CYRP và Agent ID.</p></div></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:185:          <div className={styles.keyValueList}>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:186:            <div className={styles.keyValueRow}><span>Agent ID</span><strong className={styles.codeText}>{device.wazuhBinding?.wazuhAgentId ?? 'Chưa binding'}</strong></div>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:187:            <div className={styles.keyValueRow}><span>Agent name</span><strong>{device.wazuhBinding?.wazuhAgentName ?? '—'}</strong></div>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:188:            <div className={styles.keyValueRow}><span>Status</span><strong>{device.wazuhBinding?.lastKnownStatus ?? '—'}</strong></div>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:189:            <div className={styles.keyValueRow}><span>Last keep alive</span><strong>{formatDateTime(device.wazuhBinding?.lastKeepAliveAt)}</strong></div>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:190:            <div className={styles.keyValueRow}><span>Last synchronized</span><strong>{formatDateTime(device.wazuhBinding?.lastSynchronizedAt)}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:191:          </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:192:        </article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:193:      </section>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:194:
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:195:      <section className={styles.panel}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:196:        <div className={styles.panelHeader}><div><h2>Lỗ hổng ưu tiên</h2><p>Các CVE đang active được sắp theo CVSS và lần nhìn thấy gần nhất.</p></div></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:197:        <div className={styles.tableWrap}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:198:          <table className={styles.table}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:199:            <thead><tr><th>CVE</th><th>Package</th><th>Severity</th><th>CVSS</th><th>Last seen</th></tr></thead>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:200:            <tbody>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:201:              {(vulnerabilities?.items ?? []).map((item) => (
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:202:                <tr key={item.id}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:216:      <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:217:        <article className={styles.panel}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:218:          <div className={styles.panelHeader}><div><h2>Endpoint context mới nhất</h2><p>Snapshot bất biến theo as-of time.</p></div></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:219:          {context ? (
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:220:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:221:              <div className={styles.keyValueRow}><span>As-of time</span><strong>{formatDateTime(context.asOfTime)}</strong></div>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:222:              <div className={styles.keyValueRow}><span>Agent IP</span><strong>{context.agentIp ?? '—'}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:223:              <div className={styles.keyValueRow}><span>OS</span><strong>{context.osFull ?? ([context.osName, context.osVersion].filter(Boolean).join(' ') || '—')}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:224:              <div className={styles.keyValueRow}><span>Hardware / architecture</span><strong>{context.architecture ?? device.architecture ?? '—'}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:225:              <div className={styles.keyValueRow}><span>Snapshot completeness</span><strong>{context.completeness ? 'Có metadata' : 'Chưa có'}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:226:            </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:227:          ) : <div className={styles.emptyState}>Chưa có endpoint context. Hãy chạy đồng bộ Wazuh.</div>}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:228:        </article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:229:        <article className={styles.panel}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:230:          <div className={styles.panelHeader}><div><h2>Alert heuristic hiện tại</h2><p>Đây là snapshot alert cũ, không phải model AI.</p></div></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:231:          {device.securitySnapshot ? (
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:232:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:233:              <div className={styles.keyValueRow}><span>Alert count</span><strong>{device.securitySnapshot.alertCount}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:234:              <div className={styles.keyValueRow}><span>Critical / High</span><strong>{device.securitySnapshot.criticalCount} / {device.securitySnapshot.highCount}</strong></div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:174:      }
+  apps\user-web\src\app\devices\devices-page-client.tsx:175:
+  apps\user-web\src\app\devices\devices-page-client.tsx:176:      if (
+  apps\user-web\src\app\devices\devices-page-client.tsx:177:        !response.ok ||
+  apps\user-web\src\app\devices\devices-page-client.tsx:178:        typeof payload.code !== 'string' ||
+  apps\user-web\src\app\devices\devices-page-client.tsx:179:        typeof payload.expiresAt !== 'string' ||
+> apps\user-web\src\app\devices\devices-page-client.tsx:180:        typeof payload.expectedAgentName !== 'string' ||
+  apps\user-web\src\app\devices\devices-page-client.tsx:181:        typeof payload.bootstrapCommand !== 'string'
+  apps\user-web\src\app\devices\devices-page-client.tsx:182:      ) {
+  apps\user-web\src\app\devices\devices-page-client.tsx:183:        throw new Error(
+  apps\user-web\src\app\devices\devices-page-client.tsx:184:          getErrorMessage(payload, 'Không thể tạo mã liên kết thiết bị'),
+  apps\user-web\src\app\devices\devices-page-client.tsx:185:        );
+  apps\user-web\src\app\devices\devices-page-client.tsx:186:      }
+  apps\user-web\src\app\devices\devices-page-client.tsx:187:
+  apps\user-web\src\app\devices\devices-page-client.tsx:188:      setEnrollment({
+  apps\user-web\src\app\devices\devices-page-client.tsx:189:        code: payload.code,
+> apps\user-web\src\app\devices\devices-page-client.tsx:190:        expectedAgentName: payload.expectedAgentName,
+  apps\user-web\src\app\devices\devices-page-client.tsx:191:        bootstrapCommand: payload.bootstrapCommand,
+  apps\user-web\src\app\devices\devices-page-client.tsx:192:        expiresAt: payload.expiresAt,
+  apps\user-web\src\app\devices\devices-page-client.tsx:193:      });
+  apps\user-web\src\app\devices\devices-page-client.tsx:194:    } catch (error: unknown) {
+  apps\user-web\src\app\devices\devices-page-client.tsx:195:      setErrorMessage(
+  apps\user-web\src\app\devices\devices-page-client.tsx:196:        error instanceof Error ? error.message : 'Không thể tạo mã liên kết',
+  apps\user-web\src\app\devices\devices-page-client.tsx:197:      );
+  apps\user-web\src\app\devices\devices-page-client.tsx:198:    } finally {
+  apps\user-web\src\app\devices\devices-page-client.tsx:199:      setIsCreatingCode(false);
+  apps\user-web\src\app\devices\devices-page-client.tsx:200:    }
+  apps\user-web\src\app\devices\devices-page-client.tsx:201:  }
+  apps\user-web\src\app\devices\devices-page-client.tsx:202:
+  apps\user-web\src\app\devices\devices-page-client.tsx:274:        </section>
+  apps\user-web\src\app\devices\devices-page-client.tsx:275:      ) : !device ? (
+  apps\user-web\src\app\devices\devices-page-client.tsx:276:        <section className={styles.devicePanel}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:277:          <div className={styles.emptyIcon}>PC</div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:278:          <h2>Chưa có thiết bị được liên kết</h2>
+  apps\user-web\src\app\devices\devices-page-client.tsx:279:          <p>
+> apps\user-web\src\app\devices\devices-page-client.tsx:280:            Tạo mã liên kết, sau đó chạy lệnh enrollment trong CYRP Windows Agent trên máy cần bảo vệ.
+  apps\user-web\src\app\devices\devices-page-client.tsx:281:          </p>
+  apps\user-web\src\app\devices\devices-page-client.tsx:282:          <button
+  apps\user-web\src\app\devices\devices-page-client.tsx:283:            type="button"
+  apps\user-web\src\app\devices\devices-page-client.tsx:284:            className={styles.primaryButton}
+  apps\user-web\src\app\devices\devices-page-client.tsx:285:            onClick={() => void createEnrollmentCode()}
+  apps\user-web\src\app\devices\devices-page-client.tsx:286:          >
+  apps\user-web\src\app\devices\devices-page-client.tsx:287:            Tạo mã liên kết
+  apps\user-web\src\app\devices\devices-page-client.tsx:288:          </button>
+  apps\user-web\src\app\devices\devices-page-client.tsx:289:        </section>
+  apps\user-web\src\app\devices\devices-page-client.tsx:290:            ) : (
+  apps\user-web\src\app\devices\devices-page-client.tsx:291:        <section className={styles.deviceWorkspace}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:292:          <article className={styles.deviceHeroCard}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:304:                {statusLabel[device.status]}
+  apps\user-web\src\app\devices\devices-page-client.tsx:305:              </span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:306:            </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:307:
+  apps\user-web\src\app\devices\devices-page-client.tsx:308:            <div className={styles.deviceInfoGrid}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:309:              <div>
+> apps\user-web\src\app\devices\devices-page-client.tsx:310:                <span>Kiến trúc CPU</span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:311:                <strong>{device.architecture ?? '—'}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:312:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:313:              <div>
+> apps\user-web\src\app\devices\devices-page-client.tsx:314:                <span>Agent</span>
+> apps\user-web\src\app\devices\devices-page-client.tsx:315:                <strong>{device.agentVersion}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:316:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:317:              <div>
+> apps\user-web\src\app\devices\devices-page-client.tsx:318:                <span>Lần kết nối cuối</span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:319:                <strong>{formatDate(device.lastSeenAt)}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:320:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:321:              <div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:322:                <span>Trạng thái</span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:323:                <strong>{statusLabel[device.status]}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:324:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:325:            </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:326:
+  apps\user-web\src\app\devices\devices-page-client.tsx:327:            <p className={styles.deviceHeroHint}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:328:              Thông số thiết bị và kết quả kiểm tra sẽ được giữ lại để bạn có thể
+  apps\user-web\src\app\devices\devices-page-client.tsx:329:              xem lại nhanh mà không cần quét mới.
+  apps\user-web\src\app\devices\devices-page-client.tsx:330:            </p>
+  apps\user-web\src\app\devices\devices-page-client.tsx:344:            aria-modal="true"
+  apps\user-web\src\app\devices\devices-page-client.tsx:345:            aria-labelledby="enrollment-title"
+  apps\user-web\src\app\devices\devices-page-client.tsx:346:          >
+  apps\user-web\src\app\devices\devices-page-client.tsx:347:            <div className={styles.modalHeader}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:348:              <div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:349:                <p>One-time enrollment</p>
+> apps\user-web\src\app\devices\devices-page-client.tsx:350:                <h2 id="enrollment-title">Liên kết CYRP Agent</h2>
+  apps\user-web\src\app\devices\devices-page-client.tsx:351:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:352:
+  apps\user-web\src\app\devices\devices-page-client.tsx:353:              <button
+  apps\user-web\src\app\devices\devices-page-client.tsx:354:                type="button"
+  apps\user-web\src\app\devices\devices-page-client.tsx:355:                className={styles.closeButton}
+  apps\user-web\src\app\devices\devices-page-client.tsx:356:                aria-label="Đóng"
+  apps\user-web\src\app\devices\devices-page-client.tsx:357:                onClick={() => setEnrollment(null)}
+  apps\user-web\src\app\devices\devices-page-client.tsx:358:              >
+  apps\user-web\src\app\devices\devices-page-client.tsx:359:                ×
+  apps\user-web\src\app\devices\devices-page-client.tsx:360:              </button>
+  apps\user-web\src\app\devices\devices-page-client.tsx:361:            </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:362:
+  apps\user-web\src\app\devices\devices-page-client.tsx:367:            <div className={styles.enrollmentSummary}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:368:              <div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:369:                <span>Mã liên kết</span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:370:                <strong>{enrollment.code}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:371:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:372:              <div>
+> apps\user-web\src\app\devices\devices-page-client.tsx:373:                <span>Tên agent dự kiến</span>
+> apps\user-web\src\app\devices\devices-page-client.tsx:374:                <strong>{enrollment.expectedAgentName}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:375:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:376:              <div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:377:                <span>Hết hạn</span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:378:                <strong>{formatDate(enrollment.expiresAt)}</strong>
+  apps\user-web\src\app\devices\devices-page-client.tsx:379:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:380:            </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:381:
+  apps\user-web\src\app\devices\devices-page-client.tsx:382:            <div className={styles.codeBox}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:383:              <code>{enrollment.code}</code>
+  apps\user-web\src\app\devices\devices-page-client.tsx:384:              <button type="button" onClick={() => void copyEnrollmentCode()}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:385:                {copied ? 'Đã sao chép mã' : 'Sao chép mã'}
+  apps\user-web\src\app\devices\devices-page-client.tsx:386:              </button>
+  apps\user-web\src\app\devices\devices-page-client.tsx:387:            </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:388:
+  apps\user-web\src\app\devices\devices-page-client.tsx:389:            <div className={styles.commandBox}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:390:              <div>
+> apps\user-web\src\app\devices\devices-page-client.tsx:391:                <span>Download CYRP Agent Kit</span>
+> apps\user-web\src\app\devices\devices-page-client.tsx:392:                <p>Download cyrp-agent-kit.zip và giải nén vào C:\CYRP\AgentKit trên endpoint.</p>
+  apps\user-web\src\app\devices\devices-page-client.tsx:393:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:394:
+> apps\user-web\src\app\devices\devices-page-client.tsx:395:              <a className={styles.secondaryButton} href="/downloads/cyrp-agent-kit.zip" download>
+> apps\user-web\src\app\devices\devices-page-client.tsx:396:                Download CYRP Agent Kit
+  apps\user-web\src\app\devices\devices-page-client.tsx:397:              </a>
+  apps\user-web\src\app\devices\devices-page-client.tsx:398:            </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:399:
+  apps\user-web\src\app\devices\devices-page-client.tsx:400:            <div className={styles.commandBox}>
+  apps\user-web\src\app\devices\devices-page-client.tsx:401:              <div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:402:                <span>Lệnh liên kết endpoint</span>
+  apps\user-web\src\app\devices\devices-page-client.tsx:403:                <p>Chạy trong PowerShell bằng quyền Administrator trên máy cần giám sát.</p>
+  apps\user-web\src\app\devices\devices-page-client.tsx:404:              </div>
+  apps\user-web\src\app\devices\devices-page-client.tsx:405:
+  apps\user-web\src\app\devices\devices-page-client.tsx:406:              <pre>{enrollment.bootstrapCommand}</pre>
+  apps\user-web\src\app\devices\devices-page-client.tsx:407:
+  apps\user-web\src\app\devices\devices-page-client.tsx:408:              <button type="button" onClick={() => void copyBootstrapCommand()}>
+  apps\user-web\src\app\settings\settings-client.tsx:53:      {!loading ? (
+  apps\user-web\src\app\settings\settings-client.tsx:54:        <>
+  apps\user-web\src\app\settings\settings-client.tsx:55:          <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\settings\settings-client.tsx:56:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Tài khoản</h2><p>Thông tin từ phiên xác thực hiện tại.</p></div></div><div className={styles.keyValueList}><div 
+className={styles.keyValueRow}><span>Họ tên</span><strong>{user?.fullName ?? '—'}</strong></div><div className={styles.keyValueRow}><span>Email</span><strong>{user?.email ?? '—'}</strong></div><div className={styles.keyValueRow}><span>Vai 
+trò</span><strong>{user?.role ?? '—'}</strong></div><div className={styles.keyValueRow}><span>Thiết bị đang theo dõi</span><strong>{activeDevices}/{devices.length}</strong></div></div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:57:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Phạm vi quyền</h2><p>CYRP chỉ cho người dùng xem dữ liệu thuộc thiết bị của chính tài khoản.</p></div></div><div 
+className={styles.keyValueList}><div className={styles.keyValueRow}><span>Device ownership</span><strong>Bắt buộc</strong></div><div className={styles.keyValueRow}><span>Wazuh credential trên frontend</span><strong>Không lưu</strong></div><div 
+className={styles.keyValueRow}><span>Session cookie</span><strong>HTTP-only</strong></div><div className={styles.keyValueRow}><span>Risk model AI</span><strong>Đã bật: AI_CYRP XGBoost</strong></div></div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:58:          </section>
+> apps\user-web\src\app\settings\settings-client.tsx:59:          <section className={styles.panel}><div className={styles.panelHeader}><div><h2>Luồng kiểm tra bảo mật</h2><p>Cách CYRP lấy dữ liệu và hiển thị dự đoán AI khi người dùng bấm “Kiểm tra 
+máy”.</p></div><Link className={styles.primaryButton} href="/devices">Quản lý thiết bị</Link></div><div className={styles.detailGrid}><div className={styles.detailItem}><span className={styles.label}>Bước 1</span><strong>Thiết bị được liên kết với Wazuh 
+Agent</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 2</span><strong>Wazuh Agent gửi inventory và vulnerability state</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 
+3</span><strong>CYRP đồng bộ CVE, package và endpoint context</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 4</span><strong>Người dùng bấm “Kiểm tra máy”</strong></div><div className={styles.detailItem}><span 
+className={styles.label}>Bước 5</span><strong>AI_CYRP XGBoost dự đoán nguy cơ khai thác</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 6</span><strong>Portal hiển thị mức ưu tiên và khuyến nghị ngắn 
+gọn</strong></div></div></section>
+  apps\user-web\src\app\settings\settings-client.tsx:60:          <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\settings\settings-client.tsx:61:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Thiết bị đã đăng ký</h2><p>Trạng thái logic trong CYRP.</p></div></div><div 
+className={styles.cardList}>{devices.map((device) => (<div className={styles.listCard} key={device.id}><div><Link className={styles.linkInline} href={`/devices/${device.id}`}><strong>{device.hostname}</strong></Link><p>{device.operatingSystem}</p></div><span 
+className={`${styles.statusPill} ${device.status === 'ERROR' ? styles.statusDanger : styles.statusNeutral}`}>{device.status}</span></div>))}{!devices.length ? <div className={styles.emptyState}>Chưa có thiết bị.</div> : null}</div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:62:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Lưu ý bảo mật</h2><p>Các nguyên tắc người dùng cần giữ khi vận hành endpoint.</p></div></div><div 
+className={styles.keyValueList}><div className={styles.keyValueRow}><span>Token / mã enrollment</span><strong>Không chia sẻ</strong></div><div className={styles.keyValueRow}><span>Khi có cảnh báo HIGH/CRITICAL</span><strong>Ưu tiên cập nhật phần mềm và kiểm 
+tra log</strong></div><div className={styles.keyValueRow}><span>Khi AI probability cao</span><strong>Nhấn chi tiết lỗ hổng để xem CVE và package liên quan</strong></div></div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:63:          </section>
+  apps\user-web\src\app\settings\settings-client.tsx:64:        </>
+  apps\user-web\src\app\settings\settings-client.tsx:65:      ) : null}
+  apps\user-web\src\app\settings\settings-client.tsx:66:    </div>
+  apps\user-web\src\app\settings\settings-client.tsx:67:  );
+  apps\user-web\src\app\settings\settings-client.tsx:68:}
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:117:          <strong className={styles.metricValue}>{summary.partial}</strong>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:118:          <span className={styles.metricHint}>Một hoặc nhiều category thiếu</span>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:119:        </article>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:120:        <article className={styles.metricCard}>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:121:          <span className={styles.metricLabel}>Thất bại</span>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:122:          <strong className={styles.metricValue}>{summary.failed}</strong>
+> apps\user-web\src\app\sync-history\sync-history-client.tsx:123:          <span className={styles.metricHint}>Cần kiểm tra Agent hoặc Wazuh</span>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:124:        </article>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:125:      </section>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:126:
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:127:      <section className={styles.filterRow}>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:128:        <select
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:129:          className={styles.select}
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:130:          value={status}
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:131:          onChange={(event) => setStatus(event.target.value)}
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:132:        >
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:133:          <option value="">Mọi trạng thái</option>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:134:          <option value="RUNNING">RUNNING</option>
+  apps\user-web\src\app\sync-history\sync-history-client.tsx:135:          <option value="COMPLETED">COMPLETED</option>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:162:            </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:163:            <Link className={styles.linkButton} href={`/devices/${item.device.id}`}>Mở thiết bị</Link>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:164:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:165:          <div className={styles.detailGrid}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:166:            <div className={styles.detailItem}><span className={styles.label}>Hostname</span><strong>{item.device.hostname}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:167:            <div className={styles.detailItem}><span className={styles.label}>Operating system</span><strong>{item.device.operatingSystem}</strong></div>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:168:            <div className={styles.detailItem}><span className={styles.label}>Wazuh Agent</span><strong>{item.device.wazuhBinding?.wazuhAgentId ?? 'Chưa binding'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:169:            <div className={styles.detailItem}><span className={styles.label}>Package</span><strong>{item.packageName ?? 'Không xác định'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:170:            <div className={styles.detailItem}><span className={styles.label}>Version</span><strong>{item.packageVersion ?? 'Không xác định'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:171:            <div className={styles.detailItem}><span className={styles.label}>Vendor / type</span><strong>{[item.packageVendor, item.packageType].filter(Boolean).join(' · ') || 
+'Không xác định'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:172:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:173:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:174:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:175:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:176:          <div className={styles.panelHeader}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:177:            <div><h2>Threat intelligence</h2><p>Tín hiệu bổ sung, không phải dự đoán của model AI.</p></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:178:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:179:          <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:180:            <div className={styles.keyValueRow}><span>EPSS score</span><strong>{formatPercent(threat?.epssScore)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:219:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:220:              <div className={styles.keyValueRow}><span>As-of time</span><strong>{formatDateTime(context.asOfTime)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:221:              <div className={styles.keyValueRow}><span>Packages</span><strong>{context.packageCount}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:222:              <div className={styles.keyValueRow}><span>Hotfixes</span><strong>{context.hotfixCount}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:223:              <div className={styles.keyValueRow}><span>Listening ports</span><strong>{context.listeningPortCount}/{context.portCount}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:224:              <div className={styles.keyValueRow}><span>Processes / services</span><strong>{context.processCount} / {context.serviceCount}</strong></div>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:225:              <div className={styles.keyValueRow}><span>Agent status</span><strong>{context.agentStatus ?? 'Không xác định'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:226:            </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:227:          ) : <div className={styles.emptyState}>Chưa có endpoint context snapshot.</div>}
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:228:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:229:      </section>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:230:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:231:      <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:232:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:233:          <div className={styles.panelHeader}><div><h2>CWE liên quan</h2><p>Weakness classification từ nguồn CTI.</p></div></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:234:          <div className={styles.cardList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:235:            {item.cwes.map((cwe) => (
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:236:              <div className={styles.listCard} key={cwe.cweId}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:237:                <div><strong>{cwe.cweId} · {cwe.name ?? 'Chưa có tên'}</strong><p>{cwe.description ?? 'Chưa có mô tả.'}</p></div>
+  apps\user-web\src\components\device-analysis-button.tsx:908:                </section>
+  apps\user-web\src\components\device-analysis-button.tsx:909:
+  apps\user-web\src\components\device-analysis-button.tsx:910:                <div className={styles.summaryGrid}>
+  apps\user-web\src\components\device-analysis-button.tsx:911:                  <article className={styles.summaryCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:912:                    <span>Thiết bị</span>
+  apps\user-web\src\components\device-analysis-button.tsx:913:                    <strong>
+> apps\user-web\src\components\device-analysis-button.tsx:914:                      {snapshot.agentName ?? `Agent ${snapshot.wazuhAgentId}`}
+  apps\user-web\src\components\device-analysis-button.tsx:915:                    </strong>
+  apps\user-web\src\components\device-analysis-button.tsx:916:                    <small>
+> apps\user-web\src\components\device-analysis-button.tsx:917:                      {snapshot.agentStatus ?? 'unknown'} · IP {snapshot.agentIp ?? 'unknown'}
+  apps\user-web\src\components\device-analysis-button.tsx:918:                    </small>
+  apps\user-web\src\components\device-analysis-button.tsx:919:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:920:
+  apps\user-web\src\components\device-analysis-button.tsx:921:                  <article className={styles.summaryCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:922:                    <span>Cảnh báo 24h</span>
+  apps\user-web\src\components\device-analysis-button.tsx:923:                    <strong>{snapshot.alertCount}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:924:                    <small>
+  apps\user-web\src\components\device-analysis-button.tsx:925:                      Max rule level {snapshot.maxRuleLevel ?? 0} · {snapshot.criticalCount} critical
+  apps\user-web\src\components\device-analysis-button.tsx:926:                    </small>
+  apps\user-web\src\components\device-analysis-button.tsx:927:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:928:
+  apps\user-web\src\components\device-analysis-button.tsx:929:                  <article className={styles.summaryCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:1104:
+  apps\user-web\src\components\device-analysis-button.tsx:1105:                <details className={styles.technicalDetails}>
+  apps\user-web\src\components\device-analysis-button.tsx:1106:                  <summary>Chi tiết kỹ thuật và nguồn dữ liệu</summary>
+  apps\user-web\src\components\device-analysis-button.tsx:1107:                  <div className={styles.technicalBody}>
+  apps\user-web\src\components\device-analysis-button.tsx:1108:                    <div className={styles.metaLine}>
+  apps\user-web\src\components\device-analysis-button.tsx:1109:                      <span>Đồng bộ: {formatDate(snapshot.calculatedAt)}</span>
+> apps\user-web\src\components\device-analysis-button.tsx:1110:                      <span>Agent: {snapshot.wazuhAgentId}</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1111:                      <span>Window: {snapshot.windowMinutes} phút</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1112:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1113:
+  apps\user-web\src\components\device-analysis-button.tsx:1114:                    {snapshot.topRules.length ? (
+  apps\user-web\src\components\device-analysis-button.tsx:1115:                      <div className={styles.ruleList}>
+  apps\user-web\src\components\device-analysis-button.tsx:1116:                        {snapshot.topRules.slice(0, 5).map((rule) => (
+  apps\user-web\src\components\device-analysis-button.tsx:1117:                          <span key={rule.ruleId}>
+  apps\user-web\src\components\device-analysis-button.tsx:1118:                            #{rule.ruleId} · L{rule.maxLevel} · {rule.count} lần — {rule.description}
+  apps\user-web\src\components\device-analysis-button.tsx:1119:                          </span>
+  apps\user-web\src\components\device-analysis-button.tsx:1120:                        ))}
+  apps\user-web\src\components\device-analysis-button.tsx:1121:                      </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1122:                    ) : (
+  apps\user-web\src\lib\analysis-types.ts:4:  | 'ANALYZING'
+  apps\user-web\src\lib\analysis-types.ts:5:  | 'COMPLETED'
+  apps\user-web\src\lib\analysis-types.ts:6:  | 'FAILED';
+  apps\user-web\src\lib\analysis-types.ts:7:
+  apps\user-web\src\lib\analysis-types.ts:8:export interface AnalysisRunSummary {
+  apps\user-web\src\lib\analysis-types.ts:9:  windowMinutes: number;
+> apps\user-web\src\lib\analysis-types.ts:10:  agent: {
+  apps\user-web\src\lib\analysis-types.ts:11:    id: string;
+  apps\user-web\src\lib\analysis-types.ts:12:    name: string | null;
+  apps\user-web\src\lib\analysis-types.ts:13:    ip: string | null;
+  apps\user-web\src\lib\analysis-types.ts:14:    status: string | null;
+  apps\user-web\src\lib\analysis-types.ts:15:    version: string | null;
+  apps\user-web\src\lib\analysis-types.ts:16:    lastKeepAlive: string | null;
+  apps\user-web\src\lib\analysis-types.ts:17:    os: {
+  apps\user-web\src\lib\analysis-types.ts:18:      name?: string;
+  apps\user-web\src\lib\analysis-types.ts:19:      platform?: string;
+  apps\user-web\src\lib\analysis-types.ts:20:      version?: string;
+  apps\user-web\src\lib\analysis-types.ts:21:      arch?: string;
+  apps\user-web\src\lib\analysis-types.ts:22:      uname?: string;
+  apps\user-web\src\lib\device-types.ts:6:
+  apps\user-web\src\lib\device-types.ts:7:export interface Device {
+  apps\user-web\src\lib\device-types.ts:8:  id: string;
+  apps\user-web\src\lib\device-types.ts:9:  hostname: string;
+  apps\user-web\src\lib\device-types.ts:10:  operatingSystem: string;
+  apps\user-web\src\lib\device-types.ts:11:  architecture: string | null;
+> apps\user-web\src\lib\device-types.ts:12:  agentVersion: string;
+  apps\user-web\src\lib\device-types.ts:13:  status: DeviceStatus;
+  apps\user-web\src\lib\device-types.ts:14:  lastSeenAt: string | null;
+  apps\user-web\src\lib\device-types.ts:15:  createdAt: string;
+  apps\user-web\src\lib\device-types.ts:16:}
+  apps\user-web\src\lib\device-types.ts:17:
+  apps\user-web\src\lib\device-types.ts:18:export interface CreateEnrollmentCodeResponse {
+  apps\user-web\src\lib\device-types.ts:19:  code: string;
+> apps\user-web\src\lib\device-types.ts:20:  expectedAgentName: string;
+  apps\user-web\src\lib\device-types.ts:21:  bootstrapCommand: string;
+  apps\user-web\src\lib\device-types.ts:22:  expiresAt: string;
+  apps\user-web\src\lib\device-types.ts:23:}
+  apps\user-web\src\lib\security-data-types.ts:13:  | 'UNKNOWN';
+  apps\user-web\src\lib\security-data-types.ts:14:
+  apps\user-web\src\lib\security-data-types.ts:15:export interface DevicePackageItem {
+  apps\user-web\src\lib\security-data-types.ts:16:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:17:  deviceId: string;
+  apps\user-web\src\lib\security-data-types.ts:18:  syncRunId: string | null;
+> apps\user-web\src\lib\security-data-types.ts:19:  wazuhAgentId: string;
+  apps\user-web\src\lib\security-data-types.ts:20:  packageKey: string;
+  apps\user-web\src\lib\security-data-types.ts:21:  name: string;
+  apps\user-web\src\lib\security-data-types.ts:22:  version: string | null;
+  apps\user-web\src\lib\security-data-types.ts:23:  vendor: string | null;
+  apps\user-web\src\lib\security-data-types.ts:24:  architecture: string | null;
+  apps\user-web\src\lib\security-data-types.ts:25:  packageType: string | null;
+  apps\user-web\src\lib\security-data-types.ts:26:  description: string | null;
+  apps\user-web\src\lib\security-data-types.ts:27:  sizeBytes: string | null;
+  apps\user-web\src\lib\security-data-types.ts:28:  sourceIndex: string | null;
+  apps\user-web\src\lib\security-data-types.ts:29:  sourceDocumentId: string | null;
+  apps\user-web\src\lib\security-data-types.ts:30:  firstSeenAt: string;
+  apps\user-web\src\lib\security-data-types.ts:31:  lastSeenAt: string;
+  apps\user-web\src\lib\security-data-types.ts:82:}
+  apps\user-web\src\lib\security-data-types.ts:83:
+  apps\user-web\src\lib\security-data-types.ts:84:export interface EndpointContextSnapshot {
+  apps\user-web\src\lib\security-data-types.ts:85:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:86:  asOfTime: string;
+  apps\user-web\src\lib\security-data-types.ts:87:  observedAt?: string;
+> apps\user-web\src\lib\security-data-types.ts:88:  agentStatus: string | null;
+> apps\user-web\src\lib\security-data-types.ts:89:  agentIp?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:90:  hostname?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:91:  osName?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:92:  osVersion?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:93:  osFull?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:94:  architecture?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:95:  packageCount: number;
+  apps\user-web\src\lib\security-data-types.ts:96:  hotfixCount: number;
+  apps\user-web\src\lib\security-data-types.ts:97:  portCount: number;
+  apps\user-web\src\lib\security-data-types.ts:98:  listeningPortCount: number;
+  apps\user-web\src\lib\security-data-types.ts:99:  processCount: number;
+  apps\user-web\src\lib\security-data-types.ts:100:  serviceCount: number;
+  apps\user-web\src\lib\security-data-types.ts:101:  packages?: unknown[] | null;
+  apps\user-web\src\lib\security-data-types.ts:112:  systemInventory?: unknown;
+  apps\user-web\src\lib\security-data-types.ts:113:  hardware?: unknown;
+  apps\user-web\src\lib\security-data-types.ts:114:  completeness: Record<string, unknown> | null;
+  apps\user-web\src\lib\security-data-types.ts:115:  sourceVersions?: Record<string, unknown> | null;
+  apps\user-web\src\lib\security-data-types.ts:116:}
+  apps\user-web\src\lib\security-data-types.ts:117:
+> apps\user-web\src\lib\security-data-types.ts:118:export interface WazuhBindingSummary {
+> apps\user-web\src\lib\security-data-types.ts:119:  wazuhAgentId: string;
+> apps\user-web\src\lib\security-data-types.ts:120:  wazuhAgentName?: string;
+  apps\user-web\src\lib\security-data-types.ts:121:  lastKnownStatus: string | null;
+  apps\user-web\src\lib\security-data-types.ts:122:  lastKeepAliveAt: string | null;
+  apps\user-web\src\lib\security-data-types.ts:123:  lastSynchronizedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:124:}
+  apps\user-web\src\lib\security-data-types.ts:125:
+  apps\user-web\src\lib\security-data-types.ts:126:export interface VulnerabilityItem {
+  apps\user-web\src\lib\security-data-types.ts:127:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:128:  cveId: string;
+  apps\user-web\src\lib\security-data-types.ts:129:  packageName: string | null;
+  apps\user-web\src\lib\security-data-types.ts:130:  packageVersion: string | null;
+  apps\user-web\src\lib\security-data-types.ts:131:  packageArchitecture: string | null;
+  apps\user-web\src\lib\security-data-types.ts:132:  packageVendor: string | null;
+  apps\user-web\src\lib\security-data-types.ts:146:  device: {
+  apps\user-web\src\lib\security-data-types.ts:147:    id: string;
+  apps\user-web\src\lib\security-data-types.ts:148:    hostname: string;
+  apps\user-web\src\lib\security-data-types.ts:149:    operatingSystem: string;
+  apps\user-web\src\lib\security-data-types.ts:150:    architecture: string | null;
+  apps\user-web\src\lib\security-data-types.ts:151:    status: string;
+> apps\user-web\src\lib\security-data-types.ts:152:    wazuhBinding?: {
+> apps\user-web\src\lib\security-data-types.ts:153:      wazuhAgentId: string;
+  apps\user-web\src\lib\security-data-types.ts:154:      lastKnownStatus: string | null;
+  apps\user-web\src\lib\security-data-types.ts:155:    } | null;
+  apps\user-web\src\lib\security-data-types.ts:156:  };
+  apps\user-web\src\lib\security-data-types.ts:157:  cve: {
+  apps\user-web\src\lib\security-data-types.ts:158:    description: string | null;
+  apps\user-web\src\lib\security-data-types.ts:159:    publishedAt: string | null;
+  apps\user-web\src\lib\security-data-types.ts:160:    modifiedAt: string | null;
+  apps\user-web\src\lib\security-data-types.ts:161:    cvssMetrics: Array<{
+  apps\user-web\src\lib\security-data-types.ts:162:      id: string;
+  apps\user-web\src\lib\security-data-types.ts:163:      source: string;
+  apps\user-web\src\lib\security-data-types.ts:164:      metricType: string;
+  apps\user-web\src\lib\security-data-types.ts:165:      cvssVersion: string;
+  apps\user-web\src\lib\security-data-types.ts:275:      hostname: string;
+  apps\user-web\src\lib\security-data-types.ts:276:      operatingSystem: string;
+  apps\user-web\src\lib\security-data-types.ts:277:      status: string;
+  apps\user-web\src\lib\security-data-types.ts:278:      lastSeenAt: string | null;
+  apps\user-web\src\lib\security-data-types.ts:279:      activeVulnerabilities: number;
+  apps\user-web\src\lib\security-data-types.ts:280:      latestContext: EndpointContextSnapshot | null;
+> apps\user-web\src\lib\security-data-types.ts:281:      wazuhBinding: WazuhBindingSummary | null;
+  apps\user-web\src\lib\security-data-types.ts:282:    }>;
+  apps\user-web\src\lib\security-data-types.ts:283:  };
+  apps\user-web\src\lib\security-data-types.ts:284:  vulnerabilities: {
+  apps\user-web\src\lib\security-data-types.ts:285:    active: number;
+  apps\user-web\src\lib\security-data-types.ts:286:    severity: Record<string, number>;
+  apps\user-web\src\lib\security-data-types.ts:287:    top: VulnerabilityItem[];
+  apps\user-web\src\lib\security-data-types.ts:288:  };
+  apps\user-web\src\lib\security-data-types.ts:289:  recentRuns: SyncRunItem[];
+  apps\user-web\src\lib\security-data-types.ts:290:  scopeNote: string;
+  apps\user-web\src\lib\security-data-types.ts:291:}
+  apps\user-web\src\lib\security-data-types.ts:292:
+  apps\user-web\src\lib\security-data-types.ts:293:export interface DeviceOverview {
+  apps\user-web\src\lib\security-data-types.ts:294:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:295:  hostname: string;
+  apps\user-web\src\lib\security-data-types.ts:296:  operatingSystem: string;
+  apps\user-web\src\lib\security-data-types.ts:297:  architecture: string | null;
+> apps\user-web\src\lib\security-data-types.ts:298:  agentVersion: string;
+  apps\user-web\src\lib\security-data-types.ts:299:  status: string;
+  apps\user-web\src\lib\security-data-types.ts:300:  lastSeenAt: string | null;
+  apps\user-web\src\lib\security-data-types.ts:301:  createdAt: string;
+  apps\user-web\src\lib\security-data-types.ts:302:  updatedAt: string;
+> apps\user-web\src\lib\security-data-types.ts:303:  wazuhBinding: WazuhBindingSummary | null;
+  apps\user-web\src\lib\security-data-types.ts:304:  latestContext: EndpointContextSnapshot | null;
+  apps\user-web\src\lib\security-data-types.ts:305:  syncRuns: SyncRunItem[];
+  apps\user-web\src\lib\security-data-types.ts:306:  vulnerabilitySummary: {
+  apps\user-web\src\lib\security-data-types.ts:307:    active: number;
+  apps\user-web\src\lib\security-data-types.ts:308:    resolved: number;
+  apps\user-web\src\lib\security-data-types.ts:309:    severity: Record<string, number>;
+  apps\user-web\src\lib\security-data-types.ts:310:  };
+  apps\user-web\src\lib\security-data-types.ts:311:  securitySnapshot: {
+  apps\user-web\src\lib\security-data-types.ts:312:    alertCount: number;
+  apps\user-web\src\lib\security-data-types.ts:313:    criticalCount: number;
+  apps\user-web\src\lib\security-data-types.ts:314:    highCount: number;
+  apps\user-web\src\lib\security-data-types.ts:315:    mediumCount: number;
+  apps\user-web\src\lib\security-data-types.ts:321:  } | null;
+  apps\user-web\src\lib\security-data-types.ts:322:}
+  apps\user-web\src\lib\security-data-types.ts:323:
+  apps\user-web\src\lib\security-data-types.ts:324:export interface FullSyncResult {
+  apps\user-web\src\lib\security-data-types.ts:325:  deviceId: string;
+  apps\user-web\src\lib\security-data-types.ts:326:  hostname: string;
+> apps\user-web\src\lib\security-data-types.ts:327:  wazuhAgentId: string;
+  apps\user-web\src\lib\security-data-types.ts:328:  status: 'COMPLETED' | 'PARTIAL' | 'FAILED';
+  apps\user-web\src\lib\security-data-types.ts:329:  startedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:330:  completedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:331:  components: Record<
+  apps\user-web\src\lib\security-data-types.ts:332:    string,
+  apps\user-web\src\lib\security-data-types.ts:333:    {
+  apps\user-web\src\lib\security-data-types.ts:334:      status: 'COMPLETED' | 'PARTIAL' | 'FAILED';
+  apps\user-web\src\lib\security-data-types.ts:335:      message: string;
+  apps\user-web\src\lib\security-data-types.ts:336:      data?: unknown;
+  apps\user-web\src\lib\security-data-types.ts:337:    }
+  apps\user-web\src\lib\security-data-types.ts:338:  >;
+  apps\user-web\src\lib\security-data-types.ts:339:}
+  apps\user-web\src\lib\security-snapshot-types.ts:36:  packages: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:37:}
+  apps\user-web\src\lib\security-snapshot-types.ts:38:
+  apps\user-web\src\lib\security-snapshot-types.ts:39:export interface DeviceSecuritySnapshot {
+  apps\user-web\src\lib\security-snapshot-types.ts:40:  id: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:41:  deviceId: string;
+> apps\user-web\src\lib\security-snapshot-types.ts:42:  wazuhAgentId: string;
+> apps\user-web\src\lib\security-snapshot-types.ts:43:  agentName: string | null;
+> apps\user-web\src\lib\security-snapshot-types.ts:44:  agentStatus: string | null;
+> apps\user-web\src\lib\security-snapshot-types.ts:45:  agentIp: string | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:46:  lastKeepAliveAt: string | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:47:  windowMinutes: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:48:  alertCount: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:49:  maxRuleLevel: number | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:50:  lowCount: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:51:  mediumCount: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:52:  highCount: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:53:  criticalCount: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:54:  riskScore: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:55:  riskLabel: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:56:  topRules: SecurityTopRule[];
+  apps\user-web\src\lib\security-snapshot-types.ts:57:  latestAlerts: SecurityAlert[];
+  apps\user-web\src\lib\security-snapshot-types.ts:66:  deviceId: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:67:  hostname: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:68:  operatingSystem: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:69:  architecture: string | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:70:  deviceStatus: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:71:  lastSeenAt: string | null;
+> apps\user-web\src\lib\security-snapshot-types.ts:72:  wazuhAgentId: string | null;
+> apps\user-web\src\lib\security-snapshot-types.ts:73:  wazuhAgentName: string | null;
+> apps\user-web\src\lib\security-snapshot-types.ts:74:  agentStatus: string | null;
+> apps\user-web\src\lib\security-snapshot-types.ts:75:  agentIp: string | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:76:  lastKeepAliveAt: string | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:77:  alertCount: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:78:  maxRuleLevel: number | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:79:  riskScore: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:80:  riskLabel: string;
+  apps\user-web\src\lib\security-snapshot-types.ts:81:  low: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:82:  medium: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:83:  high: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:84:  critical: number;
+  apps\user-web\src\lib\security-snapshot-types.ts:85:  calculatedAt: string | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:86:  hardware: HardwareSnapshot | null;
+  apps\user-web\src\lib\security-snapshot-types.ts:87:  inventory: InventorySnapshot | null;
+
+
+
+
+=== Risk distribution ===
+
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:1:'use client';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:2:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:3:import Link from 'next/link';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:4:import { FormEvent, useCallback, useEffect, useState } from 'react';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:5:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:6:import { CveRemediationLink } from '@/components/cve-remediation-link';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:7:import styles from '@/components/security-console.module.css';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:8:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:9:function normalizeAiRiskLevel(value: unknown): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'UNKNOWN' {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:10:  const level = String(value ?? '').trim().toUpperCase();
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:11:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:12:  if (level === 'LOW' || level === 'THẤP') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:13:    return 'LOW';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:14:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:15:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:16:  if (level === 'MEDIUM' || level === 'TRUNG BÌNH' || level === 'TRUNG_BINH') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:17:    return 'MEDIUM';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:18:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:19:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:20:  if (level === 'HIGH' || level === 'CAO') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:21:    return 'HIGH';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:22:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:23:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:24:  if (
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:25:    level === 'CRITICAL' ||
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:26:    level === 'VERY_HIGH' ||
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:27:    level === 'VERY HIGH' ||
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:28:    level === 'RẤT CAO' ||
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:29:    level === 'RAT CAO'
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:30:  ) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:31:    return 'CRITICAL';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:32:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:33:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:34:  return 'UNKNOWN';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:35:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:36:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:37:function buildAiRiskDistribution(items: Array<{ riskLevel?: unknown }>) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:38:  const result = {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:39:    low: 0,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:40:    medium: 0,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:41:    high: 0,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:42:    critical: 0,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:43:  };
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:44:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:45:  for (const item of items ?? []) {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:46:    const level = normalizeAiRiskLevel(item.riskLevel);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:47:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:48:    if (level === 'LOW') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:49:      result.low += 1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:50:    } else if (level === 'MEDIUM') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:51:      result.medium += 1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:52:    } else if (level === 'HIGH') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:53:      result.high += 1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:54:    } else if (level === 'CRITICAL') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:55:      result.critical += 1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:56:    }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:57:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:58:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:59:  return result;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:60:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:61:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:62:function toPercent(value: unknown, mode: 'probability' | 'percentile' = 'probability') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:63:  const numberValue = Number(value);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:64:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:154:  return numberFromUnknown(prediction.predictedPercentile)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:155:    ?? numberFromUnknown(prediction.predicted_percentile)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:156:    ?? numberFromUnknown(prediction.percentile)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:157:    ?? numberFromUnknown(explanation.predicted_percentile)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:158:    ?? numberFromUnknown(explanation.predictedPercentile)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:159:    ?? null;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:160:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:161:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:162:function riskLevel(item: VulnerabilityItem): string | null {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:163:  return item.aiPrediction?.riskLevel
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:164:    ?? stringFromUnknown(predictionExplanation(item.aiPrediction?.explanation).risk_level)
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:165:    ?? stringFromUnknown(predictionExplanation(item.aiPrediction?.explanation).riskLevel);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:166:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:167:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:168:function severityClass(severity: string | null | undefined): string {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:169:  switch (severity?.toUpperCase()) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:170:    case 'CRITICAL':
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:171:      return styles.severityCritical;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:172:    case 'HIGH':
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:173:      return styles.severityHigh;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:174:    case 'MEDIUM':
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:175:      return styles.severityMedium;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:176:    case 'LOW':
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:177:      return styles.severityLow;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:178:    default:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:179:      return styles.severityUnknown;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:180:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:181:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:182:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:183:function statusClass(status: string | null | undefined): string {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:186:  if (normalized === 'CRITICAL' || normalized === 'HIGH') return styles.statusDanger;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:187:  if (normalized === 'MEDIUM') return styles.statusWarning;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:188:  if (normalized === 'LOW') return styles.statusSuccess;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:189:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:190:  return styles.statusNeutral;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:191:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:192:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:193:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:194:function normalizedAiRiskLevel(item: VulnerabilityItem): string {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:195:  return (item.aiPrediction?.riskLevel ?? '').toUpperCase();
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:196:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:197:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:198:function aiRiskLevelRank(level: string | null | undefined): number {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:199:  switch (level?.toUpperCase()) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:200:    case 'CRITICAL': return 4;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:201:    case 'HIGH': return 3;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:202:    case 'MEDIUM': return 2;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:203:    case 'LOW': return 1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:204:    default: return 0;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:205:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:206:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:207:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:208:function aiScoreForSort(item: VulnerabilityItem): number {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:209:  const percentile = item.aiPrediction?.predictedPercentile;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:210:  if (typeof percentile === 'number' && Number.isFinite(percentile)) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:211:    return percentile > 1 ? percentile / 100 : percentile;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:212:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:213:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:214:  const probability = item.aiPrediction?.attackProbability;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:215:  if (typeof probability === 'number' && Number.isFinite(probability)) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:216:    return probability > 1 ? probability / 100 : probability;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:217:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:218:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:219:  return -1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:220:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:221:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:222:function sortAndFilterByAiRiskLevel(
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:223:  items: VulnerabilityItem[],
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:224:  riskLevel: string,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:225:): VulnerabilityItem[] {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:226:  const normalizedFilter = riskLevel.trim().toUpperCase();
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:227:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:228:  return [...items]
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:229:    .filter((item) => !normalizedFilter || normalizedAiRiskLevel(item) === normalizedFilter)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:230:    .sort((left, right) => {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:231:      const rankDelta =
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:232:        aiRiskLevelRank(normalizedAiRiskLevel(right)) -
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:233:        aiRiskLevelRank(normalizedAiRiskLevel(left));
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:234:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:235:      return rankDelta !== 0
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:236:        ? rankDelta
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:237:        : aiScoreForSort(right) - aiScoreForSort(left);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:238:    });
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:239:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:240:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:241:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:242:function pickFirstDateString(...values: Array<string | null | undefined>): string | null {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:243:  for (const value of values) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:244:    if (typeof value === 'string' && value.trim()) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:245:      return value;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:246:    }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:247:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:248:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:249:  return null;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:250:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:251:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:264:    'Không rõ thiết bị'
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:265:  );
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:266:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:267:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:268:export function AiPredictionsClient() {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:269:  const [data, setData] = useState<Pagination<VulnerabilityItem> | null>(null);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:270:  const [queryInput, setQueryInput] = useState('');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:271:  const [query, setQuery] = useState('');
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:272:  const [riskLevel, setRiskLevel] = useState('');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:273:  const [page, setPage] = useState(1);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:274:  const [loading, setLoading] = useState(true);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:275:  const [error, setError] = useState('');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:276:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:277:  const load = useCallback(async () => {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:278:    setLoading(true);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:279:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:280:    try {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:281:      const params = new URLSearchParams({
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:282:        page: String(page),
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:283:        limit: '25',
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:284:      });
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:285:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:286:      if (query) params.set('query', query);
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:287:      if (riskLevel) params.set('riskLevel', riskLevel);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:288:      params.set('status', 'ACTIVE');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:289:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:290:      const response = await fetch(`/api/vulnerabilities?${params}`, {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:291:        cache: 'no-store',
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:292:      });
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:293:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:294:      const payload = (await response.json()) as Pagination<VulnerabilityItem> & {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:295:        message?: string;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:296:      };
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:297:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:298:      if (!response.ok) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:299:        throw new Error(payload.message ?? 'Không thể tải kết quả AI');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:300:      }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:301:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:302:      const filteredItems = sortAndFilterByAiRiskLevel(payload.items ?? [], riskLevel);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:303:      setData({
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:304:        ...payload,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:305:        items: filteredItems,
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:306:        total: riskLevel ? filteredItems.length : payload.total,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:307:      });
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:308:      setError('');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:309:    } catch (caught: unknown) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:310:      setError(caught instanceof Error ? caught.message : 'Không thể tải kết quả AI');
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:311:    } finally {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:312:      setLoading(false);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:313:    }
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:314:  }, [page, query, riskLevel]);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:315:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:316:  useEffect(() => {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:317:    const timer = window.setTimeout(() => {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:318:      void load();
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:319:    }, 0);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:320:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:321:    return () => window.clearTimeout(timer);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:322:  }, [load]);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:323:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:324:  function submit(event: FormEvent<HTMLFormElement>) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:325:    event.preventDefault();
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:326:    setPage(1);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:327:    setQuery(queryInput.trim());
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:328:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:329:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:330:  return (
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:331:    <div className={`${styles.page} cyrp-table-main-only`}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:332:      <header className={styles.pageHeader}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:348:          className={styles.input}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:349:          value={queryInput}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:350:          onChange={(event) => setQueryInput(event.target.value)}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:351:          placeholder="Tìm CVE, package hoặc hostname"
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:352:          aria-label="Tìm kết quả AI"
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:353:        />
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:354:        <select
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:355:          className={styles.select}
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:356:          value={riskLevel}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:357:          onChange={(event) => {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:358:            setRiskLevel(event.target.value);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:359:            setPage(1);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:360:          }}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:361:          aria-label="Lọc theo risk level AI"
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:362:        >
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:363:          <option value="">Mọi risk level</option>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:364:          <option value="CRITICAL">Critical</option>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:365:          <option value="HIGH">High</option>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:366:          <option value="MEDIUM">Medium</option>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:367:          <option value="LOW">Low</option>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:368:        </select>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:369:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:370:        <button className={styles.primaryButton} type="submit">
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:371:          Tìm kiếm
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:372:        </button>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:373:      </form>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:374:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:375:      {error ? (
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:376:        <div className={styles.errorMessage} role="alert">
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:402:                  <th>Risk level</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:403:                  <th>Xác suất bị khai thác</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:404:                  <th>Percentile</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:405:                  <th>Cách khắc phục</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:406:                </tr>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:407:              </thead>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:408:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:409:              <tbody>
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:410:                {sortAndFilterByAiRiskLevel(data?.items ?? [], riskLevel).map((item) => {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:411:                  const row = item as AiPredictionRow;
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:412:                  const level = normalizedAiRiskLevel(row);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:413:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:414:                  return (
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:415:                    <tr key={row.id}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:416:                      <td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:417:                        <Link href={`/vulnerabilities/${row.id}`} className={styles.linkText}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:418:                          {row.cveId}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:419:                        </Link>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:420:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:421:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:422:                      <td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:423:                        <strong>{deviceHostname(row)}</strong>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:424:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:425:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:426:                      <td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:427:                        <strong>{row.packageName ?? 'Không rõ package'}</strong>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:428:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:429:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:430:                      <td>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:1:'use client';
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:2:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:3:import { useCallback, useEffect, useMemo, useState } from 'react';
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:4:import styles from './summary.module.css';
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:5:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:6:type SummaryResponse = { summary?: Record<string, unknown>; topRecommendations?: Recommendation[]; sourceFile?: string };
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:7:type Recommendation = { device: string; cveId: string; packageName: string; installedVersion: string; severity: string; cvssScore: number | null; priority: string; aiRiskScore: number | null; 
+aiRiskLevel: string; aiFinalPriority: string; modelVersion: string; description: string; recommendation: string; references: string[] };
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:8:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:9:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:10:function formatPercent(value: number | null) {
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:11:  return value === null || Number.isNaN(value) ? 'N/A' : `${(value * 100).toFixed(2)}%`;
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:12:}
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:13:
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:14:function formatDistribution(value: unknown) {
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:15:  if (!value || typeof value !== 'object' || Array.isArray(value)) return 'Không có dữ liệu';
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:16:  return Object.entries(value as Record<string, number>).map(([key, count]) => `${key}: ${count}`).join(' · ');
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:17:}
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:18:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:19:export function CtiAiSummaryClient() {
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:20:  const [device, setDevice] = useState('');
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:21:  const [data, setData] = useState<SummaryResponse | null>(null);
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:22:  const [loading, setLoading] = useState(false);
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:23:  const [error, setError] = useState<string | null>(null);
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:24:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:25:  const endpoint = useMemo(() => {
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:26:    const params = new URLSearchParams();
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:27:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:28:    params.set('limit', '20');
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:29:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:30:    if (device.trim()) {
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:31:      params.set('device', device.trim());
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:32:    }
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:72:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:73:      <section className={styles.cards}>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:74:        <article className={styles.card}><span>Tổng khuyến nghị</span><strong>{String(summary.visibleRecommendations ?? summary.recommendations ?? 0)}</strong></article>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:75:        <article className={styles.card}><span>CVE duy nhất</span><strong>{String(summary.unique_cves ?? 0)}</strong></article>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:76:        <article className={styles.card}><span>Đã chấm AI</span><strong>{String(summary.ai_enriched ?? 0)}</strong></article>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:77:        <article className={styles.card}><span>Model</span><strong>{String(summary.model ?? 'xgboost')}</strong></article>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:78:      </section>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:79:
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:80:      <section className={styles.distributions}>
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:81:        <p><b>AI risk:</b> {formatDistribution(summary.riskLevelDistribution)}</p>
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:82:        <p><b>Final priority:</b> {formatDistribution(summary.finalPriorityDistribution)}</p>
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:83:        <p><b>Severity:</b> {formatDistribution(summary.severityDistribution)}</p>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:84:      </section>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:85:
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:86:      <section className={styles.tableSection}>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:87:        <h2>Top CVE cần xử lý</h2>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:88:        <div className={styles.tableWrap}>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:89:          <table className={styles.table}>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:90:            <thead><tr><th>CVE</th><th>Package</th><th>Severity</th><th>CVSS</th><th>AI Risk</th><th>Priority</th><th>Khuyến nghị</th></tr></thead>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:91:            <tbody>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:92:              {rows.map((row, index) => (
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:93:                <tr key={`${row.cveId}-${index}`}>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:94:                  <td><strong>{row.cveId}</strong><span>{row.device}</span></td>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:95:                  <td>{row.packageName}<span>{row.installedVersion}</span></td>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:96:                  <td>{row.severity}</td><td>{row.cvssScore ?? 'N/A'}</td>
+> apps\user-web\src\app\cti-ai-summary\summary-client.tsx:97:                  <td><strong>{formatPercent(row.aiRiskScore)}</strong><span>{row.aiRiskLevel}</span></td>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:98:                  <td>{row.aiFinalPriority || row.priority}</td>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:99:                  <td><p>{row.recommendation}</p>{row.references.length ? <a href={row.references[0]} target="_blank" rel="noreferrer">Mở advisory</a> : null}</td>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:100:                </tr>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:101:              ))}
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:102:              {!rows.length ? <tr><td colSpan={7}>Chưa có dữ liệu để hiển thị.</td></tr> : null}
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:103:            </tbody>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:104:          </table>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:105:        </div>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:106:      </section>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:107:    </main>
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:108:  );
+  apps\user-web\src\app\cti-ai-summary\summary-client.tsx:109:}
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:128:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:129:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:130:          <span className={styles.metricLabel}>CISA KEV</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:131:          <strong className={styles.metricValue}>{threat?.isKnownExploited ? 'Có' : 'Không'}</strong>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:132:          <span className={styles.metricHint}>{threat?.kevDateAdded ? `Thêm ${formatDateTime(threat.kevDateAdded)}` : 'Chưa có bằng chứng KEV trong dữ liệu'}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:133:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:134:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:135:          <span className={styles.metricLabel}>Baseline risk</span>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:136:          <strong className={styles.metricValue}>{item.aiPrediction?.riskLevel ?? '—'}</strong>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:137:          <span className={styles.metricHint}>Attack probability: {formatPercent(item.aiPrediction?.attackProbability)}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:138:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:139:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:140:          <span className={styles.metricLabel}>Last seen</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:141:          <strong className={styles.metricValue} style={{ fontSize: '1.05rem' }}>{formatDateTime(item.lastSeenAt)}</strong>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:142:          <span className={styles.metricHint}>First seen: {formatDateTime(item.firstSeenAt)}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:143:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:144:      </section>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:145:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:146:      <section className={styles.heroPanel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:147:        <div className={styles.panelHeader}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:148:          <div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:149:            <h2>Mô tả CVE</h2>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:150:            <p>Nội dung CTI đã được chuẩn hóa trong cơ sở dữ liệu CYRP.</p>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:151:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:152:        </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:153:        <p className={styles.description}>{item.cve.description || 'Chưa có mô tả CVE trong nguồn CTI hiện tại.'}</p>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:154:      </section>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:186:      </section>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:187:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:188:      <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:189:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:190:          <div className={styles.panelHeader}><div><h2>Baseline model</h2><p>Feature vector và dự đoán tạm trước khi thay bằng mô hình ML.</p></div></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:191:          {item.aiPrediction ? (
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:192:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:193:              <div className={styles.keyValueRow}><span>Model version</span><strong>{item.aiPrediction.modelVersion}</strong></div>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:194:              <div className={styles.keyValueRow}><span>Risk level</span><strong>{item.aiPrediction.riskLevel}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:195:              <div className={styles.keyValueRow}><span>Attack probability</span><strong>{formatPercent(item.aiPrediction.attackProbability)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:196:              <div className={styles.keyValueRow}><span>Predicted at</span><strong>{formatDateTime(item.aiPrediction.predictedAt)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:197:              <div className={styles.keyValueRow}><span>Feature hash</span><strong className={styles.codeText}>{item.featureVector?.featureHash.slice(0, 16) ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:198:            </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:199:          ) : <div className={styles.emptyState}>Chưa có baseline prediction. Hãy chạy lại Data Sync cho thiết bị.</div>}
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:200:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:201:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:202:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:203:          <div className={styles.panelHeader}><div><h2>CVSS vector</h2><p>Thông số kỹ thuật của metric ưu tiên.</p></div></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:204:          {preferredMetric ? (
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:205:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:206:              <div className={styles.keyValueRow}><span>Vector</span><strong className={styles.codeText}>{preferredMetric.vectorString ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:207:              <div className={styles.keyValueRow}><span>Attack vector</span><strong>{preferredMetric.attackVector ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:208:              <div className={styles.keyValueRow}><span>Attack complexity</span><strong>{preferredMetric.attackComplexity ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:209:              <div className={styles.keyValueRow}><span>Privileges required</span><strong>{preferredMetric.privilegesRequired ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:210:              <div className={styles.keyValueRow}><span>User interaction</span><strong>{preferredMetric.userInteraction ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:211:              <div className={styles.keyValueRow}><span>C / I / A</span><strong>{[preferredMetric.confidentialityImpact, preferredMetric.integrityImpact, 
+preferredMetric.availabilityImpact].map((value) => value ?? '—').join(' / ')}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:212:            </div>
+  apps\user-web\src\components\device-analysis-button.tsx:18:import type {
+  apps\user-web\src\components\device-analysis-button.tsx:19:  DeviceSecuritySnapshot,
+  apps\user-web\src\components\device-analysis-button.tsx:20:} from '@/lib/security-snapshot-types';
+  apps\user-web\src\components\device-analysis-button.tsx:21:
+  apps\user-web\src\components\device-analysis-button.tsx:22:import styles from './device-analysis-button.module.css';
+  apps\user-web\src\components\device-analysis-button.tsx:23:
+  apps\user-web\src\components\device-analysis-button.tsx:24:
+  apps\user-web\src\components\device-analysis-button.tsx:25:
+> apps\user-web\src\components\device-analysis-button.tsx:26:function normalizeAiRiskLevel(value: unknown): 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL' | 'UNKNOWN' {
+  apps\user-web\src\components\device-analysis-button.tsx:27:  const level = String(value ?? '').trim().toUpperCase();
+  apps\user-web\src\components\device-analysis-button.tsx:28:
+> apps\user-web\src\components\device-analysis-button.tsx:29:  if (level === 'LOW' || level === 'THẤP') {
+  apps\user-web\src\components\device-analysis-button.tsx:30:    return 'LOW';
+  apps\user-web\src\components\device-analysis-button.tsx:31:  }
+  apps\user-web\src\components\device-analysis-button.tsx:32:
+> apps\user-web\src\components\device-analysis-button.tsx:33:  if (level === 'MEDIUM' || level === 'TRUNG BÌNH' || level === 'TRUNG_BINH') {
+  apps\user-web\src\components\device-analysis-button.tsx:34:    return 'MEDIUM';
+  apps\user-web\src\components\device-analysis-button.tsx:35:  }
+  apps\user-web\src\components\device-analysis-button.tsx:36:
+  apps\user-web\src\components\device-analysis-button.tsx:37:  if (level === 'HIGH' || level === 'CAO') {
+  apps\user-web\src\components\device-analysis-button.tsx:38:    return 'HIGH';
+  apps\user-web\src\components\device-analysis-button.tsx:39:  }
+  apps\user-web\src\components\device-analysis-button.tsx:40:
+  apps\user-web\src\components\device-analysis-button.tsx:41:  if (
+  apps\user-web\src\components\device-analysis-button.tsx:42:    level === 'CRITICAL' ||
+  apps\user-web\src\components\device-analysis-button.tsx:43:    level === 'VERY_HIGH' ||
+  apps\user-web\src\components\device-analysis-button.tsx:44:    level === 'VERY HIGH' ||
+> apps\user-web\src\components\device-analysis-button.tsx:45:    level === 'RẤT CAO' ||
+  apps\user-web\src\components\device-analysis-button.tsx:46:    level === 'RAT CAO'
+  apps\user-web\src\components\device-analysis-button.tsx:47:  ) {
+  apps\user-web\src\components\device-analysis-button.tsx:48:    return 'CRITICAL';
+  apps\user-web\src\components\device-analysis-button.tsx:49:  }
+  apps\user-web\src\components\device-analysis-button.tsx:50:
+  apps\user-web\src\components\device-analysis-button.tsx:51:  return 'UNKNOWN';
+  apps\user-web\src\components\device-analysis-button.tsx:52:}
+  apps\user-web\src\components\device-analysis-button.tsx:53:
+> apps\user-web\src\components\device-analysis-button.tsx:54:function buildAiRiskDistribution(items: Array<{ riskLevel?: unknown }>) {
+  apps\user-web\src\components\device-analysis-button.tsx:55:  const result = {
+  apps\user-web\src\components\device-analysis-button.tsx:56:    low: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:57:    medium: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:58:    high: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:59:    critical: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:60:  };
+  apps\user-web\src\components\device-analysis-button.tsx:61:
+  apps\user-web\src\components\device-analysis-button.tsx:62:  for (const item of items ?? []) {
+> apps\user-web\src\components\device-analysis-button.tsx:63:    const level = normalizeAiRiskLevel(item.riskLevel);
+  apps\user-web\src\components\device-analysis-button.tsx:64:
+  apps\user-web\src\components\device-analysis-button.tsx:65:    if (level === 'LOW') {
+  apps\user-web\src\components\device-analysis-button.tsx:66:      result.low += 1;
+  apps\user-web\src\components\device-analysis-button.tsx:67:    } else if (level === 'MEDIUM') {
+  apps\user-web\src\components\device-analysis-button.tsx:68:      result.medium += 1;
+  apps\user-web\src\components\device-analysis-button.tsx:69:    } else if (level === 'HIGH') {
+  apps\user-web\src\components\device-analysis-button.tsx:70:      result.high += 1;
+  apps\user-web\src\components\device-analysis-button.tsx:71:    } else if (level === 'CRITICAL') {
+  apps\user-web\src\components\device-analysis-button.tsx:72:      result.critical += 1;
+  apps\user-web\src\components\device-analysis-button.tsx:73:    }
+  apps\user-web\src\components\device-analysis-button.tsx:74:  }
+  apps\user-web\src\components\device-analysis-button.tsx:75:
+  apps\user-web\src\components\device-analysis-button.tsx:76:  return result;
+  apps\user-web\src\components\device-analysis-button.tsx:77:}
+  apps\user-web\src\components\device-analysis-button.tsx:78:
+  apps\user-web\src\components\device-analysis-button.tsx:79:function toPercent(value: unknown, mode: 'probability' | 'percentile' = 'probability') {
+  apps\user-web\src\components\device-analysis-button.tsx:80:  const numberValue = Number(value);
+  apps\user-web\src\components\device-analysis-button.tsx:81:
+  apps\user-web\src\components\device-analysis-button.tsx:352:function riskBandLabel(
+  apps\user-web\src\components\device-analysis-button.tsx:353:  probability: number | null,
+  apps\user-web\src\components\device-analysis-button.tsx:354:): string {
+  apps\user-web\src\components\device-analysis-button.tsx:355:  if (probability === null) {
+  apps\user-web\src\components\device-analysis-button.tsx:356:    return 'Chưa đủ dữ liệu';
+  apps\user-web\src\components\device-analysis-button.tsx:357:  }
+  apps\user-web\src\components\device-analysis-button.tsx:358:
+  apps\user-web\src\components\device-analysis-button.tsx:359:  if (probability >= 0.8) {
+> apps\user-web\src\components\device-analysis-button.tsx:360:    return 'Nguy cơ rất cao';
+  apps\user-web\src\components\device-analysis-button.tsx:361:  }
+  apps\user-web\src\components\device-analysis-button.tsx:362:
+  apps\user-web\src\components\device-analysis-button.tsx:363:  if (probability >= 0.6) {
+  apps\user-web\src\components\device-analysis-button.tsx:364:    return 'Nguy cơ cao';
+  apps\user-web\src\components\device-analysis-button.tsx:365:  }
+  apps\user-web\src\components\device-analysis-button.tsx:366:
+  apps\user-web\src\components\device-analysis-button.tsx:367:  if (probability >= 0.35) {
+> apps\user-web\src\components\device-analysis-button.tsx:368:    return 'Nguy cơ trung bình';
+  apps\user-web\src\components\device-analysis-button.tsx:369:  }
+  apps\user-web\src\components\device-analysis-button.tsx:370:
+> apps\user-web\src\components\device-analysis-button.tsx:371:  return 'Nguy cơ thấp';
+  apps\user-web\src\components\device-analysis-button.tsx:372:}
+  apps\user-web\src\components\device-analysis-button.tsx:373:
+  apps\user-web\src\components\device-analysis-button.tsx:374:function gaugeClass(
+  apps\user-web\src\components\device-analysis-button.tsx:375:  probability: number | null,
+  apps\user-web\src\components\device-analysis-button.tsx:376:): string {
+  apps\user-web\src\components\device-analysis-button.tsx:377:  if (probability === null) {
+  apps\user-web\src\components\device-analysis-button.tsx:378:    return styles.gaugeNeutral;
+  apps\user-web\src\components\device-analysis-button.tsx:379:  }
+  apps\user-web\src\components\device-analysis-button.tsx:380:
+  apps\user-web\src\components\device-analysis-button.tsx:381:  if (probability >= 0.8) {
+  apps\user-web\src\components\device-analysis-button.tsx:382:    return styles.gaugeCritical;
+  apps\user-web\src\components\device-analysis-button.tsx:383:  }
+  apps\user-web\src\components\device-analysis-button.tsx:384:
+  apps\user-web\src\components\device-analysis-button.tsx:385:  if (probability >= 0.6) {
+  apps\user-web\src\components\device-analysis-button.tsx:386:    return styles.gaugeHigh;
+  apps\user-web\src\components\device-analysis-button.tsx:387:  }
+  apps\user-web\src\components\device-analysis-button.tsx:388:
+  apps\user-web\src\components\device-analysis-button.tsx:389:  if (probability >= 0.35) {
+  apps\user-web\src\components\device-analysis-button.tsx:612:
+  apps\user-web\src\components\device-analysis-button.tsx:613:  const strongestPrediction = useMemo(
+  apps\user-web\src\components\device-analysis-button.tsx:614:    () => {
+  apps\user-web\src\components\device-analysis-button.tsx:615:      return sortedVulnerabilities[0] ?? null;
+  apps\user-web\src\components\device-analysis-button.tsx:616:    },
+  apps\user-web\src\components\device-analysis-button.tsx:617:    [sortedVulnerabilities],
+  apps\user-web\src\components\device-analysis-button.tsx:618:  );
+  apps\user-web\src\components\device-analysis-button.tsx:619:
+> apps\user-web\src\components\device-analysis-button.tsx:620:  const aiDistribution = useMemo<RiskBucketRow[]>(
+  apps\user-web\src\components\device-analysis-button.tsx:621:    () => {
+  apps\user-web\src\components\device-analysis-button.tsx:622:      const counts: Record<RiskBucketKey, number> = {
+  apps\user-web\src\components\device-analysis-button.tsx:623:        LOW: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:624:        MEDIUM: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:625:        HIGH: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:626:        CRITICAL: 0,
+  apps\user-web\src\components\device-analysis-button.tsx:627:      };
+  apps\user-web\src\components\device-analysis-button.tsx:628:
+  apps\user-web\src\components\device-analysis-button.tsx:629:      for (const item of vulnerabilities) {
+> apps\user-web\src\components\device-analysis-button.tsx:630:        const level = item.aiPrediction?.riskLevel?.toUpperCase();
+  apps\user-web\src\components\device-analysis-button.tsx:631:        if (level === 'LOW' || level === 'MEDIUM' || level === 'HIGH' || level === 'CRITICAL') {
+  apps\user-web\src\components\device-analysis-button.tsx:632:          counts[level] += 1;
+  apps\user-web\src\components\device-analysis-button.tsx:633:        }
+  apps\user-web\src\components\device-analysis-button.tsx:634:      }
+  apps\user-web\src\components\device-analysis-button.tsx:635:
+  apps\user-web\src\components\device-analysis-button.tsx:636:      return [
+> apps\user-web\src\components\device-analysis-button.tsx:637:        { key: 'LOW', label: 'Thấp', count: counts.LOW },
+> apps\user-web\src\components\device-analysis-button.tsx:638:        { key: 'MEDIUM', label: 'Trung bình', count: counts.MEDIUM },
+  apps\user-web\src\components\device-analysis-button.tsx:639:        { key: 'HIGH', label: 'Cao', count: counts.HIGH },
+> apps\user-web\src\components\device-analysis-button.tsx:640:        { key: 'CRITICAL', label: 'Rất cao', count: counts.CRITICAL },
+  apps\user-web\src\components\device-analysis-button.tsx:641:      ];
+  apps\user-web\src\components\device-analysis-button.tsx:642:    },
+  apps\user-web\src\components\device-analysis-button.tsx:643:    [vulnerabilities],
+  apps\user-web\src\components\device-analysis-button.tsx:644:  );
+  apps\user-web\src\components\device-analysis-button.tsx:645:
+> apps\user-web\src\components\device-analysis-button.tsx:646:  const maxDistributionCount = useMemo(
+> apps\user-web\src\components\device-analysis-button.tsx:647:    () => Math.max(1, ...aiDistribution.map((item) => item.count)),
+> apps\user-web\src\components\device-analysis-button.tsx:648:    [aiDistribution],
+  apps\user-web\src\components\device-analysis-button.tsx:649:  );
+  apps\user-web\src\components\device-analysis-button.tsx:650:
+  apps\user-web\src\components\device-analysis-button.tsx:651:  const quickActions = useMemo(
+  apps\user-web\src\components\device-analysis-button.tsx:652:    () => {
+  apps\user-web\src\components\device-analysis-button.tsx:653:      const actions: string[] = [];
+  apps\user-web\src\components\device-analysis-button.tsx:654:
+  apps\user-web\src\components\device-analysis-button.tsx:655:      if (strongestPrediction) {
+  apps\user-web\src\components\device-analysis-button.tsx:656:        actions.push(
+  apps\user-web\src\components\device-analysis-button.tsx:657:          `Ưu tiên xử lý ${strongestPrediction.cveId} vì đang có xác suất khai thác ${formatProbability(modelExploitRiskValue(strongestPrediction))}.`,
+  apps\user-web\src\components\device-analysis-button.tsx:658:        );
+  apps\user-web\src\components\device-analysis-button.tsx:659:      }
+  apps\user-web\src\components\device-analysis-button.tsx:660:
+  apps\user-web\src\components\device-analysis-button.tsx:661:      if ((snapshot?.criticalCount ?? 0) > 0) {
+  apps\user-web\src\components\device-analysis-button.tsx:662:        actions.push(
+  apps\user-web\src\components\device-analysis-button.tsx:663:          `Wazuh ghi nhận ${snapshot?.criticalCount ?? 0} cảnh báo critical trong 24 giờ gần nhất, nên kiểm tra nhật ký và rule liên quan.`,
+  apps\user-web\src\components\device-analysis-button.tsx:664:        );
+  apps\user-web\src\components\device-analysis-button.tsx:665:      }
+  apps\user-web\src\components\device-analysis-button.tsx:666:
+  apps\user-web\src\components\device-analysis-button.tsx:877:            {snapshot ? (
+  apps\user-web\src\components\device-analysis-button.tsx:878:              <>
+  apps\user-web\src\components\device-analysis-button.tsx:879:                <section className={styles.heroSection}>
+  apps\user-web\src\components\device-analysis-button.tsx:880:                  <div className={styles.heroText}>
+  apps\user-web\src\components\device-analysis-button.tsx:881:                    <span className={styles.sectionEyebrow}>Tổng quan nhanh</span>
+  apps\user-web\src\components\device-analysis-button.tsx:882:                    <h3>{summaryMessage(highestAttackProbability, vulnerabilityTotal, snapshot.alertCount)}</h3>
+  apps\user-web\src\components\device-analysis-button.tsx:883:
+  apps\user-web\src\components\device-analysis-button.tsx:884:                    <div className={styles.heroPills}>
+> apps\user-web\src\components\device-analysis-button.tsx:885:                      <span className={`${styles.riskPill} ${riskClass(strongestPrediction ? (finalPriorityLevel(strongestPrediction) ?? strongestPrediction.aiPrediction?.riskLevel) : null)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:886:                        {strongestPrediction
+> apps\user-web\src\components\device-analysis-button.tsx:887:                          ? finalPriorityLevel(strongestPrediction) ?? strongestPrediction.aiPrediction?.riskLevel ?? '—'
+  apps\user-web\src\components\device-analysis-button.tsx:888:                          : 'Chưa có dữ liệu'}
+  apps\user-web\src\components\device-analysis-button.tsx:889:                      </span>
+  apps\user-web\src\components\device-analysis-button.tsx:890:                      <span className={styles.heroSubtlePill}>
+  apps\user-web\src\components\device-analysis-button.tsx:891:                        {modelLabel(strongestPrediction?.aiPrediction?.modelVersion)}
+  apps\user-web\src\components\device-analysis-button.tsx:892:                      </span>
+  apps\user-web\src\components\device-analysis-button.tsx:893:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:894:                  </div>
+  apps\user-web\src\components\device-analysis-button.tsx:895:
+  apps\user-web\src\components\device-analysis-button.tsx:896:                  <div className={styles.gaugeCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:897:                    <div className={`${styles.gauge} ${gaugeClass(highestAttackProbability)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:898:                      <div className={styles.gaugeInner}>
+  apps\user-web\src\components\device-analysis-button.tsx:899:                        <span>Xác suất cao nhất</span>
+  apps\user-web\src\components\device-analysis-button.tsx:900:                        <strong>{formatProbability(highestAttackProbability)}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:901:                        <small>{riskBandLabel(highestAttackProbability)}</small>
+  apps\user-web\src\components\device-analysis-button.tsx:902:                      </div>
+  apps\user-web\src\components\device-analysis-button.tsx:903:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:904:                    <p>
+  apps\user-web\src\components\device-analysis-button.tsx:905:                      Đây là percentile AI cao nhất trong các lỗ hổng active chưa khắc phục của thiết bị ở lần kiểm tra hiện tại.
+  apps\user-web\src\components\device-analysis-button.tsx:941:                      Percentile AI · cập nhật {formatDate(strongestPrediction?.aiPrediction?.predictedAt ?? snapshot.calculatedAt)}
+  apps\user-web\src\components\device-analysis-button.tsx:942:                    </small>
+  apps\user-web\src\components\device-analysis-button.tsx:943:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:944:                </div>
+  apps\user-web\src\components\device-analysis-button.tsx:945:
+  apps\user-web\src\components\device-analysis-button.tsx:946:                <div className={styles.insightGrid}>
+  apps\user-web\src\components\device-analysis-button.tsx:947:                  <section className={styles.panelCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:948:                    <div className={styles.sectionHeader}>
+> apps\user-web\src\components\device-analysis-button.tsx:949:                      <strong>Phân bố mức rủi ro AI</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:950:                      <span>Đây là phân bố theo AI prediction, không phải theo CVSS.</span>
+  apps\user-web\src\components\device-analysis-button.tsx:951:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:952:
+  apps\user-web\src\components\device-analysis-button.tsx:953:                    <div className={styles.chartRows}>
+> apps\user-web\src\components\device-analysis-button.tsx:954:                      {aiDistribution.map((bucket) => {
+> apps\user-web\src\components\device-analysis-button.tsx:955:                        const width = maxDistributionCount
+> apps\user-web\src\components\device-analysis-button.tsx:956:                          ? (bucket.count / maxDistributionCount) * 100
+  apps\user-web\src\components\device-analysis-button.tsx:957:                          : 0;
+  apps\user-web\src\components\device-analysis-button.tsx:958:
+  apps\user-web\src\components\device-analysis-button.tsx:959:                        return (
+  apps\user-web\src\components\device-analysis-button.tsx:960:                          <div className={styles.chartRow} key={bucket.key}>
+  apps\user-web\src\components\device-analysis-button.tsx:961:                            <div className={styles.chartLabelWrap}>
+  apps\user-web\src\components\device-analysis-button.tsx:962:                              <span>{bucket.label}</span>
+  apps\user-web\src\components\device-analysis-button.tsx:963:                              <strong>{bucket.count}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:964:                            </div>
+  apps\user-web\src\components\device-analysis-button.tsx:965:                            <div className={styles.chartTrack}>
+  apps\user-web\src\components\device-analysis-button.tsx:966:                              <div
+  apps\user-web\src\components\device-analysis-button.tsx:967:                                className={`${styles.chartFill} ${riskClass(bucket.key)}`}
+  apps\user-web\src\components\device-analysis-button.tsx:968:                                style={{ width: formatPercentBar(width) }}
+  apps\user-web\src\components\device-analysis-button.tsx:969:                              />
+  apps\user-web\src\components\device-analysis-button.tsx:970:                            </div>
+  apps\user-web\src\components\device-analysis-button.tsx:971:                          </div>
+  apps\user-web\src\components\device-analysis-button.tsx:972:                        );
+  apps\user-web\src\components\device-analysis-button.tsx:973:                      })}
+  apps\user-web\src\components\device-analysis-button.tsx:974:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:997:                  </div>
+  apps\user-web\src\components\device-analysis-button.tsx:998:
+  apps\user-web\src\components\device-analysis-button.tsx:999:                  {sortedVulnerabilities.length ? (
+  apps\user-web\src\components\device-analysis-button.tsx:1000:                    <div className={styles.vulnerabilityList}>
+  apps\user-web\src\components\device-analysis-button.tsx:1001:                      {sortedVulnerabilities.slice(0, 5).map((item) => {
+  apps\user-web\src\components\device-analysis-button.tsx:1002:                        const isExpanded = expandedId === item.id;
+  apps\user-web\src\components\device-analysis-button.tsx:1003:                        const finalLevel =
+  apps\user-web\src\components\device-analysis-button.tsx:1004:                          finalPriorityLevel(item) ??
+> apps\user-web\src\components\device-analysis-button.tsx:1005:                          item.aiPrediction?.riskLevel ??
+  apps\user-web\src\components\device-analysis-button.tsx:1006:                          '—';
+  apps\user-web\src\components\device-analysis-button.tsx:1007:                        const finalScore = finalPriorityScore(item);
+  apps\user-web\src\components\device-analysis-button.tsx:1008:
+  apps\user-web\src\components\device-analysis-button.tsx:1009:                        return (
+  apps\user-web\src\components\device-analysis-button.tsx:1010:                          <article className={styles.vulnerabilityCard} key={item.id}>
+  apps\user-web\src\components\device-analysis-button.tsx:1011:                            <div className={styles.vulnerabilityTop}>
+  apps\user-web\src\components\device-analysis-button.tsx:1012:                              <div className={styles.vulnerabilityMain}>
+  apps\user-web\src\components\device-analysis-button.tsx:1013:                                <strong>{item.cveId}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:1014:                                <span>{item.packageName ?? 'Không rõ package'}</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1015:                                <small>
+  apps\user-web\src\components\device-analysis-button.tsx:1016:                                  CVSS {formatShortScore(item.cvssBaseScore)} · {item.severity ?? 'UNKNOWN'}
+  apps\user-web\src\components\device-analysis-button.tsx:1017:                                </small>
+  apps\user-web\src\components\device-analysis-button.tsx:1018:                              </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1019:
+  apps\user-web\src\components\device-analysis-button.tsx:1020:                              <div className={styles.vulnerabilityStats}>
+  apps\user-web\src\components\device-analysis-button.tsx:1021:                                <div className={styles.statChip}>
+  apps\user-web\src\components\device-analysis-button.tsx:1022:                                  <span>Rủi ro khai thác</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1023:                                  <strong>{formatProbability(modelExploitRiskValue(item))}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:1025:                                <div className={styles.statChip}>
+  apps\user-web\src\components\device-analysis-button.tsx:1026:                                  <span>Mức ưu tiên</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1027:                                  <strong>{finalLevel}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:1028:                                </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1029:                              </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1030:                            </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1031:
+  apps\user-web\src\components\device-analysis-button.tsx:1032:                            <div className={styles.vulnerabilityMetaRow}>
+> apps\user-web\src\components\device-analysis-button.tsx:1033:                              <span className={`${styles.riskPill} ${riskClass(item.aiPrediction?.riskLevel)}`}>
+> apps\user-web\src\components\device-analysis-button.tsx:1034:                                AI risk {item.aiPrediction?.riskLevel ?? '—'}
+  apps\user-web\src\components\device-analysis-button.tsx:1035:                              </span>
+  apps\user-web\src\components\device-analysis-button.tsx:1036:                              <span className={`${styles.riskPill} ${riskClass(finalLevel)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:1037:                                Final priority {finalLevel}
+  apps\user-web\src\components\device-analysis-button.tsx:1038:                              </span>
+  apps\user-web\src\components\device-analysis-button.tsx:1039:                              <span className={styles.metaBadge}>
+  apps\user-web\src\components\device-analysis-button.tsx:1040:                                  {item.status?.toUpperCase() === 'RESOLVED'
+  apps\user-web\src\components\device-analysis-button.tsx:1041:                                    ? 'Đã khắc phục'
+  apps\user-web\src\components\device-analysis-button.tsx:1042:                                    : 'Chưa khắc phục'}
+  apps\user-web\src\components\device-analysis-button.tsx:1043:                                </span>
+  apps\user-web\src\components\device-analysis-button.tsx:1044:                            </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1045:
+  apps\user-web\src\components\device-analysis-button.tsx:1046:                            <div className={styles.vulnerabilityActions}>
+  apps\user-web\src\components\device-analysis-button.tsx:1047:                              <button
+  apps\user-web\src\components\device-analysis-button.tsx:1048:                                type="button"
+  apps\user-web\src\components\device-analysis-button.tsx:1049:                                className={styles.detailButton}
+  apps\user-web\src\components\device-analysis-button.tsx:1050:                                onClick={() => setExpandedId(isExpanded ? null : item.id)}
+  apps\user-web\src\components\device-analysis-button.tsx:1051:                              >
+  apps\user-web\src\components\device-analysis-button.tsx:1052:                                {isExpanded ? 'Ẩn chi tiết' : 'Xem chi tiết'}
+  apps\user-web\src\lib\security-data-types.ts:58:  updatedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:59:}
+  apps\user-web\src\lib\security-data-types.ts:60:
+  apps\user-web\src\lib\security-data-types.ts:61:export interface AiPrediction {
+  apps\user-web\src\lib\security-data-types.ts:62:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:63:  modelVersion: string;
+  apps\user-web\src\lib\security-data-types.ts:64:  attackProbability: number;
+  apps\user-web\src\lib\security-data-types.ts:65:  predictedPercentile: number | null;
+> apps\user-web\src\lib\security-data-types.ts:66:  riskLevel: string;
+  apps\user-web\src\lib\security-data-types.ts:67:  explanation: unknown;
+  apps\user-web\src\lib\security-data-types.ts:68:  predictedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:69:  createdAt: string;
+  apps\user-web\src\lib\security-data-types.ts:70:  updatedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:71:}
+  apps\user-web\src\lib\security-data-types.ts:72:
+  apps\user-web\src\lib\security-data-types.ts:73:export interface PredictionHistoryItem {
+  apps\user-web\src\lib\security-data-types.ts:74:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:75:  modelVersion: string;
+  apps\user-web\src\lib\security-data-types.ts:76:  attackProbability: number;
+  apps\user-web\src\lib\security-data-types.ts:77:  predictedPercentile: number | null;
+> apps\user-web\src\lib\security-data-types.ts:78:  riskLevel: string;
+  apps\user-web\src\lib\security-data-types.ts:79:  featureHash: string | null;
+  apps\user-web\src\lib\security-data-types.ts:80:  predictedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:81:  createdAt: string;
+  apps\user-web\src\lib\security-data-types.ts:82:}
+  apps\user-web\src\lib\security-data-types.ts:83:
+  apps\user-web\src\lib\security-data-types.ts:84:export interface EndpointContextSnapshot {
+  apps\user-web\src\lib\security-data-types.ts:85:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:86:  asOfTime: string;
+  apps\user-web\src\lib\security-data-types.ts:87:  observedAt?: string;
+  apps\user-web\src\lib\security-data-types.ts:88:  agentStatus: string | null;
+  apps\user-web\src\lib\security-data-types.ts:89:  agentIp?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:90:  hostname?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:91:  osName?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:92:  osVersion?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:93:  osFull?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:94:  architecture?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:95:  packageCount: number;
+  apps\user-web\src\lib\security-data-types.ts:96:  hotfixCount: number;
+
+
+
+
+=== Percentile / attack probability cards ===
+
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:56:    }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:57:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:58:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:59:  return result;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:60:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:61:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:62:function toPercent(value: unknown, mode: 'probability' | 'percentile' = 'probability') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:63:  const numberValue = Number(value);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:64:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:65:  if (!Number.isFinite(numberValue)) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:66:    return null;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:67:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:68:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:69:  if (mode === 'probability') {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:70:    return numberValue <= 1 ? numberValue * 100 : numberValue;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:71:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:72:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:73:  return numberValue;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:74:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:75:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:76:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:107:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:108:function formatProbability(value: number | null | undefined): string {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:109:  if (typeof value !== 'number' || Number.isNaN(value)) return '—';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:110:  return `${Math.round(value * 100)}%`;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:111:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:112:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:113:function formatPercentile(value: number | null): string {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:114:  if (typeof value !== 'number' || Number.isNaN(value)) return '—';
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:115:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:116:  if (value <= 1) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:117:    return `${Math.round(value * 100)}%`;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:118:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:119:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:120:  return `${Math.round(value)}%`;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:121:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:122:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:123:function numberFromUnknown(value: unknown): number | null {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:124:  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:125:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:126:  if (typeof value === 'string' && value.trim()) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:127:    const parsed = Number(value);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:144:function predictionRecord(item: VulnerabilityItem): Record<string, unknown> {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:145:  return item.aiPrediction && typeof item.aiPrediction === 'object'
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:146:    ? (item.aiPrediction as unknown as Record<string, unknown>)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:147:    : {};
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:148:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:149:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:150:function predictionPercentile(item: VulnerabilityItem): number | null {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:151:  const prediction = predictionRecord(item);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:152:  const explanation = predictionExplanation(item.aiPrediction?.explanation);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:153:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:154:  return numberFromUnknown(prediction.predictedPercentile)
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:155:    ?? numberFromUnknown(prediction.predicted_percentile)
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:156:    ?? numberFromUnknown(prediction.percentile)
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:157:    ?? numberFromUnknown(explanation.predicted_percentile)
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:158:    ?? numberFromUnknown(explanation.predictedPercentile)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:159:    ?? null;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:160:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:161:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:162:function riskLevel(item: VulnerabilityItem): string | null {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:163:  return item.aiPrediction?.riskLevel
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:164:    ?? stringFromUnknown(predictionExplanation(item.aiPrediction?.explanation).risk_level)
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:165:    ?? stringFromUnknown(predictionExplanation(item.aiPrediction?.explanation).riskLevel);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:166:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:167:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:168:function severityClass(severity: string | null | undefined): string {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:169:  switch (severity?.toUpperCase()) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:170:    case 'CRITICAL':
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:171:      return styles.severityCritical;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:172:    case 'HIGH':
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:203:    case 'LOW': return 1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:204:    default: return 0;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:205:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:206:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:207:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:208:function aiScoreForSort(item: VulnerabilityItem): number {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:209:  const percentile = item.aiPrediction?.predictedPercentile;
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:210:  if (typeof percentile === 'number' && Number.isFinite(percentile)) {
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:211:    return percentile > 1 ? percentile / 100 : percentile;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:212:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:213:
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:214:  const probability = item.aiPrediction?.attackProbability;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:215:  if (typeof probability === 'number' && Number.isFinite(probability)) {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:216:    return probability > 1 ? probability / 100 : probability;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:217:  }
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:218:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:219:  return -1;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:220:}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:221:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:222:function sortAndFilterByAiRiskLevel(
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:223:  items: VulnerabilityItem[],
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:224:  riskLevel: string,
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:225:): VulnerabilityItem[] {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:226:  const normalizedFilter = riskLevel.trim().toUpperCase();
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:227:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:228:  return [...items]
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:398:                  <th>CVE</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:399:                  <th>Thiết bị</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:400:                  <th>Package</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:401:                  <th>AI ScanTime</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:402:                  <th>Risk level</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:403:                  <th>Xác suất bị khai thác</th>
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:404:                  <th>Percentile</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:405:                  <th>Cách khắc phục</th>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:406:                </tr>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:407:              </thead>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:408:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:409:              <tbody>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:410:                {sortAndFilterByAiRiskLevel(data?.items ?? [], riskLevel).map((item) => {
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:411:                  const row = item as AiPredictionRow;
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:412:                  const level = normalizedAiRiskLevel(row);
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:413:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:414:                  return (
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:415:                    <tr key={row.id}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:416:                      <td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:417:                        <Link href={`/vulnerabilities/${row.id}`} className={styles.linkText}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:418:                          {row.cveId}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:435:                        <span className={`${styles.statusPill} ${statusClass(level)}`}>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:436:                          {level ?? '—'}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:437:                        </span>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:438:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:439:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:440:                      <td>
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:441:                        <strong>{formatProbability(row.aiPrediction?.attackProbability)}</strong>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:442:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:443:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:444:                      <td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:445:                        <span className={`${styles.statusPill} ${severityClass(level)}`}>
+> apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:446:                          {formatPercentile(predictionPercentile(row))}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:447:                        </span>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:448:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:449:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:450:                      <td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:451:                        <CveRemediationLink cveId={row.cveId} />
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:452:                      </td>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:453:                    </tr>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:454:                  );
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:455:                })}
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:456:              </tbody>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:457:            </table>
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:458:
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:459:            {data && data.items.length === 0 ? (
+  apps\user-web\src\app\ai-predictions\ai-predictions-client.tsx:460:              <p className={styles.emptyState}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:190:            <div className={styles.keyValueRow}><span>Last synchronized</span><strong>{formatDateTime(device.wazuhBinding?.lastSynchronizedAt)}</strong></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:191:          </div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:192:        </article>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:193:      </section>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:194:
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:195:      <section className={styles.panel}>
+> apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:196:        <div className={styles.panelHeader}><div><h2>Lỗ hổng ưu tiên</h2><p>Các CVE đang active được sắp theo CVSS và lần nhìn thấy gần nhất.</p></div></div>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:197:        <div className={styles.tableWrap}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:198:          <table className={styles.table}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:199:            <thead><tr><th>CVE</th><th>Package</th><th>Severity</th><th>CVSS</th><th>Last seen</th></tr></thead>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:200:            <tbody>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:201:              {(vulnerabilities?.items ?? []).map((item) => (
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:202:                <tr key={item.id}>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:203:                  <td><Link className={styles.linkInline} href={`/vulnerabilities/${item.id}`}><strong>{item.cveId}</strong></Link></td>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:204:                  <td><span className={styles.primaryText}>{item.packageName ?? 'Không xác định'}</span><span className={styles.secondaryText}>{item.packageVersion ?? '—'}</span></td>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:205:                  <td><span className={`${styles.severityPill} ${severityClass(item.severity)}`}>{item.severity ?? 'UNKNOWN'}</span></td>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:206:                  <td>{item.cvssBaseScore?.toFixed(1) ?? '—'}</td>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:207:                  <td>{formatDateTime(item.lastSeenAt)}</td>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:208:                </tr>
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:209:              ))}
+  apps\user-web\src\app\devices\[deviceId]\device-detail-client.tsx:210:              {!vulnerabilities?.items.length ? <tr><td colSpan={5}>Chưa có vulnerability state được đồng bộ.</td></tr> : null}
+  apps\user-web\src\app\settings\settings-client.tsx:53:      {!loading ? (
+  apps\user-web\src\app\settings\settings-client.tsx:54:        <>
+  apps\user-web\src\app\settings\settings-client.tsx:55:          <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\settings\settings-client.tsx:56:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Tài khoản</h2><p>Thông tin từ phiên xác thực hiện tại.</p></div></div><div className={styles.keyValueList}><div 
+className={styles.keyValueRow}><span>Họ tên</span><strong>{user?.fullName ?? '—'}</strong></div><div className={styles.keyValueRow}><span>Email</span><strong>{user?.email ?? '—'}</strong></div><div className={styles.keyValueRow}><span>Vai 
+trò</span><strong>{user?.role ?? '—'}</strong></div><div className={styles.keyValueRow}><span>Thiết bị đang theo dõi</span><strong>{activeDevices}/{devices.length}</strong></div></div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:57:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Phạm vi quyền</h2><p>CYRP chỉ cho người dùng xem dữ liệu thuộc thiết bị của chính tài khoản.</p></div></div><div 
+className={styles.keyValueList}><div className={styles.keyValueRow}><span>Device ownership</span><strong>Bắt buộc</strong></div><div className={styles.keyValueRow}><span>Wazuh credential trên frontend</span><strong>Không lưu</strong></div><div 
+className={styles.keyValueRow}><span>Session cookie</span><strong>HTTP-only</strong></div><div className={styles.keyValueRow}><span>Risk model AI</span><strong>Đã bật: AI_CYRP XGBoost</strong></div></div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:58:          </section>
+> apps\user-web\src\app\settings\settings-client.tsx:59:          <section className={styles.panel}><div className={styles.panelHeader}><div><h2>Luồng kiểm tra bảo mật</h2><p>Cách CYRP lấy dữ liệu và hiển thị dự đoán AI khi người dùng bấm “Kiểm tra 
+máy”.</p></div><Link className={styles.primaryButton} href="/devices">Quản lý thiết bị</Link></div><div className={styles.detailGrid}><div className={styles.detailItem}><span className={styles.label}>Bước 1</span><strong>Thiết bị được liên kết với Wazuh 
+Agent</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 2</span><strong>Wazuh Agent gửi inventory và vulnerability state</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 
+3</span><strong>CYRP đồng bộ CVE, package và endpoint context</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 4</span><strong>Người dùng bấm “Kiểm tra máy”</strong></div><div className={styles.detailItem}><span 
+className={styles.label}>Bước 5</span><strong>AI_CYRP XGBoost dự đoán nguy cơ khai thác</strong></div><div className={styles.detailItem}><span className={styles.label}>Bước 6</span><strong>Portal hiển thị mức ưu tiên và khuyến nghị ngắn 
+gọn</strong></div></div></section>
+  apps\user-web\src\app\settings\settings-client.tsx:60:          <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\settings\settings-client.tsx:61:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Thiết bị đã đăng ký</h2><p>Trạng thái logic trong CYRP.</p></div></div><div 
+className={styles.cardList}>{devices.map((device) => (<div className={styles.listCard} key={device.id}><div><Link className={styles.linkInline} href={`/devices/${device.id}`}><strong>{device.hostname}</strong></Link><p>{device.operatingSystem}</p></div><span 
+className={`${styles.statusPill} ${device.status === 'ERROR' ? styles.statusDanger : styles.statusNeutral}`}>{device.status}</span></div>))}{!devices.length ? <div className={styles.emptyState}>Chưa có thiết bị.</div> : null}</div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:62:            <article className={styles.panel}><div className={styles.panelHeader}><div><h2>Lưu ý bảo mật</h2><p>Các nguyên tắc người dùng cần giữ khi vận hành endpoint.</p></div></div><div 
+className={styles.keyValueList}><div className={styles.keyValueRow}><span>Token / mã enrollment</span><strong>Không chia sẻ</strong></div><div className={styles.keyValueRow}><span>Khi có cảnh báo HIGH/CRITICAL</span><strong>Ưu tiên cập nhật phần mềm và kiểm 
+tra log</strong></div><div className={styles.keyValueRow}><span>Khi AI probability cao</span><strong>Nhấn chi tiết lỗ hổng để xem CVE và package liên quan</strong></div></div></article>
+  apps\user-web\src\app\settings\settings-client.tsx:63:          </section>
+  apps\user-web\src\app\settings\settings-client.tsx:64:        </>
+  apps\user-web\src\app\settings\settings-client.tsx:65:      ) : null}
+  apps\user-web\src\app\settings\settings-client.tsx:66:    </div>
+  apps\user-web\src\app\settings\settings-client.tsx:67:  );
+  apps\user-web\src\app\settings\settings-client.tsx:68:}
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:121:          <strong className={styles.metricValue}>{item.cvssBaseScore?.toFixed(1) ?? '—'}</strong>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:122:          <span className={styles.metricHint}>{preferredMetric?.cvssVersion ? `CVSS ${preferredMetric.cvssVersion}` : 'Chưa có metric chuẩn hóa'}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:123:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:124:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:125:          <span className={styles.metricLabel}>EPSS</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:126:          <strong className={styles.metricValue}>{formatPercent(threat?.epssScore)}</strong>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:127:          <span className={styles.metricHint}>Percentile: {formatPercent(threat?.epssPercentile)}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:128:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:129:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:130:          <span className={styles.metricLabel}>CISA KEV</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:131:          <strong className={styles.metricValue}>{threat?.isKnownExploited ? 'Có' : 'Không'}</strong>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:132:          <span className={styles.metricHint}>{threat?.kevDateAdded ? `Thêm ${formatDateTime(threat.kevDateAdded)}` : 'Chưa có bằng chứng KEV trong dữ liệu'}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:133:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:134:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:135:          <span className={styles.metricLabel}>Baseline risk</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:136:          <strong className={styles.metricValue}>{item.aiPrediction?.riskLevel ?? '—'}</strong>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:137:          <span className={styles.metricHint}>Attack probability: {formatPercent(item.aiPrediction?.attackProbability)}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:138:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:139:        <article className={styles.metricCard}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:140:          <span className={styles.metricLabel}>Last seen</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:141:          <strong className={styles.metricValue} style={{ fontSize: '1.05rem' }}>{formatDateTime(item.lastSeenAt)}</strong>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:142:          <span className={styles.metricHint}>First seen: {formatDateTime(item.firstSeenAt)}</span>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:143:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:144:      </section>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:145:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:146:      <section className={styles.heroPanel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:147:        <div className={styles.panelHeader}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:148:          <div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:149:            <h2>Mô tả CVE</h2>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:150:            <p>Nội dung CTI đã được chuẩn hóa trong cơ sở dữ liệu CYRP.</p>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:151:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:175:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:176:          <div className={styles.panelHeader}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:177:            <div><h2>Threat intelligence</h2><p>Tín hiệu bổ sung, không phải dự đoán của model AI.</p></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:178:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:179:          <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:180:            <div className={styles.keyValueRow}><span>EPSS score</span><strong>{formatPercent(threat?.epssScore)}</strong></div>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:181:            <div className={styles.keyValueRow}><span>EPSS percentile</span><strong>{formatPercent(threat?.epssPercentile)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:182:            <div className={styles.keyValueRow}><span>Known exploited</span><strong>{threat?.isKnownExploited ? 'Có' : 'Không'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:183:            <div className={styles.keyValueRow}><span>Signal date</span><strong>{formatDateTime(threat?.signalDate)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:184:          </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:185:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:186:      </section>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:187:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:188:      <section className={styles.panelGridEqual}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:189:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:190:          <div className={styles.panelHeader}><div><h2>Baseline model</h2><p>Feature vector và dự đoán tạm trước khi thay bằng mô hình ML.</p></div></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:191:          {item.aiPrediction ? (
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:192:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:193:              <div className={styles.keyValueRow}><span>Model version</span><strong>{item.aiPrediction.modelVersion}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:194:              <div className={styles.keyValueRow}><span>Risk level</span><strong>{item.aiPrediction.riskLevel}</strong></div>
+> apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:195:              <div className={styles.keyValueRow}><span>Attack probability</span><strong>{formatPercent(item.aiPrediction.attackProbability)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:196:              <div className={styles.keyValueRow}><span>Predicted at</span><strong>{formatDateTime(item.aiPrediction.predictedAt)}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:197:              <div className={styles.keyValueRow}><span>Feature hash</span><strong className={styles.codeText}>{item.featureVector?.featureHash.slice(0, 16) ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:198:            </div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:199:          ) : <div className={styles.emptyState}>Chưa có baseline prediction. Hãy chạy lại Data Sync cho thiết bị.</div>}
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:200:        </article>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:201:
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:202:        <article className={styles.panel}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:203:          <div className={styles.panelHeader}><div><h2>CVSS vector</h2><p>Thông số kỹ thuật của metric ưu tiên.</p></div></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:204:          {preferredMetric ? (
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:205:            <div className={styles.keyValueList}>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:206:              <div className={styles.keyValueRow}><span>Vector</span><strong className={styles.codeText}>{preferredMetric.vectorString ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:207:              <div className={styles.keyValueRow}><span>Attack vector</span><strong>{preferredMetric.attackVector ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:208:              <div className={styles.keyValueRow}><span>Attack complexity</span><strong>{preferredMetric.attackComplexity ?? '—'}</strong></div>
+  apps\user-web\src\app\vulnerabilities\[id]\vulnerability-detail-client.tsx:209:              <div className={styles.keyValueRow}><span>Privileges required</span><strong>{preferredMetric.privilegesRequired ?? '—'}</strong></div>
+  apps\user-web\src\components\device-analysis-button.tsx:73:    }
+  apps\user-web\src\components\device-analysis-button.tsx:74:  }
+  apps\user-web\src\components\device-analysis-button.tsx:75:
+  apps\user-web\src\components\device-analysis-button.tsx:76:  return result;
+  apps\user-web\src\components\device-analysis-button.tsx:77:}
+  apps\user-web\src\components\device-analysis-button.tsx:78:
+> apps\user-web\src\components\device-analysis-button.tsx:79:function toPercent(value: unknown, mode: 'probability' | 'percentile' = 'probability') {
+  apps\user-web\src\components\device-analysis-button.tsx:80:  const numberValue = Number(value);
+  apps\user-web\src\components\device-analysis-button.tsx:81:
+  apps\user-web\src\components\device-analysis-button.tsx:82:  if (!Number.isFinite(numberValue)) {
+  apps\user-web\src\components\device-analysis-button.tsx:83:    return null;
+  apps\user-web\src\components\device-analysis-button.tsx:84:  }
+  apps\user-web\src\components\device-analysis-button.tsx:85:
+  apps\user-web\src\components\device-analysis-button.tsx:86:  if (mode === 'probability') {
+  apps\user-web\src\components\device-analysis-button.tsx:87:    return numberValue <= 1 ? numberValue * 100 : numberValue;
+  apps\user-web\src\components\device-analysis-button.tsx:88:  }
+  apps\user-web\src\components\device-analysis-button.tsx:89:
+  apps\user-web\src\components\device-analysis-button.tsx:90:  return numberValue;
+  apps\user-web\src\components\device-analysis-button.tsx:91:}
+  apps\user-web\src\components\device-analysis-button.tsx:92:
+  apps\user-web\src\components\device-analysis-button.tsx:93:
+  apps\user-web\src\components\device-analysis-button.tsx:200:  return Math.max(0, Math.min(1, value));
+  apps\user-web\src\components\device-analysis-button.tsx:201:}
+  apps\user-web\src\components\device-analysis-button.tsx:202:
+  apps\user-web\src\components\device-analysis-button.tsx:203:function modelExploitRiskValue(
+  apps\user-web\src\components\device-analysis-button.tsx:204:  item: VulnerabilityItem | null | undefined,
+  apps\user-web\src\components\device-analysis-button.tsx:205:): number | null {
+> apps\user-web\src\components\device-analysis-button.tsx:206:  const percentile = normalizeProbabilityLikeValue(
+> apps\user-web\src\components\device-analysis-button.tsx:207:    item?.aiPrediction?.predictedPercentile,
+  apps\user-web\src\components\device-analysis-button.tsx:208:  );
+  apps\user-web\src\components\device-analysis-button.tsx:209:
+> apps\user-web\src\components\device-analysis-button.tsx:210:  if (percentile !== null) {
+> apps\user-web\src\components\device-analysis-button.tsx:211:    return percentile;
+  apps\user-web\src\components\device-analysis-button.tsx:212:  }
+  apps\user-web\src\components\device-analysis-button.tsx:213:
+  apps\user-web\src\components\device-analysis-button.tsx:214:  return normalizeProbabilityLikeValue(
+> apps\user-web\src\components\device-analysis-button.tsx:215:    item?.aiPrediction?.attackProbability,
+  apps\user-web\src\components\device-analysis-button.tsx:216:  );
+  apps\user-web\src\components\device-analysis-button.tsx:217:}
+  apps\user-web\src\components\device-analysis-button.tsx:218:
+  apps\user-web\src\components\device-analysis-button.tsx:219:function formatScore(
+  apps\user-web\src\components\device-analysis-button.tsx:220:  value: number | null | undefined,
+  apps\user-web\src\components\device-analysis-button.tsx:221:  digits = 3,
+  apps\user-web\src\components\device-analysis-button.tsx:222:): string {
+  apps\user-web\src\components\device-analysis-button.tsx:223:  if (typeof value !== 'number' || Number.isNaN(value)) {
+  apps\user-web\src\components\device-analysis-button.tsx:224:    return '—';
+  apps\user-web\src\components\device-analysis-button.tsx:225:  }
+  apps\user-web\src\components\device-analysis-button.tsx:226:
+  apps\user-web\src\components\device-analysis-button.tsx:227:  return value.toFixed(digits);
+  apps\user-web\src\components\device-analysis-button.tsx:228:}
+  apps\user-web\src\components\device-analysis-button.tsx:229:
+  apps\user-web\src\components\device-analysis-button.tsx:247:  modelVersion: string | null | undefined,
+  apps\user-web\src\components\device-analysis-button.tsx:248:): string {
+  apps\user-web\src\components\device-analysis-button.tsx:249:  if (!modelVersion) {
+  apps\user-web\src\components\device-analysis-button.tsx:250:    return 'Chưa có AI model';
+  apps\user-web\src\components\device-analysis-button.tsx:251:  }
+  apps\user-web\src\components\device-analysis-button.tsx:252:
+> apps\user-web\src\components\device-analysis-button.tsx:253:  if (modelVersion === 'CYRP_XGBOOST_CVSS_PERCENTILE_V3') {
+> apps\user-web\src\components\device-analysis-button.tsx:254:    return 'CYRP XGBoost CVSS Percentile';
+  apps\user-web\src\components\device-analysis-button.tsx:255:  }
+  apps\user-web\src\components\device-analysis-button.tsx:256:
+  apps\user-web\src\components\device-analysis-button.tsx:257:  if (modelVersion === 'CYRP_NO_AI_MODEL_RESULT_V1') {
+  apps\user-web\src\components\device-analysis-button.tsx:258:    return 'Chưa có kết quả model mới';
+  apps\user-web\src\components\device-analysis-button.tsx:259:  }
+  apps\user-web\src\components\device-analysis-button.tsx:260:
+  apps\user-web\src\components\device-analysis-button.tsx:261:  return modelVersion.replaceAll('_', ' ');
+  apps\user-web\src\components\device-analysis-button.tsx:262:}
+  apps\user-web\src\components\device-analysis-button.tsx:263:
+  apps\user-web\src\components\device-analysis-button.tsx:264:function riskClass(
+  apps\user-web\src\components\device-analysis-button.tsx:265:  level: string | null | undefined,
+  apps\user-web\src\components\device-analysis-button.tsx:266:): string {
+  apps\user-web\src\components\device-analysis-button.tsx:267:  switch (level?.toUpperCase()) {
+  apps\user-web\src\components\device-analysis-button.tsx:268:    case 'CRITICAL':
+  apps\user-web\src\components\device-analysis-button.tsx:590:          (modelExploitRiskValue(left) ?? -1),
+  apps\user-web\src\components\device-analysis-button.tsx:591:      );
+  apps\user-web\src\components\device-analysis-button.tsx:592:    },
+  apps\user-web\src\components\device-analysis-button.tsx:593:    [vulnerabilities],
+  apps\user-web\src\components\device-analysis-button.tsx:594:  );
+  apps\user-web\src\components\device-analysis-button.tsx:595:
+> apps\user-web\src\components\device-analysis-button.tsx:596:  const highestAttackProbability = useMemo(
+  apps\user-web\src\components\device-analysis-button.tsx:597:    () => {
+  apps\user-web\src\components\device-analysis-button.tsx:598:      const values = vulnerabilities
+  apps\user-web\src\components\device-analysis-button.tsx:599:        .map((item) => modelExploitRiskValue(item))
+  apps\user-web\src\components\device-analysis-button.tsx:600:        .filter(
+  apps\user-web\src\components\device-analysis-button.tsx:601:          (value): value is number =>
+  apps\user-web\src\components\device-analysis-button.tsx:602:            typeof value === 'number' &&
+  apps\user-web\src\components\device-analysis-button.tsx:603:            Number.isFinite(value),
+  apps\user-web\src\components\device-analysis-button.tsx:604:        );
+  apps\user-web\src\components\device-analysis-button.tsx:605:
+  apps\user-web\src\components\device-analysis-button.tsx:606:      return values.length
+  apps\user-web\src\components\device-analysis-button.tsx:607:        ? Math.max(...values)
+  apps\user-web\src\components\device-analysis-button.tsx:608:        : null;
+  apps\user-web\src\components\device-analysis-button.tsx:609:    },
+  apps\user-web\src\components\device-analysis-button.tsx:610:    [vulnerabilities],
+  apps\user-web\src\components\device-analysis-button.tsx:663:          `Wazuh ghi nhận ${snapshot?.criticalCount ?? 0} cảnh báo critical trong 24 giờ gần nhất, nên kiểm tra nhật ký và rule liên quan.`,
+  apps\user-web\src\components\device-analysis-button.tsx:664:        );
+  apps\user-web\src\components\device-analysis-button.tsx:665:      }
+  apps\user-web\src\components\device-analysis-button.tsx:666:
+  apps\user-web\src\components\device-analysis-button.tsx:667:      if (vulnerabilityTotal > vulnerabilities.length) {
+  apps\user-web\src\components\device-analysis-button.tsx:668:        actions.push(
+> apps\user-web\src\components\device-analysis-button.tsx:669:          `Hiện chỉ đang hiển thị ${vulnerabilities.length}/${vulnerabilityTotal} lỗ hổng ưu tiên, nhấn vào chi tiết để xem thêm khi cần.`,
+  apps\user-web\src\components\device-analysis-button.tsx:670:        );
+  apps\user-web\src\components\device-analysis-button.tsx:671:      } else if (vulnerabilityTotal > 0) {
+  apps\user-web\src\components\device-analysis-button.tsx:672:        actions.push(
+> apps\user-web\src\components\device-analysis-button.tsx:673:          `Thiết bị hiện có ${vulnerabilityTotal} lỗ hổng active cần được theo dõi và vá theo mức ưu tiên.`,
+  apps\user-web\src\components\device-analysis-button.tsx:674:        );
+  apps\user-web\src\components\device-analysis-button.tsx:675:      }
+  apps\user-web\src\components\device-analysis-button.tsx:676:
+  apps\user-web\src\components\device-analysis-button.tsx:677:      if (!actions.length) {
+  apps\user-web\src\components\device-analysis-button.tsx:678:        actions.push('Chưa có hành động khẩn cấp nổi bật. Có thể tiếp tục theo dõi ở lần kiểm tra tiếp theo.');
+  apps\user-web\src\components\device-analysis-button.tsx:679:      }
+  apps\user-web\src\components\device-analysis-button.tsx:680:
+  apps\user-web\src\components\device-analysis-button.tsx:681:      return actions.slice(0, 3);
+  apps\user-web\src\components\device-analysis-button.tsx:682:    },
+  apps\user-web\src\components\device-analysis-button.tsx:683:    [snapshot?.criticalCount, strongestPrediction, vulnerabilityTotal, vulnerabilities.length],
+  apps\user-web\src\components\device-analysis-button.tsx:684:  );
+  apps\user-web\src\components\device-analysis-button.tsx:685:
+  apps\user-web\src\components\device-analysis-button.tsx:686:  async function syncNow(): Promise<void> {
+  apps\user-web\src\components\device-analysis-button.tsx:687:    setIsModalOpen(true);
+  apps\user-web\src\components\device-analysis-button.tsx:876:
+  apps\user-web\src\components\device-analysis-button.tsx:877:            {snapshot ? (
+  apps\user-web\src\components\device-analysis-button.tsx:878:              <>
+  apps\user-web\src\components\device-analysis-button.tsx:879:                <section className={styles.heroSection}>
+  apps\user-web\src\components\device-analysis-button.tsx:880:                  <div className={styles.heroText}>
+  apps\user-web\src\components\device-analysis-button.tsx:881:                    <span className={styles.sectionEyebrow}>Tổng quan nhanh</span>
+> apps\user-web\src\components\device-analysis-button.tsx:882:                    <h3>{summaryMessage(highestAttackProbability, vulnerabilityTotal, snapshot.alertCount)}</h3>
+  apps\user-web\src\components\device-analysis-button.tsx:883:
+  apps\user-web\src\components\device-analysis-button.tsx:884:                    <div className={styles.heroPills}>
+  apps\user-web\src\components\device-analysis-button.tsx:885:                      <span className={`${styles.riskPill} ${riskClass(strongestPrediction ? (finalPriorityLevel(strongestPrediction) ?? strongestPrediction.aiPrediction?.riskLevel) : null)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:886:                        {strongestPrediction
+  apps\user-web\src\components\device-analysis-button.tsx:887:                          ? finalPriorityLevel(strongestPrediction) ?? strongestPrediction.aiPrediction?.riskLevel ?? '—'
+  apps\user-web\src\components\device-analysis-button.tsx:888:                          : 'Chưa có dữ liệu'}
+  apps\user-web\src\components\device-analysis-button.tsx:889:                      </span>
+  apps\user-web\src\components\device-analysis-button.tsx:890:                      <span className={styles.heroSubtlePill}>
+  apps\user-web\src\components\device-analysis-button.tsx:891:                        {modelLabel(strongestPrediction?.aiPrediction?.modelVersion)}
+  apps\user-web\src\components\device-analysis-button.tsx:892:                      </span>
+  apps\user-web\src\components\device-analysis-button.tsx:893:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:894:                  </div>
+  apps\user-web\src\components\device-analysis-button.tsx:895:
+  apps\user-web\src\components\device-analysis-button.tsx:896:                  <div className={styles.gaugeCard}>
+> apps\user-web\src\components\device-analysis-button.tsx:897:                    <div className={`${styles.gauge} ${gaugeClass(highestAttackProbability)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:898:                      <div className={styles.gaugeInner}>
+  apps\user-web\src\components\device-analysis-button.tsx:899:                        <span>Xác suất cao nhất</span>
+> apps\user-web\src\components\device-analysis-button.tsx:900:                        <strong>{formatProbability(highestAttackProbability)}</strong>
+> apps\user-web\src\components\device-analysis-button.tsx:901:                        <small>{riskBandLabel(highestAttackProbability)}</small>
+  apps\user-web\src\components\device-analysis-button.tsx:902:                      </div>
+  apps\user-web\src\components\device-analysis-button.tsx:903:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:904:                    <p>
+> apps\user-web\src\components\device-analysis-button.tsx:905:                      Đây là percentile AI cao nhất trong các lỗ hổng active chưa khắc phục của thiết bị ở lần kiểm tra hiện tại.
+  apps\user-web\src\components\device-analysis-button.tsx:906:                    </p>
+  apps\user-web\src\components\device-analysis-button.tsx:907:                  </div>
+  apps\user-web\src\components\device-analysis-button.tsx:908:                </section>
+  apps\user-web\src\components\device-analysis-button.tsx:909:
+  apps\user-web\src\components\device-analysis-button.tsx:910:                <div className={styles.summaryGrid}>
+  apps\user-web\src\components\device-analysis-button.tsx:911:                  <article className={styles.summaryCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:912:                    <span>Thiết bị</span>
+  apps\user-web\src\components\device-analysis-button.tsx:913:                    <strong>
+  apps\user-web\src\components\device-analysis-button.tsx:914:                      {snapshot.agentName ?? `Agent ${snapshot.wazuhAgentId}`}
+  apps\user-web\src\components\device-analysis-button.tsx:915:                    </strong>
+  apps\user-web\src\components\device-analysis-button.tsx:916:                    <small>
+  apps\user-web\src\components\device-analysis-button.tsx:917:                      {snapshot.agentStatus ?? 'unknown'} · IP {snapshot.agentIp ?? 'unknown'}
+  apps\user-web\src\components\device-analysis-button.tsx:918:                    </small>
+  apps\user-web\src\components\device-analysis-button.tsx:919:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:927:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:928:
+  apps\user-web\src\components\device-analysis-button.tsx:929:                  <article className={styles.summaryCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:930:                    <span>Lỗ hổng active</span>
+  apps\user-web\src\components\device-analysis-button.tsx:931:                    <strong>{vulnerabilityTotal}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:932:                    <small>
+> apps\user-web\src\components\device-analysis-button.tsx:933:                      {vulnerabilities.length} lỗ hổng ưu tiên đang hiển thị
+  apps\user-web\src\components\device-analysis-button.tsx:934:                    </small>
+  apps\user-web\src\components\device-analysis-button.tsx:935:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:936:
+  apps\user-web\src\components\device-analysis-button.tsx:937:                  <article className={styles.summaryCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:938:                    <span>Rủi ro bị khai thác</span>
+  apps\user-web\src\components\device-analysis-button.tsx:939:                    <strong>{formatProbability(modelExploitRiskValue(strongestPrediction))}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:940:                    <small>
+> apps\user-web\src\components\device-analysis-button.tsx:941:                      Percentile AI · cập nhật {formatDate(strongestPrediction?.aiPrediction?.predictedAt ?? snapshot.calculatedAt)}
+  apps\user-web\src\components\device-analysis-button.tsx:942:                    </small>
+  apps\user-web\src\components\device-analysis-button.tsx:943:                  </article>
+  apps\user-web\src\components\device-analysis-button.tsx:944:                </div>
+  apps\user-web\src\components\device-analysis-button.tsx:945:
+  apps\user-web\src\components\device-analysis-button.tsx:946:                <div className={styles.insightGrid}>
+  apps\user-web\src\components\device-analysis-button.tsx:947:                  <section className={styles.panelCard}>
+  apps\user-web\src\components\device-analysis-button.tsx:948:                    <div className={styles.sectionHeader}>
+  apps\user-web\src\components\device-analysis-button.tsx:949:                      <strong>Phân bố mức rủi ro AI</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:950:                      <span>Đây là phân bố theo AI prediction, không phải theo CVSS.</span>
+  apps\user-web\src\components\device-analysis-button.tsx:951:                    </div>
+  apps\user-web\src\components\device-analysis-button.tsx:952:
+  apps\user-web\src\components\device-analysis-button.tsx:953:                    <div className={styles.chartRows}>
+  apps\user-web\src\components\device-analysis-button.tsx:954:                      {aiDistribution.map((bucket) => {
+  apps\user-web\src\components\device-analysis-button.tsx:955:                        const width = maxDistributionCount
+  apps\user-web\src\components\device-analysis-button.tsx:987:                    </ul>
+  apps\user-web\src\components\device-analysis-button.tsx:988:                  </section>
+  apps\user-web\src\components\device-analysis-button.tsx:989:                </div>
+  apps\user-web\src\components\device-analysis-button.tsx:990:
+  apps\user-web\src\components\device-analysis-button.tsx:991:                <div className={styles.modalSection}>
+  apps\user-web\src\components\device-analysis-button.tsx:992:                  <div className={styles.sectionHeader}>
+> apps\user-web\src\components\device-analysis-button.tsx:993:                    <strong>Lỗ hổng ưu tiên</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:994:                    <span>
+  apps\user-web\src\components\device-analysis-button.tsx:995:                      Chỉ hiển thị ngắn gọn các mục cần quan tâm nhất. Nhấn “Xem chi tiết” để đọc thêm.
+  apps\user-web\src\components\device-analysis-button.tsx:996:                    </span>
+  apps\user-web\src\components\device-analysis-button.tsx:997:                  </div>
+  apps\user-web\src\components\device-analysis-button.tsx:998:
+  apps\user-web\src\components\device-analysis-button.tsx:999:                  {sortedVulnerabilities.length ? (
+  apps\user-web\src\components\device-analysis-button.tsx:1000:                    <div className={styles.vulnerabilityList}>
+  apps\user-web\src\components\device-analysis-button.tsx:1001:                      {sortedVulnerabilities.slice(0, 5).map((item) => {
+  apps\user-web\src\components\device-analysis-button.tsx:1002:                        const isExpanded = expandedId === item.id;
+  apps\user-web\src\components\device-analysis-button.tsx:1003:                        const finalLevel =
+  apps\user-web\src\components\device-analysis-button.tsx:1004:                          finalPriorityLevel(item) ??
+  apps\user-web\src\components\device-analysis-button.tsx:1005:                          item.aiPrediction?.riskLevel ??
+  apps\user-web\src\components\device-analysis-button.tsx:1006:                          '—';
+  apps\user-web\src\components\device-analysis-button.tsx:1007:                        const finalScore = finalPriorityScore(item);
+  apps\user-web\src\components\device-analysis-button.tsx:1020:                              <div className={styles.vulnerabilityStats}>
+  apps\user-web\src\components\device-analysis-button.tsx:1021:                                <div className={styles.statChip}>
+  apps\user-web\src\components\device-analysis-button.tsx:1022:                                  <span>Rủi ro khai thác</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1023:                                  <strong>{formatProbability(modelExploitRiskValue(item))}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:1024:                                </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1025:                                <div className={styles.statChip}>
+> apps\user-web\src\components\device-analysis-button.tsx:1026:                                  <span>Mức ưu tiên</span>
+  apps\user-web\src\components\device-analysis-button.tsx:1027:                                  <strong>{finalLevel}</strong>
+  apps\user-web\src\components\device-analysis-button.tsx:1028:                                </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1029:                              </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1030:                            </div>
+  apps\user-web\src\components\device-analysis-button.tsx:1031:
+  apps\user-web\src\components\device-analysis-button.tsx:1032:                            <div className={styles.vulnerabilityMetaRow}>
+  apps\user-web\src\components\device-analysis-button.tsx:1033:                              <span className={`${styles.riskPill} ${riskClass(item.aiPrediction?.riskLevel)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:1034:                                AI risk {item.aiPrediction?.riskLevel ?? '—'}
+  apps\user-web\src\components\device-analysis-button.tsx:1035:                              </span>
+  apps\user-web\src\components\device-analysis-button.tsx:1036:                              <span className={`${styles.riskPill} ${riskClass(finalLevel)}`}>
+  apps\user-web\src\components\device-analysis-button.tsx:1037:                                Final priority {finalLevel}
+  apps\user-web\src\components\device-analysis-button.tsx:1038:                              </span>
+  apps\user-web\src\components\device-analysis-button.tsx:1039:                              <span className={styles.metaBadge}>
+  apps\user-web\src\components\device-analysis-button.tsx:1040:                                  {item.status?.toUpperCase() === 'RESOLVED'
+  apps\user-web\src\lib\security-data-types.ts:41:export interface VulnerabilityFeatureVector {
+  apps\user-web\src\lib\security-data-types.ts:42:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:43:  modelInputVersion: string;
+  apps\user-web\src\lib\security-data-types.ts:44:  baseScore: number | null;
+  apps\user-web\src\lib\security-data-types.ts:45:  severity: string | null;
+  apps\user-web\src\lib\security-data-types.ts:46:  epssScore: number | null;
+> apps\user-web\src\lib\security-data-types.ts:47:  epssPercentile: number | null;
+  apps\user-web\src\lib\security-data-types.ts:48:  isKnownExploited: boolean;
+  apps\user-web\src\lib\security-data-types.ts:49:  cweIdGrouped: string | null;
+  apps\user-web\src\lib\security-data-types.ts:50:  cweIsGeneric: boolean;
+  apps\user-web\src\lib\security-data-types.ts:51:  isCvss3OrHigher: boolean;
+  apps\user-web\src\lib\security-data-types.ts:52:  alertCount24h: number;
+  apps\user-web\src\lib\security-data-types.ts:53:  maxRuleLevel24h: number | null;
+  apps\user-web\src\lib\security-data-types.ts:54:  devicePackageCount: number;
+  apps\user-web\src\lib\security-data-types.ts:55:  featureHash: string;
+  apps\user-web\src\lib\security-data-types.ts:56:  rawFeatures: unknown;
+  apps\user-web\src\lib\security-data-types.ts:57:  createdAt: string;
+  apps\user-web\src\lib\security-data-types.ts:58:  updatedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:59:}
+  apps\user-web\src\lib\security-data-types.ts:60:
+  apps\user-web\src\lib\security-data-types.ts:61:export interface AiPrediction {
+  apps\user-web\src\lib\security-data-types.ts:62:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:63:  modelVersion: string;
+> apps\user-web\src\lib\security-data-types.ts:64:  attackProbability: number;
+> apps\user-web\src\lib\security-data-types.ts:65:  predictedPercentile: number | null;
+  apps\user-web\src\lib\security-data-types.ts:66:  riskLevel: string;
+  apps\user-web\src\lib\security-data-types.ts:67:  explanation: unknown;
+  apps\user-web\src\lib\security-data-types.ts:68:  predictedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:69:  createdAt: string;
+  apps\user-web\src\lib\security-data-types.ts:70:  updatedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:71:}
+  apps\user-web\src\lib\security-data-types.ts:72:
+  apps\user-web\src\lib\security-data-types.ts:73:export interface PredictionHistoryItem {
+  apps\user-web\src\lib\security-data-types.ts:74:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:75:  modelVersion: string;
+> apps\user-web\src\lib\security-data-types.ts:76:  attackProbability: number;
+> apps\user-web\src\lib\security-data-types.ts:77:  predictedPercentile: number | null;
+  apps\user-web\src\lib\security-data-types.ts:78:  riskLevel: string;
+  apps\user-web\src\lib\security-data-types.ts:79:  featureHash: string | null;
+  apps\user-web\src\lib\security-data-types.ts:80:  predictedAt: string;
+  apps\user-web\src\lib\security-data-types.ts:81:  createdAt: string;
+  apps\user-web\src\lib\security-data-types.ts:82:}
+  apps\user-web\src\lib\security-data-types.ts:83:
+  apps\user-web\src\lib\security-data-types.ts:84:export interface EndpointContextSnapshot {
+  apps\user-web\src\lib\security-data-types.ts:85:  id: string;
+  apps\user-web\src\lib\security-data-types.ts:86:  asOfTime: string;
+  apps\user-web\src\lib\security-data-types.ts:87:  observedAt?: string;
+  apps\user-web\src\lib\security-data-types.ts:88:  agentStatus: string | null;
+  apps\user-web\src\lib\security-data-types.ts:89:  agentIp?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:90:  hostname?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:91:  osName?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:175:      integrityImpact: string | null;
+  apps\user-web\src\lib\security-data-types.ts:176:      availabilityImpact: string | null;
+  apps\user-web\src\lib\security-data-types.ts:177:    }>;
+  apps\user-web\src\lib\security-data-types.ts:178:    threatSignals: Array<{
+  apps\user-web\src\lib\security-data-types.ts:179:      signalDate: string;
+  apps\user-web\src\lib\security-data-types.ts:180:      epssScore: number | null;
+> apps\user-web\src\lib\security-data-types.ts:181:      epssPercentile: number | null;
+  apps\user-web\src\lib\security-data-types.ts:182:      isKnownExploited: boolean;
+  apps\user-web\src\lib\security-data-types.ts:183:      kevDateAdded?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:184:    }>;
+  apps\user-web\src\lib\security-data-types.ts:185:    references?: Array<{
+  apps\user-web\src\lib\security-data-types.ts:186:      id: string;
+  apps\user-web\src\lib\security-data-types.ts:187:      url: string;
+  apps\user-web\src\lib\security-data-types.ts:188:      source: string;
+  apps\user-web\src\lib\security-data-types.ts:189:    }>;
+  apps\user-web\src\lib\security-data-types.ts:190:    affectedProducts?: Array<{
+  apps\user-web\src\lib\security-data-types.ts:191:      id: string;
+  apps\user-web\src\lib\security-data-types.ts:192:      vendor: string | null;
+  apps\user-web\src\lib\security-data-types.ts:193:      product: string | null;
+  apps\user-web\src\lib\security-data-types.ts:194:      cpeUri: string | null;
+  apps\user-web\src\lib\security-data-types.ts:195:      source: string;
+  apps\user-web\src\lib\security-data-types.ts:205:  featureVector: VulnerabilityFeatureVector | null;
+  apps\user-web\src\lib\security-data-types.ts:206:  aiPrediction: AiPrediction | null;
+  apps\user-web\src\lib\security-data-types.ts:207:  predictionHistory: PredictionHistoryItem[];
+  apps\user-web\src\lib\security-data-types.ts:208:  latestThreatSignal: {
+  apps\user-web\src\lib\security-data-types.ts:209:    signalDate: string;
+  apps\user-web\src\lib\security-data-types.ts:210:    epssScore: number | null;
+> apps\user-web\src\lib\security-data-types.ts:211:    epssPercentile: number | null;
+  apps\user-web\src\lib\security-data-types.ts:212:    isKnownExploited: boolean;
+  apps\user-web\src\lib\security-data-types.ts:213:    kevDateAdded?: string | null;
+  apps\user-web\src\lib\security-data-types.ts:214:  } | null;
+  apps\user-web\src\lib\security-data-types.ts:215:}
+  apps\user-web\src\lib\security-data-types.ts:216:
+  apps\user-web\src\lib\security-data-types.ts:217:export interface VulnerabilityDetail extends VulnerabilityItem {
+  apps\user-web\src\lib\security-data-types.ts:218:  references: Array<{ id: string; url: string; source: string }>;
+  apps\user-web\src\lib\security-data-types.ts:219:  affectedProducts: Array<{
+  apps\user-web\src\lib\security-data-types.ts:220:    id: string;
+  apps\user-web\src\lib\security-data-types.ts:221:    vendor: string | null;
+  apps\user-web\src\lib\security-data-types.ts:222:    product: string | null;
+  apps\user-web\src\lib\security-data-types.ts:223:    cpeUri: string | null;
+  apps\user-web\src\lib\security-data-types.ts:224:    source: string;
+  apps\user-web\src\lib\security-data-types.ts:225:  }>;
+
+
+

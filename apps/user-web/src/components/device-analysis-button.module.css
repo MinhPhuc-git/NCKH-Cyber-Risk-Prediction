@@ -1,0 +1,1705 @@
+.wrapper {
+  display: grid;
+  width: min(100%, 560px);
+  gap: 8px;
+}
+
+.button {
+  min-width: 168px;
+  min-height: 44px;
+  padding: 0 18px;
+  color: #f5f3ff;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  border: 1px solid rgba(167, 139, 250, 0.42);
+  border-radius: 10px;
+  background: rgba(109, 40, 217, 0.35);
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  background: rgba(109, 40, 217, 0.5);
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.66;
+}
+
+.empty {
+  color: #747988;
+  font-size: 0.64rem;
+}
+
+.error {
+  margin: 0;
+  padding: 12px 14px;
+  color: #fecaca;
+  font-size: 0.7rem;
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  border-radius: 12px;
+  background: rgba(127, 29, 29, 0.18);
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2, 6, 23, 0.76);
+  backdrop-filter: blur(7px);
+}
+
+.modalPanel {
+  display: grid;
+  width: min(980px, 100%);
+  max-height: min(90vh, 940px);
+  overflow: auto;
+  gap: 16px;
+  padding: 22px;
+  color: #dbe2ec;
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 85% 0%, rgba(139, 92, 246, 0.18), transparent 32%),
+    rgba(12, 14, 22, 0.98);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.56);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.modalHeader p {
+  margin: 0 0 7px;
+  color: #a78bfa;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  color: #f8fafc;
+  font-size: clamp(1.35rem, 3vw, 1.95rem);
+  letter-spacing: -0.04em;
+}
+
+.headerHint {
+  display: block;
+  margin-top: 8px;
+  color: #94a3b8;
+  font-size: 0.7rem;
+}
+
+.closeButton {
+  width: 36px;
+  height: 36px;
+  color: #cbd5e1;
+  font-size: 1.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: white;
+  border-color: rgba(196, 181, 253, 0.35);
+}
+
+.progressPanel {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.13);
+  border-radius: 14px;
+  background: rgba(109, 40, 217, 0.11);
+}
+
+.progressPanel strong,
+.progressPanel span {
+  display: block;
+}
+
+.progressPanel strong {
+  color: #f5f3ff;
+  font-size: 0.8rem;
+}
+
+.progressPanel span {
+  margin-top: 4px;
+  color: #a3a9b8;
+  font-size: 0.69rem;
+  line-height: 1.5;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(196, 181, 253, 0.18);
+  border-top-color: #c4b5fd;
+  border-radius: 999px;
+  animation: spin 850ms linear infinite;
+}
+
+.heroSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+  gap: 16px;
+}
+
+.heroText,
+.gaugeCard,
+.panelCard,
+.modalSection,
+.summaryCard,
+.technicalDetails,
+.emptyState {
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.heroText {
+  padding: 18px;
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(91, 33, 182, 0.22), rgba(15, 23, 42, 0.14)),
+    rgba(255, 255, 255, 0.025);
+}
+
+.sectionEyebrow {
+  display: inline-block;
+  color: #c4b5fd;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heroText h3 {
+  margin: 12px 0 10px;
+  color: #f8fafc;
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+.heroText p {
+  margin: 0;
+  color: #b3bfd0;
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.heroPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.heroSubtlePill {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  color: #ddd6fe;
+  font-size: 0.62rem;
+  font-weight: 700;
+  border: 1px solid rgba(167, 139, 250, 0.22);
+  border-radius: 999px;
+  background: rgba(91, 33, 182, 0.13);
+}
+
+.gaugeCard {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 18px;
+}
+
+.gaugeCard p {
+  margin: 0;
+  color: #9aa4b3;
+  font-size: 0.67rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.gauge {
+  --gauge-color: #cbd5e1;
+  --gauge-track: rgba(255, 255, 255, 0.08);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 190px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: conic-gradient(var(--gauge-color) 0 290deg, var(--gauge-track) 290deg 360deg);
+}
+
+.gauge::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 999px;
+  background: rgba(8, 11, 18, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+}
+
+.gaugeInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+}
+
+.gaugeInner span {
+  color: #8d95a7;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gaugeInner strong {
+  color: #f8fafc;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+}
+
+.gaugeInner small {
+  color: #cbd5e1;
+  font-size: 0.72rem;
+}
+
+.gaugeLow {
+  --gauge-color: #22c55e;
+}
+
+.gaugeMedium {
+  --gauge-color: #f59e0b;
+}
+
+.gaugeHigh {
+  --gauge-color: #f97316;
+}
+
+.gaugeCritical {
+  --gauge-color: #ef4444;
+}
+
+.gaugeNeutral {
+  --gauge-color: #94a3b8;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.summaryCard {
+  min-width: 0;
+  padding: 14px;
+  border-radius: 14px;
+}
+
+.summaryCard span {
+  display: block;
+  color: #7d8596;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.summaryCard strong {
+  display: block;
+  margin-top: 9px;
+  overflow: hidden;
+  color: #f8fafc;
+  font-size: 1.25rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summaryCard small {
+  display: block;
+  margin-top: 7px;
+  overflow: hidden;
+  color: #858b99;
+  font-size: 0.64rem;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+}
+
+.insightGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.panelCard {
+  display: grid;
+  gap: 12px;
+  padding: 15px;
+  border-radius: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sectionHeader strong,
+.sectionHeader span {
+  display: block;
+}
+
+.sectionHeader strong {
+  color: #f5f3ff;
+  font-size: 0.82rem;
+}
+
+.sectionHeader span {
+  color: #858b99;
+  font-size: 0.64rem;
+  line-height: 1.45;
+  text-align: right;
+}
+
+.chartRows {
+  display: grid;
+  gap: 10px;
+}
+
+.chartRow {
+  display: grid;
+  gap: 6px;
+}
+
+.chartLabelWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chartLabelWrap span {
+  color: #cbd5e1;
+  font-size: 0.7rem;
+}
+
+.chartLabelWrap strong {
+  color: #f8fafc;
+  font-size: 0.78rem;
+}
+
+.chartTrack {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.chartFill {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.actionList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: #cbd5e1;
+  font-size: 0.7rem;
+  line-height: 1.65;
+}
+
+.modalSection {
+  display: grid;
+  gap: 11px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.vulnerabilityList,
+.ruleList {
+  display: grid;
+  gap: 10px;
+}
+
+.vulnerabilityCard {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 14px;
+  background: rgba(8, 11, 18, 0.52);
+}
+
+.vulnerabilityTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.vulnerabilityMain strong,
+.vulnerabilityMain span,
+.vulnerabilityMain small {
+  display: block;
+}
+
+.vulnerabilityMain strong {
+  color: #c4b5fd;
+  font-size: 0.84rem;
+}
+
+.vulnerabilityMain span {
+  margin-top: 5px;
+  color: #e2e8f0;
+  font-size: 0.7rem;
+}
+
+.vulnerabilityMain small {
+  margin-top: 5px;
+  color: #8b93a5;
+  font-size: 0.63rem;
+}
+
+.vulnerabilityStats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.statChip {
+  min-width: 118px;
+  padding: 9px 10px;
+  text-align: right;
+  border: 1px solid rgba(148, 163, 184, 0.09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.statChip span,
+.statChip strong {
+  display: block;
+}
+
+.statChip span {
+  color: #8b93a5;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statChip strong {
+  margin-top: 4px;
+  color: #f8fafc;
+  font-size: 0.92rem;
+}
+
+.vulnerabilityMetaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vulnerabilityActions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.detailButton {
+  min-height: 34px;
+  padding: 0 12px;
+  color: #ede9fe;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  border-radius: 10px;
+  background: rgba(109, 40, 217, 0.18);
+  cursor: pointer;
+}
+
+.detailButton:hover {
+  background: rgba(109, 40, 217, 0.28);
+}
+
+.detailPanel {
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.35);
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.detailGrid div {
+  min-width: 0;
+}
+
+.detailGrid span,
+.detailGrid strong {
+  display: block;
+}
+
+.detailGrid span {
+  color: #8b93a5;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailGrid strong {
+  margin-top: 4px;
+  overflow: hidden;
+  color: #f8fafc;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+}
+
+.riskPill,
+.metaBadge {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 9px;
+  white-space: nowrap;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+}
+
+.metaBadge {
+  color: #dbe2ec;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(71, 85, 105, 0.14);
+}
+
+.riskLow {
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  background: rgba(22, 101, 52, 0.15);
+}
+
+.riskMedium {
+  color: #fde68a;
+  border: 1px solid rgba(245, 158, 11, 0.22);
+  background: rgba(120, 53, 15, 0.17);
+}
+
+.riskHigh {
+  color: #fdba74;
+  border: 1px solid rgba(249, 115, 22, 0.24);
+  background: rgba(124, 45, 18, 0.17);
+}
+
+.riskCritical {
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.23);
+  background: rgba(127, 29, 29, 0.18);
+}
+
+.riskNeutral {
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(71, 85, 105, 0.14);
+}
+
+.technicalDetails {
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.technicalDetails summary {
+  padding: 14px 15px;
+  color: #ede9fe;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.technicalDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+.technicalBody {
+  display: grid;
+  gap: 12px;
+  padding: 0 15px 15px;
+}
+
+.metaLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  color: #787c88;
+  font-size: 0.64rem;
+}
+
+.ruleList span {
+  overflow: hidden;
+  padding: 10px;
+  color: #aab2c1;
+  font-size: 0.64rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 10px;
+  background: rgba(8, 11, 18, 0.42);
+}
+
+.emptyState {
+  margin: 0;
+  padding: 14px;
+  color: #aab2c1;
+  font-size: 0.68rem;
+  line-height: 1.55;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.disclaimer {
+  margin: 0;
+  color: #858b99;
+  font-size: 0.64rem;
+  line-height: 1.6;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 920px) {
+  .heroSection,
+  .insightGrid,
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .modalBackdrop {
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .modalPanel {
+    max-height: calc(100vh - 24px);
+    padding: 17px;
+  }
+
+  .sectionHeader,
+  .vulnerabilityTop {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sectionHeader span {
+    text-align: left;
+  }
+
+  .vulnerabilityStats {
+    justify-content: flex-start;
+  }
+
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.repairOrbWrapper {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.repairOrbButton {
+  width: 300px;
+  height: 190px;
+  min-width: 300px;
+  min-height: 190px;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background-color: #232a33;
+  background-image: radial-gradient(rgba(203, 213, 225, 0.18) 1px, transparent 1px);
+  background-size: 14px 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.02),
+    0 16px 40px rgba(0, 0, 0, 0.28);
+  color: #e5e7eb;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.repairOrbButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 20px 46px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(168, 85, 247, 0.16);
+  filter: brightness(1.03);
+}
+
+.repairOrbButton:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+}
+
+.repairOrbContent {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.repairOrbIcon {
+  display: grid;
+  place-items: center;
+  color: #f8fafc;
+}
+
+.repairOrbIcon svg {
+  width: 86px;
+  height: 86px;
+  display: block;
+}
+
+.repairOrbContent span:last-child {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: 0.01em;
+}
+/* END CYRP GEAR SCAN BUTTON V3 */
+/* CYRP GEAR SCAN BUTTON V4 */
+
+.repairOrbWrapper {
+  width: 100% !important;
+  display: grid !important;
+  justify-items: center !important;
+}
+
+.repairOrbButton {
+  width: min(100%, 340px) !important;
+  height: 220px !important;
+  min-height: 220px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 22px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(148, 163, 184, 0.32) !important;
+  color: #e5e7eb !important;
+  background-color: #20272f !important;
+  background-image:
+    radial-gradient(rgba(203, 213, 225, 0.22) 1px, transparent 1px) !important;
+  background-size: 14px 14px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 18px 46px rgba(0, 0, 0, 0.32) !important;
+  cursor: pointer !important;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease !important;
+}
+
+.repairOrbButton:hover:not(:disabled) {
+  transform: translateY(-3px) !important;
+  border-color: rgba(167, 139, 250, 0.58) !important;
+  filter: brightness(1.05) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 22px 52px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(167, 139, 250, 0.2) !important;
+}
+
+.repairOrbButton:disabled {
+  opacity: 0.62 !important;
+  cursor: not-allowed !important;
+}
+
+.repairOrbContent {
+  display: grid !important;
+  justify-items: center !important;
+  align-content: center !important;
+  gap: 16px !important;
+}
+
+.repairOrbIcon {
+  display: grid !important;
+  place-items: center !important;
+  width: 112px !important;
+  height: 112px !important;
+  color: #f1f5f9 !important;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.32)) !important;
+}
+
+.repairOrbIcon svg {
+  display: block !important;
+  width: 112px !important;
+  height: 112px !important;
+}
+
+.repairOrbContent span:last-child {
+  font-size: 1rem !important;
+  font-weight: 850 !important;
+  color: #f8fafc !important;
+  letter-spacing: -0.01em !important;
+  text-align: center !important;
+}
+
+/* END CYRP GEAR SCAN BUTTON V4 */
+/* CYRP GEAR OUTLINE FIX V1 */
+
+.repairOrbButton {
+  width: min(100%, 340px) !important;
+  height: 220px !important;
+  min-height: 220px !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(148, 163, 184, 0.34) !important;
+  background-color: #222a32 !important;
+  background-image:
+    radial-gradient(rgba(203, 213, 225, 0.22) 1px, transparent 1px) !important;
+  background-size: 14px 14px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 46px rgba(0, 0, 0, 0.32) !important;
+}
+
+.repairOrbButton:hover:not(:disabled) {
+  transform: translateY(-3px) !important;
+  border-color: rgba(167, 139, 250, 0.58) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 22px 52px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(167, 139, 250, 0.18) !important;
+}
+
+.repairOrbContent {
+  display: grid !important;
+  justify-items: center !important;
+  align-content: center !important;
+  gap: 16px !important;
+}
+
+.repairOrbIcon {
+  width: 118px !important;
+  height: 118px !important;
+  display: grid !important;
+  place-items: center !important;
+  color: #eef2f7 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.34)) !important;
+}
+
+.repairOrbIcon svg {
+  width: 118px !important;
+  height: 118px !important;
+  display: block !important;
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+.repairOrbIcon svg path,
+.repairOrbIcon svg circle {
+  fill: none !important;
+  stroke: currentColor !important;
+}
+
+.repairOrbContent span:last-child {
+  font-size: 1rem !important;
+  font-weight: 850 !important;
+  color: #f8fafc !important;
+}
+
+/* END CYRP GEAR OUTLINE FIX V1 */
+/* CYRP GEAR ICON ONLY V5 */
+
+.repairOrbWrapper {
+  width: 100% !important;
+  display: grid !important;
+  justify-items: center !important;
+}
+
+.repairOrbButton {
+  width: 178px !important;
+  height: 178px !important;
+  min-width: 178px !important;
+  min-height: 178px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #eef2f7 !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  transition: transform 160ms ease, filter 160ms ease !important;
+}
+
+.repairOrbButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.045) !important;
+  filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.42)) drop-shadow(0 18px 32px rgba(0, 0, 0, 0.38)) !important;
+  box-shadow: none !important;
+}
+
+.repairOrbButton:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+.repairOrbContent {
+  display: grid !important;
+  justify-items: center !important;
+  align-content: center !important;
+  gap: 12px !important;
+}
+
+.repairOrbIcon {
+  display: grid !important;
+  place-items: center !important;
+  width: 132px !important;
+  height: 132px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: #eef2f7 !important;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.42)) !important;
+}
+
+.repairOrbIcon img {
+  display: block !important;
+  width: 132px !important;
+  height: 132px !important;
+  object-fit: contain !important;
+}
+
+.repairOrbIcon svg {
+  display: block !important;
+  width: 132px !important;
+  height: 132px !important;
+}
+
+.repairOrbContent span:last-child {
+  display: block !important;
+  margin-top: 2px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: #f8fafc !important;
+  font-size: 1rem !important;
+  font-weight: 850 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* END CYRP GEAR ICON ONLY V5 */
+
+
+
+/* ===== DEVICE ANALYSIS DRAWER V7 ===== */
+
+/*
+  Trạng thái đóng:
+  - Không còn chiếm vùng trắng bên phải.
+  - Chỉ hiển thị nút kiểm tra.
+  - Recall card bị ẩn.
+  - Placeholder bị ẩn.
+  - Nút < được cố định ở mép phải nếu có snapshot cũ.
+*/
+
+.inlineWorkspace {
+  display: block !important;
+  width: 100% !important;
+  min-height: auto !important;
+}
+
+.controlRail {
+  display: grid !important;
+  width: 100% !important;
+  justify-items: center !important;
+}
+
+.scanCard {
+  display: grid !important;
+  width: min(100%, 360px) !important;
+  min-height: 320px !important;
+  align-content: center !important;
+  justify-items: center !important;
+  gap: 16px !important;
+  padding: 24px 18px !important;
+  text-align: center !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.recallCard {
+  display: none !important;
+}
+
+.resultStage {
+  position: fixed !important;
+  top: 50% !important;
+  right: 0 !important;
+  z-index: 79 !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+.stagePlaceholder {
+  display: none !important;
+}
+
+.reopenSideHandle {
+  position: fixed !important;
+  top: 48% !important;
+  right: 0 !important;
+  z-index: 78 !important;
+  width: 38px !important;
+  height: 86px !important;
+  display: grid !important;
+  place-items: center !important;
+  color: #ffffff !important;
+  font-size: 1.35rem !important;
+  font-weight: 900 !important;
+  border: 1px solid rgba(167, 139, 250, 0.32) !important;
+  border-right: 0 !important;
+  border-radius: 16px 0 0 16px !important;
+  background: linear-gradient(180deg, rgba(109, 40, 217, 0.95), rgba(76, 29, 149, 0.98)) !important;
+  box-shadow: -12px 0 34px rgba(0, 0, 0, 0.34) !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.reopenSideHandle:hover {
+  transform: translateX(-2px) !important;
+}
+
+/*
+  Panel kết quả khi mở.
+  Dùng resultStage hiện có, nhưng ép thành drawer bên phải.
+*/
+
+:global(html.cyrp-machine-check-open) .resultStage {
+  top: 74px !important;
+  right: 0 !important;
+  width: var(--cyrp-result-panel-width, clamp(680px, 52vw, 920px)) !important;
+  height: calc(100vh - 74px) !important;
+  pointer-events: none !important;
+}
+
+:global(html.cyrp-machine-check-open) .reopenSideHandle {
+  display: none !important;
+}
+
+:global(html.cyrp-machine-check-open) .inlinePanel {
+  display: grid !important;
+  width: 100% !important;
+  height: calc(100vh - 98px) !important;
+  max-height: calc(100vh - 98px) !important;
+  overflow: auto !important;
+  gap: 16px !important;
+  padding: 22px !important;
+  color: #dbe2ec !important;
+  border: 1px solid rgba(96, 165, 250, 0.26) !important;
+  border-right: 0 !important;
+  border-radius: 22px 0 0 22px !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(124, 58, 237, 0.2), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(3, 7, 18, 0.99), rgba(15, 23, 42, 0.98)) !important;
+  box-shadow:
+    -28px 0 72px rgba(0, 0, 0, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  pointer-events: auto !important;
+  animation: cyrpDrawerInV7 220ms ease both !important;
+}
+
+@keyframes cyrpDrawerInV7 {
+  from {
+    opacity: 0;
+    transform: translateX(38px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*
+  Nút gear ở trạng thái bình thường.
+*/
+
+.repairOrbWrapper {
+  width: 100% !important;
+  justify-items: center !important;
+}
+
+.repairOrbButton {
+  width: 178px !important;
+  height: 178px !important;
+  min-width: 178px !important;
+  min-height: 178px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.repairOrbButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.36)) !important;
+}
+
+.repairOrbContent {
+  display: grid !important;
+  justify-items: center !important;
+  gap: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.repairOrbIcon {
+  display: grid !important;
+  place-items: center !important;
+  width: 132px !important;
+  height: 132px !important;
+  background: transparent !important;
+  border: 0 !important;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42)) !important;
+}
+
+.repairOrbIcon img,
+.repairOrbIcon svg {
+  display: block !important;
+  width: 132px !important;
+  height: 132px !important;
+  object-fit: contain !important;
+}
+
+.repairOrbContent span:last-child {
+  color: #f8fafc !important;
+  font-size: 0.98rem !important;
+  font-weight: 850 !important;
+  text-align: center !important;
+}
+
+/*
+  Khi drawer mở, nút quét thu nhỏ lại.
+*/
+
+:global(html.cyrp-machine-check-open) .scanCard {
+  width: 100% !important;
+  min-height: 210px !important;
+  padding: 16px 12px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbButton {
+  width: 112px !important;
+  height: 112px !important;
+  min-width: 112px !important;
+  min-height: 112px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbIcon,
+:global(html.cyrp-machine-check-open) .repairOrbIcon img,
+:global(html.cyrp-machine-check-open) .repairOrbIcon svg {
+  width: 82px !important;
+  height: 82px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbContent {
+  gap: 6px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbContent span:last-child {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  :global(html.cyrp-machine-check-open) .resultStage {
+    top: auto !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 74vh !important;
+  }
+
+  :global(html.cyrp-machine-check-open) .inlinePanel {
+    height: 74vh !important;
+    max-height: 74vh !important;
+    border-radius: 22px 22px 0 0 !important;
+    border-right: 1px solid rgba(96, 165, 250, 0.26) !important;
+  }
+}
+
+/* ===== END DEVICE ANALYSIS DRAWER V7 ===== */
+/* ===== DEVICE ANALYSIS LAYOUT V8 ===== */
+
+:global(html.cyrp-machine-check-open) {
+  --cyrp-result-panel-width: clamp(860px, 64vw, 1180px);
+}
+
+/*
+  Trạng thái ban đầu:
+  - Nút kiểm tra có lại background chip.
+  - Không hiện khung placeholder.
+  - Không hiện nút xem kết quả cũ.
+  - Chỉ còn tab < bên phải để mở lại kết quả cũ.
+*/
+
+.inlineWorkspace {
+  display: block !important;
+  width: 100% !important;
+  min-height: auto !important;
+}
+
+.controlRail {
+  display: block !important;
+  width: 100% !important;
+}
+
+.recallCard {
+  display: none !important;
+}
+
+.resultStage {
+  position: fixed !important;
+  top: 50% !important;
+  right: 0 !important;
+  z-index: 79 !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+.stagePlaceholder {
+  display: none !important;
+}
+
+.scanCard {
+  position: relative !important;
+  isolation: isolate !important;
+  display: grid !important;
+  width: min(100%, 1180px) !important;
+  min-height: 360px !important;
+  align-content: center !important;
+  justify-items: center !important;
+  gap: 16px !important;
+  margin: 0 auto !important;
+  padding: 28px 18px !important;
+  text-align: center !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(59, 130, 246, 0.22) !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(135deg, rgba(2, 6, 23, 0.88), rgba(15, 23, 42, 0.7)),
+    url('/cyrp-assets/device-chip-bg.png') center / cover no-repeat !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 26px 90px rgba(2, 6, 23, 0.32) !important;
+}
+
+.scanCard::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(56, 189, 248, 0.22), transparent 34%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.15), rgba(2, 6, 23, 0.78)) !important;
+}
+
+.scanCard > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/*
+  Nút < mở lại kết quả cũ.
+*/
+
+.reopenSideHandle {
+  position: fixed !important;
+  top: 48% !important;
+  right: 0 !important;
+  z-index: 78 !important;
+  width: 38px !important;
+  height: 86px !important;
+  display: grid !important;
+  place-items: center !important;
+  color: #ffffff !important;
+  font-size: 1.35rem !important;
+  font-weight: 900 !important;
+  border: 1px solid rgba(167, 139, 250, 0.32) !important;
+  border-right: 0 !important;
+  border-radius: 16px 0 0 16px !important;
+  background: linear-gradient(180deg, rgba(109, 40, 217, 0.95), rgba(76, 29, 149, 0.98)) !important;
+  box-shadow: -12px 0 34px rgba(0, 0, 0, 0.34) !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+.reopenSideHandle:hover {
+  transform: translateX(-2px) !important;
+}
+
+/*
+  Panel kết quả bên phải:
+  - rộng hơn, khoảng 2/3 giao diện.
+*/
+
+:global(html.cyrp-machine-check-open) .resultStage {
+  top: 74px !important;
+  right: 0 !important;
+  width: var(--cyrp-result-panel-width, clamp(860px, 64vw, 1180px)) !important;
+  height: calc(100vh - 74px) !important;
+  pointer-events: none !important;
+}
+
+:global(html.cyrp-machine-check-open) .reopenSideHandle {
+  display: none !important;
+}
+
+:global(html.cyrp-machine-check-open) .inlinePanel {
+  display: grid !important;
+  width: 100% !important;
+  height: calc(100vh - 98px) !important;
+  max-height: calc(100vh - 98px) !important;
+  overflow: auto !important;
+  gap: 16px !important;
+  padding: 22px !important;
+  color: #dbe2ec !important;
+  border: 1px solid rgba(96, 165, 250, 0.26) !important;
+  border-right: 0 !important;
+  border-radius: 22px 0 0 22px !important;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(124, 58, 237, 0.2), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(3, 7, 18, 0.99), rgba(15, 23, 42, 0.98)) !important;
+  box-shadow:
+    -28px 0 72px rgba(0, 0, 0, 0.46),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  pointer-events: auto !important;
+  animation: cyrpDrawerInV8 220ms ease both !important;
+}
+
+@keyframes cyrpDrawerInV8 {
+  from {
+    opacity: 0;
+    transform: translateX(42px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*
+  Gear button.
+*/
+
+.repairOrbWrapper {
+  width: 100% !important;
+  justify-items: center !important;
+}
+
+.repairOrbButton {
+  width: 178px !important;
+  height: 178px !important;
+  min-width: 178px !important;
+  min-height: 178px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+.repairOrbButton:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.36)) !important;
+}
+
+.repairOrbContent {
+  display: grid !important;
+  justify-items: center !important;
+  gap: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.repairOrbIcon {
+  display: grid !important;
+  place-items: center !important;
+  width: 132px !important;
+  height: 132px !important;
+  background: transparent !important;
+  border: 0 !important;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.42)) !important;
+}
+
+.repairOrbIcon img,
+.repairOrbIcon svg {
+  display: block !important;
+  width: 132px !important;
+  height: 132px !important;
+  object-fit: contain !important;
+}
+
+.repairOrbContent span:last-child {
+  color: #f8fafc !important;
+  font-size: 0.98rem !important;
+  font-weight: 850 !important;
+  text-align: center !important;
+}
+
+/*
+  Khi drawer mở:
+  - nút kiểm tra thu nhỏ
+  - vẫn giữ background chip phía sau nút
+*/
+
+:global(html.cyrp-machine-check-open) .scanCard {
+  min-height: 240px !important;
+  height: 240px !important;
+  padding: 16px 12px !important;
+  border-radius: 18px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbButton {
+  width: 118px !important;
+  height: 118px !important;
+  min-width: 118px !important;
+  min-height: 118px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbIcon,
+:global(html.cyrp-machine-check-open) .repairOrbIcon img,
+:global(html.cyrp-machine-check-open) .repairOrbIcon svg {
+  width: 86px !important;
+  height: 86px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbContent {
+  gap: 6px !important;
+}
+
+:global(html.cyrp-machine-check-open) .repairOrbContent span:last-child {
+  font-size: 0.72rem !important;
+}
+
+@media (max-width: 980px) {
+  :global(html.cyrp-machine-check-open) .resultStage {
+    top: auto !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 74vh !important;
+  }
+
+  :global(html.cyrp-machine-check-open) .inlinePanel {
+    height: 74vh !important;
+    max-height: 74vh !important;
+    border-radius: 22px 22px 0 0 !important;
+    border-right: 1px solid rgba(96, 165, 250, 0.26) !important;
+  }
+}
+
+/* ===== END DEVICE ANALYSIS LAYOUT V8 ===== */
+
+
+/* CYRP UI patch: center metric/stat blocks */
+.statCard,
+.metricCard,
+.summaryCard,
+.deviceStatCard,
+.analysisStatCard,
+.riskCard,
+.scoreCard {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.statCard span,
+.statCard strong,
+.statCard small,
+.metricCard span,
+.metricCard strong,
+.metricCard small,
+.summaryCard span,
+.summaryCard strong,
+.summaryCard small,
+.deviceStatCard span,
+.deviceStatCard strong,
+.deviceStatCard small,
+.analysisStatCard span,
+.analysisStatCard strong,
+.analysisStatCard small,
+.riskCard span,
+.riskCard strong,
+.riskCard small,
+.scoreCard span,
+.scoreCard strong,
+.scoreCard small {
+  text-align: center;
+}
+
+.statsGrid,
+.metricGrid,
+.analysisStatsGrid {
+  align-items: stretch;
+}
+
+/* CYRP patch: center analysis metric cards */
+.summaryCard,
+.statChip {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.summaryCard span,
+.summaryCard strong,
+.summaryCard small,
+.statChip span,
+.statChip strong {
+  text-align: center;
+}
+
+/* CYRP patch: gauge percentile color bands */
+.gaugeLow {
+  --gauge-accent: #22c55e;
+  --gauge-color: #22c55e;
+}
+
+.gaugeMedium {
+  --gauge-accent: #facc15;
+  --gauge-color: #facc15;
+}
+
+.gaugeHigh {
+  --gauge-accent: #fb923c;
+  --gauge-color: #fb923c;
+}
+
+.gaugeCritical {
+  --gauge-accent: #ef4444;
+  --gauge-color: #ef4444;
+}
+
+/* CYRP force gauge color by percentile bands */
+.gaugeLow {
+  --gauge-accent: #34d399 !important;
+  --gauge-color: #34d399 !important;
+  --ring-color: #34d399 !important;
+  color: #34d399 !important;
+}
+
+.gaugeMedium {
+  --gauge-accent: #facc15 !important;
+  --gauge-color: #facc15 !important;
+  --ring-color: #facc15 !important;
+  color: #facc15 !important;
+}
+
+.gaugeHigh {
+  --gauge-accent: #fb923c !important;
+  --gauge-color: #fb923c !important;
+  --ring-color: #fb923c !important;
+  color: #fb923c !important;
+}
+
+.gaugeCritical {
+  --gauge-accent: #f87171 !important;
+  --gauge-color: #f87171 !important;
+  --ring-color: #f87171 !important;
+  color: #f87171 !important;
+}
+
+/* CYRP gauge color bands by percentile */
+.gaugeLow {
+  --gauge-accent: #34d399 !important;
+  --gauge-color: #34d399 !important;
+  --ring-color: #34d399 !important;
+}
+
+.gaugeMedium {
+  --gauge-accent: #facc15 !important;
+  --gauge-color: #facc15 !important;
+  --ring-color: #facc15 !important;
+}
+
+.gaugeHigh {
+  --gauge-accent: #fb923c !important;
+  --gauge-color: #fb923c !important;
+  --ring-color: #fb923c !important;
+}
+
+.gaugeCritical {
+  --gauge-accent: #f87171 !important;
+  --gauge-color: #f87171 !important;
+  --ring-color: #f87171 !important;
+}
+
