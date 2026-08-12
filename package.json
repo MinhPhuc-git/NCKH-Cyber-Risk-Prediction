@@ -27,6 +27,7 @@
     "typecheck:admin": "corepack pnpm --filter ./apps/portal-web exec tsc -p tsconfig.json --noEmit",
     "typecheck:user": "corepack pnpm --filter ./apps/user-web exec tsc -p tsconfig.json --noEmit",
     "typecheck": "corepack pnpm run typecheck:api && corepack pnpm run typecheck:admin && corepack pnpm run typecheck:user",
+    "test": "corepack pnpm run test:api",
     "test:api": "corepack pnpm --dir apps/api exec jest --runInBand",
     "test:e2e:api": "corepack pnpm --dir apps/api exec jest --config jest-e2e.json --runInBand",
     "docker:db:up": "docker compose up -d db",

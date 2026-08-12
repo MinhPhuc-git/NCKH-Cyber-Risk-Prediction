@@ -12,6 +12,7 @@ describe('UsersService', () => {
     findById: jest.fn(),
     findMany: jest.fn(),
     updateLastLoginAt: jest.fn(),
+    getSummary: jest.fn(),
   };
 
   const service = new UsersService(
@@ -24,6 +25,13 @@ describe('UsersService', () => {
   });
 
   it('returns a paginated user list', async () => {
+    usersRepositoryMock.getSummary.mockResolvedValue({
+      total: 1,
+      activeAccounts: 1,
+      disabledAccounts: 0,
+      usersWithActiveDevices: 0,
+      usersWithoutActiveDevices: 1,
+    });
     usersRepositoryMock.findMany
       .mockResolvedValue({
         users: [
@@ -41,6 +49,7 @@ describe('UsersService', () => {
               new Date(
                 '2026-06-26T00:00:00.000Z',
               ),
+            devices: [],
           },
         ],
         total: 1,
@@ -71,10 +80,20 @@ describe('UsersService', () => {
         new Date(
           '2026-06-26T00:00:00.000Z',
         ),
+      deviceCount: 0,
+      activeDeviceCount: 0,
+      hasActiveDevice: false,
     });
   });
 
   it('returns zero total pages for an empty list', async () => {
+    usersRepositoryMock.getSummary.mockResolvedValue({
+      total: 0,
+      activeAccounts: 0,
+      disabledAccounts: 0,
+      usersWithActiveDevices: 0,
+      usersWithoutActiveDevices: 0,
+    });
     usersRepositoryMock.findMany
       .mockResolvedValue({
         users: [],
@@ -88,6 +107,13 @@ describe('UsersService', () => {
 
     expect(result).toEqual({
       data: [],
+      summary: {
+        total: 0,
+        activeAccounts: 0,
+        disabledAccounts: 0,
+        usersWithActiveDevices: 0,
+        usersWithoutActiveDevices: 0,
+      },
       pagination: {
         page: 1,
         limit: 20,
