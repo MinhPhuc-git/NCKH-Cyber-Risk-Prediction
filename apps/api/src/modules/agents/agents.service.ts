@@ -212,10 +212,7 @@ export class AgentsService {
       );
 
       if (
-        error instanceof
-          Prisma
-            .PrismaClientKnownRequestError &&
-        error.code === 'P2002'
+        (error as any)?.code === 'P2002'
       ) {
         throw new ConflictException({
           code: 'AGENT_ALREADY_ENROLLED',

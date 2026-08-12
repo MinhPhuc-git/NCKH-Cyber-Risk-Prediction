@@ -108,8 +108,7 @@ export class DeviceSyncLockService
       });
     } catch (error: unknown) {
       if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2002'
+        (error as any)?.code === 'P2002'
       ) {
         const activeLease = await this.database.deviceSyncLease.findUnique({
           where: { deviceId },
