@@ -48,8 +48,10 @@ export function CtiAiSummaryClient() {
     }
   }, [endpoint]);
 
-  useEffect(() => { void load(); }, [load]);
-
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void load();
+  }, [load]);
   const summary = data?.summary ?? {};
   const rows = data?.topRecommendations ?? [];
 

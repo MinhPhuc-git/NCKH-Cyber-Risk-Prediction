@@ -813,7 +813,6 @@ export function DeviceAnalysisButton({
 
     let loaded = 0;
     let total = 0;
-    let aiPredictionTotal = 0;
     let highestAttackProbability: number | null = null;
     let highestPercentile: number | null = null;
 
@@ -960,6 +959,7 @@ export function DeviceAnalysisButton({
       return;
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadAiRiskSummary().catch(() => {
       // Keep existing distribution if summary refresh fails.
     });
