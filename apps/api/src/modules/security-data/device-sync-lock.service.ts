@@ -6,7 +6,7 @@ import {
   OnApplicationShutdown,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Prisma } from '@prisma/client';
+
 import { randomUUID } from 'node:crypto';
 
 import { DatabaseService } from '../../database/database.service';
@@ -108,7 +108,7 @@ export class DeviceSyncLockService
       });
     } catch (error: unknown) {
       if (
-        (error as any)?.code === 'P2002'
+        (error as Record<string, unknown>)?.code === 'P2002'
       ) {
         const activeLease = await this.database.deviceSyncLease.findUnique({
           where: { deviceId },

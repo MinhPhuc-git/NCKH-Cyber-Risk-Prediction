@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import {
   DeviceStatus,
-  Prisma,
 } from '@prisma/client';
 import {
   createHash,
@@ -212,7 +211,7 @@ export class AgentsService {
       );
 
       if (
-        (error as any)?.code === 'P2002'
+        (error as Record<string, unknown>)?.code === 'P2002'
       ) {
         throw new ConflictException({
           code: 'AGENT_ALREADY_ENROLLED',

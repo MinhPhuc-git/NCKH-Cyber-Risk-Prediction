@@ -4,7 +4,6 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import {
-  Prisma,
   RoleCode,
   UserStatus,
 } from '@prisma/client';
@@ -98,7 +97,7 @@ export class RegistrationService {
       };
     } catch (error: unknown) {
       if (
-        (error as any)?.code === 'P2002'
+        (error as Record<string, unknown>)?.code === 'P2002'
       ) {
         throw this.createEmailConflict();
       }
