@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { promises as fs } from 'fs';
+import { accessSync, promises as fs } from 'fs';
 import { dirname, isAbsolute, join, resolve } from 'path';
 
 type RawRecommendation = Record<string, unknown>;
@@ -72,7 +72,7 @@ export class CtiAiSummaryService {
     let current = process.cwd();
     for (let index = 0; index < 8; index += 1) {
       try {
-        require('fs').accessSync(join(current, 'apps', 'ai-model'));
+        accessSync(join(current, 'apps', 'ai-model'));
         return current;
       } catch {
         const parent = dirname(current);
