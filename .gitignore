@@ -62,3 +62,35 @@ temp/
 **/datasets/
 _cti_pipeline_patch/
 _new_model_patch/
+
+# Docs folder (tài liệu nội bộ, không push lên git)
+docs/
+
+# SQL backup files
+*.sql
+
+# CSV data export files
+*.csv
+
+# Generated text reports
+*.txt
+
+# Patch/bundle folders tạm thời
+_agentkit_bundle/
+_ai_data_user_import_patch/
+_ai_import_fix_v2/
+_ai_pipeline_check_patch/
+_ai_pipeline_stable_v2/
+_ai_results_risklevel_ui_patch/
+_cve_lifecycle_delta_v1/
+_user_ui_ai_percentile_patch/
+
+# Artifacts folder (JSON reports)
+artifacts/
+
+# DB exports
+db-exports/
+db-backups/
+
+# Zip bundles
+*.zip
